@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beaver Works Assistive Technology</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -175,6 +181,87 @@
       height: auto;
     }
 
+    /* ── TEAM MAP ── */
+    .team-map-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0;
+    }
+    .team-map-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .team-map-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--mit-dark);
+      letter-spacing: -0.01em;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .team-map-subtitle {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: #888;
+      font-weight: 500;
+    }
+    .team-count {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: #fff;
+      background: #A31F34;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    #team-map {
+      width: 100%;
+      min-height: 480px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 32px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+    .state-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .state-pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1.5px solid #ddd;
+      color: #555;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .state-pill .count {
+      background: #A31F34;
+      color: white;
+      border-radius: 10px;
+      padding: 1px 6px;
+      font-size: 0.65rem;
+    }
+    .custom-pin {
+      width: 14px;
+      height: 14px;
+      background: #A31F34;
+      border: 2.5px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 1px 6px rgba(163,31,52,0.5);
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--mit-dark);
@@ -219,6 +306,8 @@
       <p class="section__label">The CRE[AT]E Assistive Technology Challenge</p>
       <h2 class="section__heading">Design assistive technology.<br>Make a real difference.</h2>
       <p class="section__body">
+        The CRE[AT]E Challenge is a design and engineering program for high school and college  students across the United States.
+        <br><br>
         Learn about disability and product design while working in teams to prototype a solution
         for someone in your community with disability-related challenges. No prior experience required —
         just curiosity and a willingness to listen and build.
@@ -329,6 +418,25 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="section__inner">
+      <h2 class="section__heading">Team distribution across the U.S.</h2>
+      <p class="section__body">
+        Explore where CRE[AT]E teams were located during the 2025–2026 challenge cycle.
+      </p>
+      <div class="team-map-wrapper">
+        <div class="team-map-header">
+          <div>
+            <div class="team-map-title">CRE[AT]E Challenge 2025–2026 Teams</div>
+          </div>
+          <div class="team-count" id="teamCountBadge"></div>
+        </div>
+        <div id="team-map"></div>
+        <div class="state-pills" id="statePills"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT BWSI -->
   <section class="section">
     <div class="section__inner">
@@ -351,6 +459,192 @@
       </div>
     </div>
   </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+  <script>
+    const teams = [
+      { city: "Cambridge", state: "MA", lat: 42.3736, lng: -71.1097 },
+      { city: "Scarsdale", state: "NY", lat: 41.0038, lng: -73.7912 },
+      { city: "South Barrington", state: "IL", lat: 42.0775, lng: -88.1287 },
+      { city: "Boulder", state: "CO", lat: 40.0150, lng: -105.2705 },
+      { city: "Brooklyn", state: "NY", lat: 40.6782, lng: -73.9442 },
+      { city: "Alexandria", state: "VA", lat: 38.8048, lng: -77.0469 },
+      { city: "Chantilly", state: "VA", lat: 38.8980, lng: -77.4387 },
+      { city: "Alexandria", state: "VA", lat: 38.8048, lng: -77.0469 },
+      { city: "Irvine", state: "CA", lat: 33.6846, lng: -117.8265 },
+      { city: "Brooklyn", state: "NY", lat: 40.6782, lng: -73.9442 },
+      { city: "Brooklyn", state: "NY", lat: 40.6782, lng: -73.9442 },
+      { city: "Hoffman Estates", state: "IL", lat: 42.0430, lng: -88.1439 },
+      { city: "Livingston", state: "NJ", lat: 40.7884, lng: -74.3154 },
+      { city: "Concord", state: "MA", lat: 42.4604, lng: -71.3490 },
+      { city: "Concord", state: "MA", lat: 42.4604, lng: -71.3490 },
+      { city: "Sammamish", state: "WA", lat: 47.6163, lng: -122.0356 },
+      { city: "Lakeville", state: "CT", lat: 41.9454, lng: -73.4329 },
+      { city: "Needham", state: "MA", lat: 42.2793, lng: -71.2325 },
+      { city: "Redmond", state: "WA", lat: 47.6740, lng: -122.1215 },
+      { city: "Metuchen", state: "NJ", lat: 40.5429, lng: -74.3632 },
+      { city: "Edison", state: "NJ", lat: 40.5187, lng: -74.4121 },
+      { city: "Brooklyn", state: "NY", lat: 40.6782, lng: -73.9442 },
+      { city: "New York City", state: "NY", lat: 40.7128, lng: -74.0060 },
+      { city: "Concord", state: "MA", lat: 42.4604, lng: -71.3490 },
+      { city: "Carson", state: "CA", lat: 33.8317, lng: -118.2820 },
+      { city: "Irving", state: "TX", lat: 32.8140, lng: -96.9489 },
+      { city: "Marietta", state: "GA", lat: 33.9526, lng: -84.5499 },
+      { city: "Leesburg", state: "VA", lat: 39.1157, lng: -77.5636 },
+      { city: "Brooklyn", state: "NY", lat: 40.6782, lng: -73.9442 },
+      { city: "Irvine", state: "CA", lat: 33.6846, lng: -117.8265 },
+      { city: "Belmont", state: "MA", lat: 42.3959, lng: -71.1786 },
+      { city: "Virginia Beach", state: "VA", lat: 36.8529, lng: -75.9780 },
+      { city: "Milton", state: "MA", lat: 42.2451, lng: -71.0662 },
+      { city: "Mountain View", state: "CA", lat: 37.3861, lng: -122.0839 },
+      { city: "Northborough", state: "MA", lat: 42.3193, lng: -71.6437 },
+      { city: "Great Neck", state: "NY", lat: 40.8001, lng: -73.7279 },
+      { city: "Durham", state: "NH", lat: 43.1339, lng: -70.9267 },
+      { city: "Belmont", state: "MA", lat: 42.3959, lng: -71.1786 },
+      { city: "Westford", state: "MA", lat: 42.5793, lng: -71.4376 },
+      { city: "Concord", state: "MA", lat: 42.4604, lng: -71.3490 },
+      { city: "Alexandria", state: "VA", lat: 38.8048, lng: -77.0469 },
+      { city: "Brooklyn", state: "NY", lat: 40.6782, lng: -73.9442 },
+      { city: "Bellevue", state: "WA", lat: 47.6101, lng: -122.2015 },
+      { city: "Edison", state: "NJ", lat: 40.5187, lng: -74.4121 },
+      { city: "New York City", state: "NY", lat: 40.7128, lng: -74.0060 },
+      { city: "New York City", state: "NY", lat: 40.7128, lng: -74.0060 },
+      { city: "Tustin", state: "CA", lat: 33.7458, lng: -117.8260 },
+      { city: "Irvine", state: "CA", lat: 33.6846, lng: -117.8265 },
+      { city: "Brooklyn", state: "NY", lat: 40.6782, lng: -73.9442 },
+      { city: "Concord", state: "MA", lat: 42.4604, lng: -71.3490 },
+      { city: "San Diego", state: "CA", lat: 32.7157, lng: -117.1611 },
+      { city: "Poolesville", state: "MD", lat: 39.1401, lng: -77.4135 },
+      { city: "Edison", state: "NJ", lat: 40.5187, lng: -74.4121 },
+      { city: "Livermore", state: "CA", lat: 37.6819, lng: -121.7681 },
+      { city: "Portland", state: "OR", lat: 45.5051, lng: -122.6750 },
+      { city: "Anaheim", state: "CA", lat: 33.8366, lng: -117.9143 },
+      { city: "Locust Valley", state: "NY", lat: 40.8759, lng: -73.5971 },
+      { city: "San Ramon", state: "CA", lat: 37.7799, lng: -121.9780 },
+      { city: "Monroe Township", state: "NJ", lat: 40.3318, lng: -74.4320 },
+      { city: "West Windsor", state: "NJ", lat: 40.2732, lng: -74.5960 },
+      { city: "Fullerton", state: "CA", lat: 33.8703, lng: -117.9242 },
+      { city: "Liberty Hill", state: "TX", lat: 30.6672, lng: -97.9265 },
+      { city: "Ivyland", state: "PA", lat: 40.2053, lng: -75.0698 },
+      { city: "Oak Hill", state: "WV", lat: 37.9744, lng: -81.1474 },
+      { city: "San Jose", state: "CA", lat: 37.3382, lng: -121.8863 },
+      { city: "Northborough", state: "MA", lat: 42.3193, lng: -71.6437 },
+      { city: "Englewood Cliffs", state: "NJ", lat: 40.8776, lng: -73.9813 },
+      { city: "Winchester", state: "MA", lat: 42.4523, lng: -71.1370 },
+      { city: "Brooklyn", state: "NY", lat: 40.6782, lng: -73.9442 },
+      { city: "Virginia Beach", state: "VA", lat: 36.8529, lng: -75.9780 },
+      { city: "Irvine", state: "CA", lat: 33.6846, lng: -117.8265 },
+      { city: "Brooklyn", state: "NY", lat: 40.6782, lng: -73.9442 },
+      { city: "Alexandria", state: "VA", lat: 38.8048, lng: -77.0469 },
+      { city: "Bedford", state: "MA", lat: 42.4912, lng: -71.2759 },
+      { city: "Oakville", state: "ON", lat: 43.4675, lng: -79.6877 },
+      { city: "Westford", state: "MA", lat: 42.5793, lng: -71.4376 },
+      { city: "Anaheim", state: "CA", lat: 33.8366, lng: -117.9143 },
+      { city: "New York City", state: "NY", lat: 40.7128, lng: -74.0060 },
+      { city: "Camas", state: "WA", lat: 45.5871, lng: -122.3995 },
+      { city: "Novi", state: "MI", lat: 42.4800, lng: -83.4755 },
+      { city: "Locust Valley", state: "NY", lat: 40.8759, lng: -73.5971 },
+      { city: "Apex", state: "NC", lat: 35.7327, lng: -78.8503 },
+      { city: "Cleveland", state: "OH", lat: 41.4993, lng: -81.6944 },
+      { city: "Buffalo", state: "NY", lat: 42.8864, lng: -78.8784 },
+    ];
+
+    const stateCounts = {};
+    teams.forEach(t => {
+      const key = t.state;
+      stateCounts[key] = (stateCounts[key] || { count: 0, name: t.state });
+      stateCounts[key].count++;
+    });
+
+    const stateNames = {
+      MA: "Massachusetts", NY: "New York", CA: "California", VA: "Virginia",
+      NJ: "New Jersey", WA: "Washington", IL: "Illinois", TX: "Texas",
+      CO: "Colorado", CT: "Connecticut", GA: "Georgia", MD: "Maryland",
+      NH: "New Hampshire", OR: "Oregon", PA: "Pennsylvania", WV: "West Virginia",
+      MI: "Michigan", NC: "North Carolina", OH: "Ohio", ON: "Ontario (Canada)",
+    };
+
+    document.getElementById('teamCountBadge').textContent = `${teams.length} teams`;
+
+    const pillContainer = document.getElementById('statePills');
+    const sorted = Object.entries(stateCounts).sort((a,b) => b[1].count - a[1].count);
+    sorted.forEach(([abbr, data]) => {
+      const pill = document.createElement('div');
+      pill.className = 'state-pill';
+      pill.innerHTML = `${stateNames[abbr] || abbr} <span class="count">${data.count}</span>`;
+      pillContainer.appendChild(pill);
+    });
+
+    const map = L.map('team-map', {
+      center: [39.5, -98.35],
+      zoom: 4,
+      scrollWheelZoom: false,
+      zoomControl: true,
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19,
+    }).addTo(map);
+
+    const customIcon = L.divIcon({
+      className: '',
+      html: '<div class="custom-pin"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7],
+      popupAnchor: [0, -10],
+    });
+
+    const markers = L.markerClusterGroup({
+      maxClusterRadius: 40,
+      spiderfyOnMaxZoom: true,
+      showCoverageOnHover: false,
+      iconCreateFunction: function(cluster) {
+        const count = cluster.getChildCount();
+        return L.divIcon({
+          html: `<div style="
+            background: rgba(163,31,52,0.15);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+          "><div style="
+            background: #A31F34;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+          ">${count}</div></div>`,
+          className: '',
+          iconSize: [40, 40],
+          iconAnchor: [20, 20],
+        });
+      }
+    });
+
+    const seen = {};
+    teams.forEach((t, i) => {
+      const key = `${t.lat},${t.lng}`;
+      if (!seen[key]) seen[key] = 0;
+      seen[key]++;
+      const jitter = seen[key] > 1 ? (seen[key] - 1) * 0.008 : 0;
+      const angle = (seen[key] * 137.5) * Math.PI / 180;
+      const jLat = t.lat + jitter * Math.cos(angle);
+      const jLng = t.lng + jitter * Math.sin(angle);
+
+      const marker = L.marker([jLat, jLng], { icon: customIcon });
+      marker.bindPopup(`<div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#1a1a1a">${t.city}, ${t.state}</div>`, {
+        closeButton: false,
+        offset: [0, -4],
+      });
+      markers.addLayer(marker);
+    });
+
+    map.addLayer(markers);
+  </script>
 
   <!-- FOOTER -->
   <footer style="background: var(--mit-dark); border-top: 4px solid var(--yellow);">

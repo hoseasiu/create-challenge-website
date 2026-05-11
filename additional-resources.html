@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Additional Resources | Beaver Works Assistive Technology</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    a { color: #b8860b; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white   { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red     { background: var(--yellow);  color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    .section {
+      padding: 60px 24px;
+    }
+    .section--gray { background: var(--mit-light); }
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #b8860b;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      max-width: 680px;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .resource-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 24px;
+    }
+    .resource-card__title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+    }
+    .resource-card__list {
+      list-style: none;
+      padding-left: 0;
+      color: var(--mit-gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .resource-card__list li {
+      margin-bottom: 10px;
+    }
+    .resource-card__list strong {
+      color: var(--mit-dark);
+    }
+
+    .callouts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .callout-card {
+      border-left: 4px solid var(--yellow);
+      padding: 20px 20px 20px 24px;
+      background: var(--white);
+      border-radius: 0 8px 8px 0;
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .callout-card__title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .callout-card__body {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.7;
+    }
+
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p {
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+  </style>
+</head>
+<body>
+
+  <section class="section">
+    <div class="section__inner">
+      <p class="section__label">Additional resources</p>
+      <h2 class="section__heading">Tools and learning materials for assistive technology design</h2>
+      <p class="section__body">A curated set of CAD, electronics, documentation, and assistive technology resources used by Beaver Works AT students and alumni.</p>
+
+      <div class="resource-grid">
+        <div class="resource-card">
+          <div class="resource-card__title">CAD / 3D Modeling</div>
+          <ul class="resource-card__list">
+            <li><strong><a href="https://www.onshape.com/">Onshape</a></strong> — Cloud-based CAD with collaboration and free academic access.</li>
+            <li><strong><a href="https://www.autodesk.com/products/fusion-360/">Fusion 360</a></strong> — Autodesk CAD, engineering, electronics, and manufacturing software; free academic license.</li>
+            <li><strong><a href="https://www.tinkercad.com">Tinkercad</a></strong> — Beginner-friendly browser-based 3D modeling for new CAD users.</li>
+            <li><strong><a href="https://www.freecad.org/">FreeCAD</a></strong> — Open-source parametric modeling software for mechanical engineering and product design.</li>
+            <li><strong><a href="https://www.blender.org/">Blender</a></strong> — Free 3D creation suite for modeling, rendering, and animation.</li>
+            <li><strong><a href="https://www.keyshot.com/">Keyshot 3D</a></strong> — Rendering and animation software for photorealistic visuals.</li>
+          </ul>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-card__title">Electronics & programming</div>
+          <ul class="resource-card__list">
+            <li><strong><a href="https://www.arduino.cc/">Arduino</a></strong> — Open-source electronics platform with a free IDE for prototypes.</li>
+            <li><strong><a href="https://www.raspberrypi.com/">Raspberry Pi</a></strong> — Low-cost single-board computer for programming and electronics projects.</li>
+            <li><strong><a href="https://appinventor.mit.edu/">MIT App Inventor</a></strong> — Browser-based app builder from MIT for mobile apps without code.</li>
+            <li><strong><a href="https://scratch.mit.edu/">Scratch</a></strong> — Visual programming tool from MIT Media Lab for learning coding basics.</li>
+          </ul>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-card__title">Circuit design</div>
+          <ul class="resource-card__list">
+            <li><strong><a href="https://www.tinkercad.com/circuits">Tinkercad Circuits</a></strong> — Browser-based circuit simulator integrated with Tinkercad.</li>
+            <li><strong><a href="https://fritzing.org/">Fritzing</a></strong> — Open-source EDA software for prototyping circuits.</li>
+            <li><strong><a href="https://www.kicad.org/">KiCad</a></strong> — Free PCB design suite for electronics layouts.</li>
+          </ul>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-card__title">Documentation & collaboration</div>
+          <ul class="resource-card__list">
+            <li><strong><a href="https://inkscape.org/">Inkscape</a></strong> — Free vector editor for diagrams and technical illustrations.</li>
+            <li><strong><a href="https://www.gimp.org/">GIMP</a></strong> — Open-source image editor for documentation and visuals.</li>
+            <li><strong><a href="https://obsproject.com/">OBS Studio</a></strong> — Recording and streaming software useful for documenting projects.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gray">
+    <div class="section__inner">
+      <p class="section__label">Learning and community</p>
+      <h2 class="section__heading">Courses, clubs, and assistive technology networks</h2>
+      <p class="section__body">These links connect students to coursework, community support, and broader assistive technology programs beyond the challenge.</p>
+
+      <div class="callouts">
+        <div class="callout-card">
+          <div class="callout-card__title">MIT Course 6.811</div>
+          <div class="callout-card__body">
+            <strong><a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-811-principles-and-practice-of-assistive-technology-fall-2014/">Fall 2014 on OpenCourseWare</a></strong> — Free course materials with lectures, assignments, and project examples.
+            <br><br>
+            <strong><a href="http://ppat.mit.edu/fall2019/index.html">Fall 2019 class page</a></strong> — Syllabus, schedule, and additional assistive technology resources.
+          </div>
+        </div>
+
+        <div class="callout-card">
+          <div class="callout-card__title">MIT Assistive Technology Club</div>
+          <div class="callout-card__body">
+            <strong><a href="https://edgerton.mit.edu/assistive-technology-club">AT Club</a></strong> — Student organization focused on assistive technology design, development, and community engagement at MIT.
+          </div>
+        </div>
+
+        <div class="callout-card">
+          <div class="callout-card__title">D4AT</div>
+          <div class="callout-card__body">
+            Alumni from the 2021 summer course launched a nationwide assistive technology club network in 2021–2022.
+            <br><br>
+            <strong><a href="https://student-at-program.github.io/onlinecourse/">The D4AT curriculum</a></strong> — Public fork of the BWSI AT pre-course.
+            <br><br>
+            <strong><a href="https://designforat.org/">D4AT Virtual Maker Faire</a></strong> — Virtual showcase of student AT project presentations.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>Beaver Works Assistive Technology</p>
+        <p>Embed-ready resources page.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

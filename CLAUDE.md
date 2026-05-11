@@ -156,6 +156,30 @@ Since these pages are embedded in Google Sites (which provides its own navigatio
 
 ---
 
+## Site Snapshot Lookup
+
+When a question is about a particular website page, first search the `site-snapshot` folder for that page's file. Use the snapshot copy as the authoritative summary source before making any content or format changes.
+
+If you convert a Google Sites page into an HTML embed or otherwise update its published form, also update the corresponding file inside `site-snapshot` and revise the snapshot date to keep the archive aligned with the live site.
+
+---
+
+## Google Sites to HTML Embed Workflow
+
+When a page is converted from the Google Sites version to a standalone full-page HTML embed, follow this workflow:
+
+1. Review the live Google Sites page online first under beaver-works-assistive-tech.mit.edu/.
+2. Compare it with the corresponding `site-snapshot` markdown file.
+3. If there are major content or structural differences, pause and ask for clarification before editing.
+4. If the snapshot is simply out of date, update the `site-snapshot/*.md` content to match the current published page.
+5. Add or update snapshot metadata to document the source HTML file (for example, `source_html: index.html`).
+6. Build the new HTML embed using the site style guide and accessibility guidelines.
+7. Update the corresponding `site-snapshot` markdown file and snapshot date to keep the archive current.
+
+This workflow ensures the published version, the snapshot archive, and the markup all stay synchronized.
+
+---
+
 ## Naming Conventions
 
 CSS follows a loose BEM convention: `.block`, `.block__element`, `.block--modifier`. Component-level class names are descriptive (`.feature-card`, `.callout-card`, `.interest-band`) rather than generic.

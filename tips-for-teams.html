@@ -139,10 +139,25 @@
       justify-content: center;
     }
 
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .page-nav a {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
     footer {
       background: var(--mit-dark);
       color: rgba(255,255,255,0.9);
       padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
     }
     footer .inner {
       max-width: var(--max-w);
@@ -158,6 +173,23 @@
       margin-bottom: 4px;
     }
     .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .footer__social a {
+      display: flex;
+      align-items: center;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img {
+      width: 28px;
+      height: 28px;
+      filter: brightness(0) invert(1);
+    }
   </style>
 </head>
 <body>
@@ -199,25 +231,43 @@
     </div>
   </section>
 
-  <section class="interest-band">
+  <section class="section section--gray">
     <div class="section__inner">
-      <h2 class="interest-band__heading">Keep the focus on the co-designer and the process</h2>
-      <p class="interest-band__body">Teams that communicate, iterate, and follow the course learn more and have a better experience — even when their prototype changes along the way.</p>
-      <div class="interest-band__ctas">
-        <a class="btn btn--white" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/goals-of-the-challenge" target="_top">Back: Goals of the Challenge</a>
-        <a class="btn btn--red" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/schedule" target="_top">Next: Challenge Schedule</a>
-      </div>
+      <nav class="page-nav" aria-label="Page navigation">
+        <a href="goals-of-the-challenge.html">&laquo; Back: Goals of the Challenge</a>
+        <a href="schedule.html">Next: Schedule &raquo;</a>
+      </nav>
     </div>
   </section>
+
+  <div class="interest-band">
+    <h2 class="interest-band__heading">Register for the 2026–2027 season</h2>
+    <p class="interest-band__body">Team registration opens in September 2026. Fill out our interest form to stay informed, or visit the About page to learn more about the program.</p>
+    <div class="interest-band__ctas">
+      <a class="btn btn--red" href="https://docs.google.com/forms/d/e/1FAIpQLSfjykFOIogTkRrczyDZ8J1PyDbEiwDTHsGh3cNt8zFXnhzZhw/viewform?usp=header">Fill Out the Interest Form</a>
+      <a class="btn btn--outline-dark" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/about">About the Challenge</a>
+    </div>
+  </div>
 
   <footer>
     <div class="inner">
       <div class="footer__left">
-        <p>Beaver Works Assistive Technology</p>
-        <p>Advice for CRE[AT]E Challenge teams.</p>
+        <p>&copy; 2026 MIT Beaver Works</p>
+        <p>
+          <a href="http://accessibility.mit.edu">MIT Accessibility</a> &nbsp;·&nbsp;
+          <a href="https://docs.google.com/document/d/e/2PACX-1vS0iFUQBw7R3N6jQLFIRiYUbZlBh2SkXHJWT_BzRkIcb_Wjn4L6JRvcI5gk2D4HkB_z6_WzJ56SYNUD/pub">Privacy Policy</a>
+        </p>
       </div>
-      <div>
-        <a href="index.html">Home</a>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" aria-label="YouTube">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" aria-label="Instagram">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" aria-label="X (formerly Twitter)">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/twitter_colored_36dp.png" alt="X" />
+        </a>
       </div>
     </div>
   </footer>

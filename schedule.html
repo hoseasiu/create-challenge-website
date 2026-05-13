@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schedule | CRE[AT]E Challenge — Beaver Works AT</title>
+  <meta name="description" content="The 2026–2027 CRE[AT]E Challenge schedule, including course milestones, project submission deadlines, and the final event date." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    a { color: #b8860b; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow); color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 60px 24px; }
+    .section--gray { background: var(--mit-light); }
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #b8860b;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      max-width: 680px;
+    }
+
+    /* ── SCHEDULE TABLE ── */
+    .schedule-block {
+      margin-top: 40px;
+    }
+    .schedule-block + .schedule-block {
+      margin-top: 48px;
+    }
+    .schedule-semester {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      font-weight: 800;
+      color: var(--mit-dark);
+      border-bottom: 3px solid var(--yellow);
+      padding-bottom: 10px;
+      margin-bottom: 6px;
+    }
+    .schedule-subtitle {
+      font-size: 0.8rem;
+      color: var(--mit-gray);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .schedule-table thead th {
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #b8860b;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .schedule-table thead th:last-child {
+      text-align: right;
+    }
+    .schedule-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+    .schedule-table tbody tr:last-child {
+      border-bottom: none;
+    }
+    .schedule-table tbody tr:hover {
+      background: #fffbee;
+    }
+    .schedule-table td {
+      padding: 14px 12px;
+      vertical-align: top;
+    }
+    .schedule-table td:last-child {
+      text-align: right;
+      white-space: nowrap;
+      font-weight: 700;
+      color: var(--mit-dark);
+      font-size: 0.95rem;
+      min-width: 140px;
+    }
+    .schedule-table td a {
+      font-size: 0.95rem;
+    }
+
+    /* Type tags */
+    .tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      padding: 2px 7px;
+      margin-bottom: 4px;
+      vertical-align: middle;
+    }
+    .tag--course {
+      background: #e8f0fe;
+      color: #1a56c4;
+    }
+    .tag--project {
+      background: #fef3cd;
+      color: #92600a;
+    }
+    .tag--event {
+      background: #d4edda;
+      color: #1a6630;
+    }
+    .tag--deadline {
+      background: #fde8e8;
+      color: #9b1c1c;
+    }
+
+    /* Warning callout */
+    .schedule-note {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: #92600a;
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+    }
+    .schedule-note::before {
+      content: "⚠";
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── NOTES BLOCK ── */
+    .notes-list {
+      margin-top: 24px;
+      padding: 24px 28px;
+      background: var(--white);
+      border-left: 4px solid var(--yellow);
+      border-radius: 0 8px 8px 0;
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .notes-list__heading {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--mit-dark);
+    }
+    .notes-list ul {
+      padding-left: 18px;
+    }
+    .notes-list ul li {
+      font-size: 0.9rem;
+      color: var(--mit-gray);
+      margin-bottom: 6px;
+    }
+    .notes-list__aoe {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      color: var(--mit-gray);
+    }
+
+    /* ── NAV LINKS ── */
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .page-nav a {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ── INTEREST BAND ── */
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.8;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p {
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .footer__social a {
+      display: flex;
+      align-items: center;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img {
+      width: 28px;
+      height: 28px;
+      filter: brightness(0) invert(1);
+    }
+
+    @media (max-width: 600px) {
+      .schedule-table td:last-child {
+        min-width: unset;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── INTRO ── -->
+  <section class="section">
+    <div class="section__inner">
+      <p class="section__label">CRE[AT]E Challenge</p>
+      <h1 class="section__heading">Challenge Schedule</h1>
+      <p class="section__body">
+        The 2026–2027 CRE[AT]E Challenge runs from Fall 2026 through Spring 2027.
+        Course milestones and project submission deadlines are listed below.
+        All dates are Sundays unless otherwise noted.
+      </p>
+
+      <!-- ── FALL SEMESTER ── -->
+      <div class="schedule-block">
+        <div class="schedule-semester">Fall Semester — September to December 2026</div>
+        <div class="schedule-subtitle">All dates are Sundays unless otherwise noted.</div>
+
+        <table class="schedule-table" aria-label="Fall 2026 schedule">
+          <thead>
+            <tr>
+              <th>Milestone</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="tag tag--deadline">Deadline</span><br>
+                Due Date for <a href="https://mit-bwsi.formstack.com/forms/create_teamapplication_2024_2025">Team Registration</a>
+              </td>
+              <td>October 4</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--event">Event</span><br>
+                Live Kickoff
+              </td>
+              <td>Saturday October 17</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--course">Course</span><br>
+                <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/introduction">Introduction Section</a>
+              </td>
+              <td>November 1</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--course">Course</span><br>
+                <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/design-processes">Design Process Section</a>
+              </td>
+              <td>November 8</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--course">Course</span><br>
+                <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/idea-to-ink">Idea to Ink Section</a>
+                <div class="schedule-note">
+                  Thanksgiving is November 27 this year. This deadline falls the Sunday before — plan ahead to avoid a crunch over the holiday.
+                </div>
+              </td>
+              <td>November 22</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--project">Project</span><br>
+                Due Date for <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/finding-a-co-designer">Finding a Co-Designer</a>
+                <div class="schedule-note">
+                  Same note — this falls the Sunday before Thanksgiving. Start early.
+                </div>
+              </td>
+              <td>November 22</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--project">Project</span><br>
+                Due Date for <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/co-designer-interviews">Interview Protocol / Needs and Requirements Assignment</a>
+              </td>
+              <td>December 13</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--project">Project</span><br>
+                Due Date for <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/project-brainstorming">Brainstorming Assignment</a>
+                <div class="schedule-note">
+                  Many schools begin winter break around this date. Plan to submit before your school's last day if possible.
+                </div>
+              </td>
+              <td>December 20</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ── SPRING SEMESTER ── -->
+      <div class="schedule-block">
+        <div class="schedule-semester">Spring Semester — January to April 2027</div>
+        <div class="schedule-subtitle">All dates are Sundays unless otherwise noted.</div>
+
+        <table class="schedule-table" aria-label="Spring 2027 schedule">
+          <thead>
+            <tr>
+              <th>Milestone</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="tag tag--course">Course</span><br>
+                <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/documentation-and-presentation">Documentation and Presentation Section</a>
+                <div class="schedule-note">
+                  MLK Day falls on January 18 — many schools are off the following day. This deadline is the day before; plan accordingly.
+                </div>
+              </td>
+              <td>January 17</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--project">Project</span><br>
+                Due Date for <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/design-reviews">Preliminary Peer Review</a>
+              </td>
+              <td>January 31</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--project">Project</span><br>
+                Due Date for <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/design-reviews">Preliminary Design Review</a>
+              </td>
+              <td>February 7</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--course">Course</span><br>
+                <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/maker-skills">Maker Skills Section</a>
+              </td>
+              <td>February 28</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--project">Project</span><br>
+                Due Date for <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/design-reviews">Critical Peer Review</a>
+              </td>
+              <td>March 7</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--project">Project</span><br>
+                Due Date for <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/design-reviews">Critical Design Review</a>
+                <div class="schedule-note">
+                  March 13 is a common SAT test date. Students with test obligations that weekend should plan to submit early.
+                </div>
+              </td>
+              <td>March 14</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--deadline">Deadline</span><br>
+                Due Date for <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/design-reviews">Final Project Submissions</a>
+                <div class="schedule-note">
+                  Many schools have spring break in late March or early April. AP exam season begins in early May. Aim to wrap up your final submission before any planned travel or exam prep.
+                </div>
+              </td>
+              <td>April 11</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="tag tag--event">Event</span><br>
+                Challenge Final Event
+              </td>
+              <td>Saturday April 24</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ── NOTES ── -->
+      <div class="notes-list" role="note" aria-label="Assignment notes">
+        <div class="notes-list__heading">Assignment Notes</div>
+        <p class="notes-list__aoe">
+          All assignments and submissions are due 23:59:59 <a href="https://time.is/Anywhere_on_Earth">Anywhere on Earth</a> on the day indicated. The assignment is not late until it is past the date indicated everywhere on the planet.
+        </p>
+        <br>
+        <p class="notes-list__aoe">You may always submit assignments early. If the submission form is not yet available, please contact staff.</p>
+        <br>
+        <ul>
+          <li>We recommend starting to find a co-designer as soon as possible.</li>
+          <li>The Maker Skills section of the course involves selecting and completing two relevant modules from that section. We recommend starting on that section as soon as you have a sense of what type of skills your project may require.</li>
+        </ul>
+      </div>
+
+      <!-- ── PAGE NAV ── -->
+      <nav class="page-nav" aria-label="Page navigation">
+        <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/tips-for-teams">&laquo; Back: Tips for Teams</a>
+        <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course">Next: CRE[AT]E Course &raquo;</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ── INTEREST BAND ── -->
+  <div class="interest-band">
+    <h2 class="interest-band__heading">Register for the 2026–2027 season</h2>
+    <p class="interest-band__body">
+      Team registration opens in September 2026. Fill out our interest form to stay informed, or visit the About page to learn more about the program.
+    </p>
+    <div class="interest-band__ctas">
+      <a class="btn btn--red"
+         href="https://docs.google.com/forms/d/e/1FAIpQLSfjykFOIogTkRrczyDZ8J1PyDbEiwDTHsGh3cNt8zFXnhzZhw/viewform?usp=header">
+        Fill Out the Interest Form
+      </a>
+      <a class="btn btn--outline-dark"
+         href="https://beaver-works-assistive-tech.mit.edu/create-challenge/about">
+        About the Challenge
+      </a>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>&copy; 2026 MIT Beaver Works</p>
+        <p>
+          <a href="http://accessibility.mit.edu">MIT Accessibility</a> &nbsp;·&nbsp;
+          <a href="https://docs.google.com/document/d/e/2PACX-1vS0iFUQBw7R3N6jQLFIRiYUbZlBh2SkXHJWT_BzRkIcb_Wjn4L6JRvcI5gk2D4HkB_z6_WzJ56SYNUD/pub">Privacy Policy</a>
+        </p>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" aria-label="YouTube">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" aria-label="Instagram">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" aria-label="X (formerly Twitter)">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/twitter_colored_36dp.png" alt="X" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

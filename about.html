@@ -19,6 +19,33 @@
       --max-w:      960px;
     }
 
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    /* Screen-reader-only: visually hides element but keeps it in the a11y tree */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* Skip link: hidden until focused, then slides into view */
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* Enhanced focus indicator (replaces thin browser default) */
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       color: var(--mit-dark);
@@ -26,7 +53,7 @@
       line-height: 1.65;
     }
 
-    a { color: #b8860b; text-decoration: none; }
+    a { color: #7a5500; text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     .btn {
@@ -58,7 +85,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       font-weight: 700;
-      color: #b8860b;
+      color: #7a5500;
       margin-bottom: 8px;
     }
     .section__heading {
@@ -118,6 +145,14 @@
       width: 100%;
       height: 100%;
       border: 0;
+    }
+    .video-embed iframe, iframe { border: 0; }
+
+    .callout-card__body a {
+      display: inline-block;
+      padding: 2px 0;
+      min-height: 24px;
+      line-height: 1.6;
     }
 
     .callouts {
@@ -189,9 +224,28 @@
       margin-bottom: 4px;
     }
     .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .footer__social a {
+      display: flex;
+      align-items: center;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img { width: 28px; height: 28px; filter: brightness(0) invert(1); }
+    footer { border-top: 4px solid var(--yellow); }
   </style>
 </head>
 <body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <h1 class="sr-only">CRE[AT]E Challenge — About</h1>
 
   <section class="section">
     <div class="section__inner">
@@ -224,19 +278,19 @@
       <div class="video-grid">
         <div>
           <p class="section__body" style="margin-bottom: 14px;"><strong>Levi</strong> — a kid who can only control one hand, can play his favorite racing video game.</p>
-          <div class="video-embed"><iframe title="YouTube video: Levi plays his favorite video game" src="https://www.youtube-nocookie.com/embed/QXfNK9j1Zho?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+          <div class="video-embed"><iframe title="YouTube video: Levi plays his favorite video game" src="https://www.youtube-nocookie.com/embed/QXfNK9j1Zho?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
         </div>
         <div>
           <p class="section__body" style="margin-bottom: 14px;"><strong>Izzy</strong> — a girl with extremely low grip strength, can open doors and jars, and participate in the school’s tug-of-war.</p>
-          <div class="video-embed"><iframe title="YouTube video: Izzy opens doors and jars with ease" src="https://www.youtube-nocookie.com/embed/q5Jgnc-6tzc?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+          <div class="video-embed"><iframe title="YouTube video: Izzy opens doors and jars with ease" src="https://www.youtube-nocookie.com/embed/q5Jgnc-6tzc?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
         </div>
         <div>
           <p class="section__body" style="margin-bottom: 14px;"><strong>Skylar</strong> — a high school student with low vision, can navigate the halls of her school by herself.</p>
-          <div class="video-embed"><iframe title="YouTube video: Skylar navigates school halls independently" src="https://www.youtube-nocookie.com/embed/JbH330u_7EE?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+          <div class="video-embed"><iframe title="YouTube video: Skylar navigates school halls independently" src="https://www.youtube-nocookie.com/embed/JbH330u_7EE?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
         </div>
         <div>
           <p class="section__body" style="margin-bottom: 14px;"><strong>Linn</strong> — a college paraclimber with low vision, can plan climbs without an assistant!</p>
-          <div class="video-embed"><iframe title="YouTube video: Linn uses the Assistive Climbing Coach app" src="https://www.youtube-nocookie.com/embed/53A-hilJyTI?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+          <div class="video-embed"><iframe title="YouTube video: Linn uses the Assistive Climbing Coach app" src="https://www.youtube-nocookie.com/embed/53A-hilJyTI?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
         </div>
       </div>
     </div>
@@ -268,11 +322,30 @@
     </div>
   </section>
 
+  </main>
+
   <footer>
     <div class="inner">
       <div class="footer__left">
-        <p>Beaver Works Assistive Technology</p>
-        <p>About page embed.</p>
+        <p>&copy; 2026 MIT Beaver Works Institute. All rights reserved.</p>
+        <nav aria-label="Footer links">
+          <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
+          &nbsp;·&nbsp;
+          <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </nav>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" title="YouTube">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" title="Instagram">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" title="X / Twitter">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+        </a>
       </div>
     </div>
   </footer>

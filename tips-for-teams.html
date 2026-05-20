@@ -19,6 +19,33 @@
       --max-w:      960px;
     }
 
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    /* Screen-reader-only: visually hides element but keeps it in the a11y tree */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* Skip link: hidden until focused, then slides into view */
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* Enhanced focus indicator (replaces thin browser default) */
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       color: var(--mit-dark);
@@ -27,7 +54,7 @@
       font-size: 1rem;
     }
 
-    a { color: #b8860b; text-decoration: none; }
+    a { color: #7a5500; text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     .btn {
@@ -59,7 +86,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       font-weight: 700;
-      color: #b8860b;
+      color: #7a5500;
       margin-bottom: 8px;
     }
     .section__heading {
@@ -193,6 +220,10 @@
   </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<main id="main-content">
+  <h1 class="sr-only">CRE[AT]E Challenge — Tips for Teams</h1>
 
   <!-- <section class="section">
     <div class="section__inner">
@@ -240,14 +271,16 @@
     </div>
   </section>
 
-  <div class="interest-band">
+</main>
+
+  <section class="interest-band" aria-label="Team tips">
     <h2 class="interest-band__heading">Register for the 2026–2027 season</h2>
     <p class="interest-band__body">Team registration opens in September 2026. Fill out our interest form to stay informed, or visit the About page to learn more about the program.</p>
     <div class="interest-band__ctas">
       <a class="btn btn--red" href="https://docs.google.com/forms/d/e/1FAIpQLSfjykFOIogTkRrczyDZ8J1PyDbEiwDTHsGh3cNt8zFXnhzZhw/viewform?usp=header">Fill Out the Interest Form</a>
       <a class="btn btn--outline-dark" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/about">About the Challenge</a>
     </div>
-  </div>
+  </section>
 
   <footer>
     <div class="inner">

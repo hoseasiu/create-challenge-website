@@ -24,6 +24,42 @@
       --max-w:      960px;
     }
 
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    /* Screen-reader-only: visually hides element but keeps it in the a11y tree */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* Skip link: hidden until focused, then slides into view */
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* Enhanced focus indicator (replaces thin browser default) */
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    footer { background: var(--mit-dark); border-top: 4px solid var(--yellow); }
+
+    .callout-card__body a {
+      display: inline-block;
+      padding: 2px 0;
+      min-height: 24px;
+      line-height: 1.6;
+    }
+
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       color: var(--mit-dark);
@@ -32,7 +68,7 @@
       font-size: 1.05rem;
     }
 
-    a { color: #b8860b; text-decoration: none; }
+    a { color: #7a5500; text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     /* ── HERO ── */
@@ -64,7 +100,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       font-weight: 700;
-      color: #b8860b;
+      color: #7a5500;
       margin-bottom: 8px;
     }
     .section__heading {
@@ -204,7 +240,7 @@
     .team-map-subtitle {
       font-family: 'DM Mono', monospace;
       font-size: 0.75rem;
-      color: #888;
+      color: var(--mit-gray);
       font-weight: 500;
     }
     .team-count {
@@ -299,6 +335,11 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <h1 class="sr-only">CRE[AT]E Challenge — Home</h1>
+
   <!-- WHAT IS THE CHALLENGE -->
   <section class="section">
     <div class="section__inner">
@@ -347,7 +388,7 @@
   </section>
 
   <!-- INTEREST BAND -->
-  <div class="interest-band">
+  <section class="interest-band" aria-label="Registration interest">
     <h2 class="interest-band__heading">Interested in the next cycle?</h2>
     <p class="interest-band__body">
       The 2026 CRE[AT]E Challenge has concluded. Fill out our interest form to stay informed
@@ -363,7 +404,7 @@
         About the Challenge
       </a>
     </div>
-  </div>
+  </section>
 
   <!-- CALLOUTS -->
   <section class="section section--gray">
@@ -428,10 +469,11 @@
           <div>
             <div class="team-map-title">CRE[AT]E Challenge 2025–2026 Teams</div>
           </div>
-          <div class="team-count" id="teamCountBadge"></div>
+          <div class="team-count" id="teamCountBadge" aria-live="polite" aria-label="Total teams"></div>
         </div>
-        <div id="team-map"></div>
-        <div class="state-pills" id="statePills"></div>
+        <div id="team-map" role="img"
+             aria-label="Map showing CRE[AT]E Challenge team locations across the U.S. See the state summary list below for team counts by state."></div>
+        <ul class="state-pills" id="statePills"></ul>
       </div>
     </div>
   </section>
@@ -568,7 +610,7 @@
     const pillContainer = document.getElementById('statePills');
     const sorted = Object.entries(stateCounts).sort((a,b) => b[1].count - a[1].count);
     sorted.forEach(([abbr, data]) => {
-      const pill = document.createElement('div');
+      const pill = document.createElement('li');
       pill.className = 'state-pill';
       pill.innerHTML = `${stateNames[abbr] || abbr} <span class="count">${data.count}</span>`;
       pillContainer.appendChild(pill);
@@ -645,8 +687,10 @@
     map.addLayer(markers);
   </script>
 
+  </main>
+
   <!-- FOOTER -->
-  <footer style="background: var(--mit-dark); border-top: 4px solid var(--yellow);">
+  <footer>
     <div class="inner">
       <div class="footer__left">
         <p>© 2026 MIT Beaver Works Assistive Technology</p>

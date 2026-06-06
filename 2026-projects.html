@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Projects | Beaver Works Assistive Technology</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--mit-dark);
+      border-radius: 2px;
+    }
+
+    body {
+      font-family: 'DM Sans', 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    a { color: #7a5500; text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { opacity: 0.85; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow); color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    .section { padding: 60px 24px; }
+    .section--gray { background: var(--mit-light); }
+    .section__inner { max-width: var(--max-w); margin: 0 auto; }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      margin-bottom: 20px;
+      max-width: 680px;
+    }
+
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p { font-size: 0.85rem; margin-bottom: 4px; }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social { display: flex; gap: 16px; align-items: center; }
+    .footer__social a { display: flex; align-items: center; opacity: 0.85; transition: opacity 0.15s; }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img { width: 28px; height: 28px; filter: brightness(0) invert(1); }
+
+    /* ── Project cards (from embed) ─────────────────────────────────────── */
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      border: 1px solid #E8E4DF;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: row;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    .card-body {
+      padding: 1.1rem 1.25rem 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-left: 4px solid var(--yellow);
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-team-number {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #888;
+      text-transform: uppercase;
+    }
+
+    .card-location {
+      font-size: 0.72rem;
+      color: #999;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-location svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+    .card-team-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 0.65rem;
+      line-height: 1.25;
+    }
+
+    .card-description {
+      font-size: 0.87rem;
+      color: #444;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .card-people {
+      margin-top: 1rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid #F0EDE9;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .card-people-row { display: flex; gap: 0.5rem; }
+
+    .card-people-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      white-space: nowrap;
+      padding-top: 1px;
+      min-width: 72px;
+    }
+
+    .card-people-value {
+      font-size: 0.82rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .card-team-links {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .card-link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      text-decoration: none;
+      border: 1px solid #E0D9D2;
+      color: #666;
+      background: #FAFAF9;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .card-link-pill:hover {
+      background: var(--yellow);
+      border-color: var(--yellow-dk);
+      color: var(--mit-dark);
+    }
+
+    .card-awards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.5rem;
+    }
+    .award-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 9px;
+      border-radius: 20px;
+    }
+    .award-badge--winner  { background: var(--yellow); color: var(--mit-dark); }
+    .award-badge--finalist { background: #f0f0f0; color: #555; border: 1px solid #ddd; }
+    .award-badge--mention  { background: transparent; color: #888; border: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <h1 class="sr-only">2026 CRE[AT]E Challenge Projects</h1>
+
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Past Projects</p>
+        <h2 class="section__heading">2026 CRE[AT]E Challenge Projects</h2>
+        <p class="section__body">Thirty-five teams from across the country designed and built assistive technology for a co-designer with a disability or daily-living challenge. Each project below links to the team's documentation and final video.</p>
+
+        <div class="grid">
+
+          <!-- Team 83 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 83</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Cambridge, MA</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--winner">Product Feasibility Award</span></div>
+              <div class="card-team-name">AT Actuators</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1mcDGezVYJRiSF58hIQDEYNZoAfUilPcEo5pim30ccVo/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=0x7ULG1FFZY" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">An elastic overhead support arm on a wheeled base that helps youth with limited grip strength, arm weakness, and muscle tightness independently groom therapy horses at Lovelane Special Needs Horseback Riding.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Penelope S. Wong, Elaine Chanie</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coaches</span><span class="card-people-value">Wesley Wong, Jeremiah Egolf, Yi David Yang</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Kristin Chisum</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 105 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 105</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>South Barrington, IL</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--mention">Honorable Mention</span></div>
+              <div class="card-team-name">Willow Friends</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1g8ZT3GYODCayJnx7pqG7nQpEk5LoK5djgcuFDK_vJUY/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=rk5Nd-0mc6M" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">JackBook — a digitized PODD communication app for Jack Pribaz, a student with a rare KCNQ2 gene mutation, featuring offline voice search across 1600+ symbols, personalized hand-drawn images contributed by 120+ members of his school community, and a check-in timer so caregivers remember to ask Jack if he has something to say.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Noah Cho, Iman Zahran, Ari Grein, Jeanne Pahn, Jay Pahn</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coaches</span><span class="card-people-value">Amy Freeman, Seonhee Cho</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Jack Pribaz</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 106 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 106</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Boulder, CO</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--winner">Documentation Award</span></div>
+              <div class="card-team-name">Team Onsight</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1THIKs_-9cmelAtSzRifNlP1Es5EJmJ8YLSp-p4lv78U/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=53A-hilJyTI" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A web app for Linn Poston, a competitive low-vision paraclimber, that enhances hold contrast in route photos, generates memorable AI-powered names for key holds, and uses AR overlays to estimate reach distances before climbing.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Ella Music, Neysa Varma</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Melissa Byrd</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Linn Poston</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 144 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 144</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Alexandria, VA</span>
+              </div>
+              <div class="card-team-name">TJ Team 1</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1O2CT7cY6pX4KMSrLMjpN-vI8-vLLgHjIQhDpMocvc4U/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=nCWiVabNzNQ" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">Toy Talker — a platypus-shaped Arduino toy with six buttons that plays Zion's mom's pre-recorded voice saying his basic needs — happy, sad, play, eat, bathroom, sleep — so this nonverbal child can communicate independently at home.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Yohan Ramirez-Herrera, Nabi Zekarias, Phillip Abraham, Bushra Manalai, Eric Cai</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Chuck Lord</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Zion</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 158 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 158</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Brooklyn, NY</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--mention">Honorable Mention</span></div>
+              <div class="card-team-name">TechKnights</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1QuMF8W6MzVS1D7gAkm9ArgxKBUyXoZHrO7RyHnYRxzI/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=7Am5nlADrqc" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">Shock Brace — a custom 3D-printed leg brace with a spring-and-suspension mechanism that passively supports Rex's knee extension, helping him walk more fluidly despite spastic cerebral palsy without restricting hand use.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Peilin Deng, Joshua Liu, George Tatishvilli, Leo Lin, Oscar Li</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Luis Collado</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 160 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 160</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Brooklyn, NY</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--finalist">Finalist</span></div>
+              <div class="card-team-name">The Goldstein Dolphins</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1v8_ww-zK8qo814aF7FZv85sBj_ppYeQQVkUGvX29HAw/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=eNt-pka8Yj4" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A Bluetooth-enabled desk device with four labeled buttons that lets DJ, a 6th grader on the autism spectrum, silently signal his teacher (help needed, urgent help, bathroom, break) via a companion phone app — no hand-raising required.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Maxim Myshchak, Travis Lerner, Joseph Reynes, Ethan Chu</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Joel Grunin</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">DJ</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 179 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 179</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Concord, MA</span>
+              </div>
+              <div class="card-team-name">Concordians</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1dyLMa-BadZObz7Gy2mhdIoEs6_cnkc7gpD_DurGp6v8/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=RLiAVEWZ7Ys" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A WearOS smartwatch app for Lucien, a student with ADHD, featuring a focus timer, customizable Do Not Disturb modes, and a gamified "boss battle" study mode to help him stay on task and manage his time independently.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Daniel Peregudov, Henry Lei, Sarah Ye</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Ben Stumpf</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Lucien</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 184 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 184</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Sammamish, WA</span>
+              </div>
+              <div class="card-team-name">Vulcans</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1VQmfmbbEuYCoaWrGb6Nco8vBqFWAaF4D8nkZBHMRNsc/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=CQN-dJ9OJ8I" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">An accessible plant-watering system for Sabah, who has cerebellar atrophy: a feather-touch switch activates a pump-and-tube watering can, while a HuskyLens AI camera identifies plants in her garden and illuminates an LED to indicate the correct watering duration.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Bharat Dwivedi, Mishna Chambungbam</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Rajeev Dwivedi</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designers</span><span class="card-people-value">Therese Vafaeezadeh, Sabah Vafaeezadeh</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 203 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 203</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Needham, MA</span>
+              </div>
+              <div class="card-team-name">Rockets</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1etWJ8stKx0f5t0aWPDBkXxA2vYG_vY629S31GWp512A/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=grUHK5PW2T4" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">YouPhonium — a macOS web app that converts uploaded sheet music PDFs into playable MIDI with synchronized score highlighting and an adjustable tempo slider, helping a 13-year-old with autism learn his euphonium parts independently without requiring his mother to play them first.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Clara Liu, Ved Desai, Nathaniel Gettman</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Yunsi Fei</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designers</span><span class="card-people-value">Jingkai Zhi, Qing Cao</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 212 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 212</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Redmond, WA</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--mention">Honorable Mention</span></div>
+              <div class="card-team-name">Wayfinders</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1QENTj_t06D6ZERWYsNK4y_7yzNqGlzUriwNAP82nYLU/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=PZYW5OPIzfY" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">eyEar — a neck-worn ESP32S3 device that combines ultrasonic obstacle detection with vibration alerts and Gemini-powered scene descriptions, helping Ajay, a man with complete blindness, navigate independently and identify nearby objects on demand.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Sia Gupta, Anoushka Gharat</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Vinay Gupta</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Ajay</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 231 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 231</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Metuchen, NJ</span>
+              </div>
+              <div class="card-team-name">LegUp</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/17puBZuExyfOIN1rDINJtQh7yRMasJzN_t3UqBFA0qwA/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=u2Toyef3Bek" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">LegUp — a smart insole with four pressure sensors and a Bluetooth-connected web app that tracks Deeksha's weight distribution in real time, alerting her to gait imbalances caused by Pycnodysostosis before they lead to a dangerous fall.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Shailen Gandhi, Manvi Mishra, Aarav Mishra, Niral Parmar</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Ankur Gandhi</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Deeksha</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 274 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 274</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Irving, TX</span>
+              </div>
+              <div class="card-team-name">Syzygy</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1QQ6ZIjwalAUPJxX_71LpIChiczapyG7UldsoR1ZTqmI/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=KiARAOB1xLM" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">Technocise — a browser-based fitness app for Bina, an 89-year-old with osteoporosis, that uses AI pose estimation to count repetitions of exercises and rewards her with a speed boost in a car racing game, making physical therapy engaging and trackable.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Sanjeev Acharya, Arka Rebbapragada</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Ashish Acharya</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Bina</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 338 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 338</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Irvine, CA</span>
+              </div>
+              <div class="card-team-name">EmbraceTech</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1y1-1wnw-EDUDVU-8Yq88jz6gircA4nC1NIH0SxBbllM/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=1maP5MQ4uI8" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">Learning Hub — a voice-controlled single-file web app for Kabir, a 4th grader with cerebral palsy, combining a line-by-line PDF reader, a speech-to-text transcription tool, an adaptive math visualizer, and vocabulary games — all operable by voice alone.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Olivia Berryman, Shaalini Krishnan, Reneeka Kumar, Snita Majilya</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Ryan Berryman</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Kabir Siddharth</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 351 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 351</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Belmont, MA</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--finalist">Finalist</span></div>
+              <div class="card-team-name">Leap of Faith</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1rh84e78007SLi896KPtDPAfRWXs7aPjb19Tc6YzCl7k/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=5QYMUQrsSF0" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A robot built from VEX robotics components for wheelchair tennis players Posie and Stacey (above-knee amputees). The robot collects balls using a vertical spinning-roller intake and lifts them to ~3 feet for easy wheelchair-level access.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Jason Ma, Ralph Wang</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Ouxiang Chen</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designers</span><span class="card-people-value">Stacey Sherman, Posie Mansfield</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 370 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 370</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Virginia Beach, VA</span>
+              </div>
+              <div class="card-team-name">The Daring Dolphins</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1yDPP5Cjvg_vmQ2IK3nc_l3ErydiQEUfS252C-Wpl3aU/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=folThF4dfX8" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A lightweight 3D-printed head-mounted drawing device for Lelani, a wheelchair user with cerebral palsy who loves art: two ball-and-socket arm segments connect to a pen holder at the tip, letting her draw on a canvas using controlled head movements.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Eric Lin, Bennett Von St. Paul, Kayden Brent, Nathan Crickard, Mihika Sakharpe</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Allison Graves</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Lelani</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 415 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 415</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Great Neck, NY</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--mention">Honorable Mention</span></div>
+              <div class="card-team-name">Spuds</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1KZcAj--rtKppViZohjoussGBb1hsHRsrRTAUao4q6l0/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=Pasi76Uy50Q" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A padded toggle-clamp bag handle that lets Pricilla, who has arthritis in both hands, grip handleless grocery bags — including paper and plastic — by redistributing load away from the painful thenar eminence at the base of her thumb.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Kenneth Cho, Aiden Loh</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Dennis Cho</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Pricilla</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 424 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 424</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Durham, NH</span>
+              </div>
+              <div class="card-team-name">Restorvision</div>
+              <div class="card-team-links">
+                <a href="https://drive.google.com/file/d/13IMdXZGO2TG27cQL_YRvoHVYt_Z0tNR3/view" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=kdisfp-zLT0" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">ACARobo — a voice-activated home care robot for ALS patients featuring audio-triggered navigation to four preset locations, a CNN-based pain-level classifier trained on vocal data, and an RFID + PIN authentication module for secure caregiver access.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Andrew Lu, Julia Lu</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Sandeep Sunkavilli</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 429 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 429</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Belmont, MA</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--finalist">Finalist</span></div>
+              <div class="card-team-name">L3VITATE</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/14mawX8sQm10ufhP58kEkTiVNswxmBsJN-AMwG_geJ-c/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=LFGk66zg7dY" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A camera-and-stand system for Katrin Duevel, who is legally blind due to Stargardt's disease. An AI model tracks the paintbrush tip in real time, displaying a zoomed, contrast-enhanced view of her canvas on a laptop screen as she paints.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Leah Ramanathan, Leona Endo</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Atsushi Endo</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Katrin Duevel</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 430 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 430</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Westford, MA</span>
+              </div>
+              <div class="card-team-name">We've Bot This</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1AIuEaI5uTj2l5orHhh7_ChK4_8sPbKsLdHKVhgGL6oo/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=7KYcKi2gHEs" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A document reader for Donna, who has near-total blindness, that projects phone-captured text onto a wall at readable size using a projector and LED-lit enclosure, with an AI (Gemini) fallback that reads documents aloud when the magnification is insufficient.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Angshuman Dass-Vattam, Nathan Keane, Derek Keane, Omkar Naluvala</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coaches</span><span class="card-people-value">Mark Keane, Swaroop Vattam</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Donna Gonzalez</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 459 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 459</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Alexandria, VA</span>
+              </div>
+              <div class="card-team-name">TJHSST - Team 3</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1h2yDQ4MR3v-oI2dsuLYkFhRT88CHeCcMT54AAcjbnjA/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=KUNgEkpMCto" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">BrightSpeak — a wrist-worn AAC device and companion website for Fabi, a nonverbal 5th grader, that displays large phrase buttons and speaks them aloud; a Spanish translation mode and AI image-recognition feature were added after learning Fabi is more verbal in her native language.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Richard Tang, Miles Crabtree, Cate Yoon, Uzair Nasir, Kedar Kalluri</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coaches</span><span class="card-people-value">Charles Lord, Samantha Tierney</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Valentina</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 495 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 495</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Bellevue, WA</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--winner">Audience Choice Award</span></div>
+              <div class="card-team-name">Dandelions</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1ZLnWLUSndUKmEnGN3sKBqzdfZ9nLMfrmUXNE3_sTfe0/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=x7tzzqc_w4c" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">An AI-powered task management web app for a high school student with ADHD. FOCAL uses Gemini to break assignments into concrete, timed subtasks starting with an action under 5 minutes, paired with smart scheduling and rate-limited notifications.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Srihith Chennareddy, Aria Zadeh, Shayan M-Rafiee, Saketh Baddam</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Venkat Chennareddy</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Garrett</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 503 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 503</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Edison, NJ</span>
+              </div>
+              <div class="card-team-name">DreamBuilders</div>
+              <div class="card-team-links">
+                <a href="https://www.youtube.com/watch?v=85PMHCAI_V4" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">An adaptive music player.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Ved Jhunjhunwala, Anwesha Pato, Saanvika Govindaraj, Ananya Sriram, Nethra Ramkumar</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Hemalatha Logaiah</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 554 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 554</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Tustin, CA</span>
+              </div>
+              <div class="card-team-name">Ur-2</div>
+              <div class="card-team-links">
+                <a href="https://www.youtube.com/watch?v=LcDd2xeQV10" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A button-based assistive communication device.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Isabella Cho, Doyoon Lee, Taeyeon Kim, Steve Han, Taehyun Bang</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Junhee Pyo</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 654 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 654</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Portland, OR</span>
+              </div>
+              <div class="card-team-name">Bizarre Builders</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1C6FaRv0qGVHWPA7rXiHk4GBTX4k3wF3Z4u8QtFoShfw/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=tpFE3w38UAs" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A jacket-embedded Arduino system that listens for the word "Nico" via a voice recognition module and lights an LED to alert Nico — who is deaf and whose hearing aids struggle in noisy environments — whenever someone calls his name.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Suan Cho, Haaris Mansoor, Gavin McLaughlin</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Girija Patil</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Nico Luwandi</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 659 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 659</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Anaheim, CA</span>
+              </div>
+              <div class="card-team-name">Magi</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1n0oa5ESV-hTbN84Keo8XfGVMjU_BFSt3sq9b_fD5znQ/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=EJ994wPdGrk" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">OmniVox — a Raspberry Pi 5 tablet with a one-tap communication interface organized into category cards for Mr. Dang, a former pastor who developed expressive aphasia after a stroke, so he can speak his needs to caregivers through text-to-speech audio output.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Thinh Ha, Kha Hoang, Duong Le, Long Pham</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Sirichai Chayasirisobhon</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Dang Kidakarn</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 675 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 675</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Locust Valley, NY</span>
+              </div>
+              <div class="card-team-name">The Quakers</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1D_cpG_CNZtD3aQs6g-NAQXp4GhvGn_sDJKuqhpL-nvI/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=rEtLkwGaO_k" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">SensaGlove — a wearable glove with an embedded heating pad, thermistor, and MOSFET circuit that delivers adjustable warmth to Mr. Belcito's right hand, partially compensating for peripheral neuropathy to improve his stability and control while painting.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Steven Seviroli, Stefan Pappas</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Matthew Walkers</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Joe Belcito</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 702 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 702</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Monroe Township, NJ</span>
+              </div>
+              <div class="card-team-name">Discovery</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1Df67e25SEn7u4GAcw9XkMMsziAD-gwJ-ftnjPWd16r8/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=Z1oQvOzZknM" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">FlexiGlove — a custom neoprene support glove with finger-back strips, elastic joint rings, and a latex-coated palm for Katianne, an AP Biology teacher with arthritis, allowing full finger closure for typing and writing while reducing joint strain.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Ryka Jain, Saicharan Kankanala, Akhil Venkat, Ananjay Sharma, Sreedeep Lahiri</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Venkat Dharmalingam</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Katianne Oakley</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 712 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 712</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>West Windsor, NJ</span>
+              </div>
+              <div class="card-team-name">Lazer</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1HZhClzDwJKCWfNcUiqfL_fBwXjcf6qG8K9nj1jpwA-A/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=FoG1vwtuIgQ" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A voice-activated robot that autonomously navigates from a base station to one of four preset locations and performs a friction-assisted sock donning and doffing cycle for Ram, a quadruple amputee who cannot put on his prosthetic leg sleeves independently.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Srikanth Mohan, Karthik Chimalakonda, Aditya Mohan</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Lakshmi Mohan</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 741 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 741</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Fullerton, CA</span>
+              </div>
+              <div class="card-team-name">ConnectEd</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1H7h2cgsachIjGzXRnxTDyR06hNUWPGS-bAotxonf8_8/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=lpgQFRPATW8" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">WheelMount — a PVC-pipe and 3D-printed tablet stand that clamps to Pat's wheelchair arm and swings to the side for exit, with height and angle adjustability, so this deaf man who uses a wheelchair can hold his iPad to communicate with his wife.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Jeremiah Tung, Kristian Li</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Brian Kang</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Pat</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 745 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 745</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Liberty Hill, TX</span>
+              </div>
+              <div class="card-team-name">Impact Innovators</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1JVoH6OiKYxAKEUhklpEPoAdbG_hAVbVBIuxiJ7DAbyM/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=FgylRPWZETI" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A motorized mobility device for Lukas, a 6-year-old with Spinal Muscular Atrophy. Built on a modified patient lift with joystick control, LiDAR-based indoor mapping, ultrasonic obstacle detection, and an emergency stop — giving Lukas independent movement around his home.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Nikita Yanin, Dhiyanesh Arun Balaji, John Vadukumcherry, Adarsh Sivaraj, Omkumar Gangadharan</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Dharani Rangaraj</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Lukas</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 765 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 765</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Ivyland, PA</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--winner">Innovation Award</span></div>
+              <div class="card-team-name">ResonAIte</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/16BP5Sx4dQkhhaOl7mM3arlUVGD8l3JfPg-7yM75t4TM/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=F8VryXcwrqo" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A personalized speech recognition app for Taranath Shenoy, a deaf man in Mumbai whose atypical speech standard AI cannot understand. The team fine-tuned a Marathi ASR model on his voice, cutting word error rate from 95% to ~35%, so he can speak independently to vendors and strangers.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Moksh Kopikar, Naman Mandloi</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Milind Kopikar</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Taranath Shenoy</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 782 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 782</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Northborough, MA</span>
+              </div>
+              <div class="card-team-name">Great [AT]itude</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1kiKMpXG52FD-3jAOKJOiIyoluHYb_hXi0hptfuFujPs/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=YDAKJv4qMl8" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">HelpingHand — a wrist-actuated mechanical hand exoskeleton for Darryl, who has cerebral palsy affecting his left wrist and finger coordination: bending the wrist pulls wires through fabric channels sewn into a glove, curling the fingers into a grip without motors or electronics.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Hannah Ciszewski, Jasmine Palit</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Nilanjan Palit</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Darryl</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 819 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 819</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Winchester, MA</span>
+              </div>
+              <div class="card-team-name">Sibling Solutions</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1PX1llvmzYZKDzL7CtN82NVeQtn4Mj1lGCha28iR8Eho/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=hftb7kWMGC4" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">Migr[AI]ne Chill — a wearable headset for Vanessa, who experiences severe multi-day migraines, combining Peltier cryotherapy, green-light glasses, and vibration motor stimulation with a TinyML heart rate variability model that predicts migraine onset in real time.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Lily Swilling, Caleb Swilling</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Benjamin Swilling</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Vanessa Casseus</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 902 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 902</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Alexandria, VA</span>
+              </div>
+              <div class="card-team-name">TJ Innov8rs</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1Ku5bYQ9x4XBalUZYyfSdqgYww2QmJLB1wWAnS99kGFs/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=UiY5BVV97mE" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">HoloScript — a web app that uses Gemini to convert sentences and math word problems into AI-generated scene illustrations, with a number-masking mode that hides the figures so Michael, a 5th grader who skips text and jumps to numbers, is prompted to actually understand the problem first.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Saatvik Kesarwani, Medhansh Pappula, Bhavesh Adivi</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Charles Lord</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Michael</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 904 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 904</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Bedford, MA</span>
+              </div>
+              <div class="card-team-name">The AAA batteries</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1_kpOYvoAYgvPafFBi_v6R2CQfGQGGM0nBOm8Ryb-J90/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=ZGEvEm3ICjo" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">An Arduino-based wearable sound sensor for Terrell, a 25-year Marine veteran with Parkinson's disease who unknowingly speaks too softly: while he holds a button to indicate he is speaking, the device vibrates if his voice stays below a set threshold long enough to indicate sustained under-volume.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Adam Silver, Amare Watts, Adrian Kaznocha</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Mark Silver</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Terrell Watts</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 914 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 914</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Oakville, ON</span>
+              </div>
+              <div class="card-team-name">Flowgineers</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1_a1leQU9m9RZMloHfkhxK5mh24MCwO3AqVh7EknSNn0/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=tmxb_q9Tckw" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A waterproof IMU sensor device worn in a 3D-printed screwed-lid container that logs Kylin's left-right hip tilt underwater during swim training, graphing the data afterward to help this Paralympic swimmer with scoliosis and her coaches identify compensation patterns.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Ethan Chen, Kevin Jing, Emily Chen</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Fox Bright</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Kylin Tan</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 939 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 939</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Anaheim, CA</span>
+              </div>
+              <div class="card-team-name">Huskyworks</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1k0r04RnQbDaDHkUSQ-oO6lY5KbVDm_b8wiVl-OKaPYQ/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=6lmAY5KdVnw" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A folding portable wheelchair ramp for Jill, a paralyzed electric wheelchair user who regularly encounters curbs without curb cuts: two hinged aluminum panels with triangular support legs, a rope connector for consistent spacing, and a curb lip unfold to a 37-inch ramp weighing under 5 lbs per side.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Ethan Henry, Elliott Jang, Nathan Jang, Luna Joo, Mehool Saoji</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coach</span><span class="card-people-value">Preston Fawcett</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designers</span><span class="card-people-value">Kimberly Whitlock, Stephen Whitlock</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 975 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 975</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Novi, MI</span>
+              </div>
+              <div class="card-team-name">Helping Hands</div>
+              <div class="card-team-links">
+                <a href="https://drive.google.com/file/d/1Wuk8QyMvGN-3G0f0UvVsUnY2OK6zlh9o/view" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=i4M8uTXQiig" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A motorized forearm brace for a co-designer who cannot lift her left arm: a servo motor mounted on an acrylic plate assembly drives the forearm from rest to desk height (90°) at the press of a button, with custom-measured cuffs for her arm circumference.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Hemaksh Rathod, Neal Patwardhan</span></div>
+                <div class="card-people-row"><span class="card-people-label">Coaches</span><span class="card-people-value">Ajay Patwardhan, Harinkumar Rathod</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Vanita Tharnath</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 4435 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 4435</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Apex, NC</span>
+              </div>
+              <div class="card-awards"><span class="award-badge award-badge--mention">Honorable Mention</span></div>
+              <div class="card-team-name">Steplight</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1-KkoLRfr410hEFCp2mStHyHf_3Iz33VGfBtq9-3T2aU/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=ttu_vxj2rqU" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">Autopilot — a smartphone app that automatically identifies a venue from GPS coordinates, scrapes its floor plans from the web, and uses Gemini's vision model to deliver real-time camera-based turn-by-turn navigation with glare warnings for Aditi, a frequent traveler with Coloboma who experiences temporary blindness in bright indoor lighting.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Anil Chintapalli, Arjun Rao</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Aditi Rao</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team 7236 -->
+          <div class="card">
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-team-number">Team 7236</span>
+                <span class="card-location"><svg viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 8.5 4 8.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 2.5a1.5 1.5 0 0 1 0 3z" fill="#bbb"/></svg>Cleveland, OH</span>
+              </div>
+              <div class="card-team-name">Inspired Innovators</div>
+              <div class="card-team-links">
+                <a href="https://docs.google.com/document/d/1GFfRf2bXDrBTYFnB_TNOw2sdwejEE899B7LiRFfdtRw/edit" target="_blank" rel="noreferrer noopener" class="card-link-pill">📄 Doc</a>
+                <a href="https://www.youtube.com/watch?v=fSH_6fWVJOQ" target="_blank" rel="noreferrer noopener" class="card-link-pill">🎥 Video</a>
+              </div>
+              <p class="card-description">A garden-themed Android mood tracking app for Isabella, who has ADHD that makes it hard to identify and name her emotions: she taps simple mood labels throughout the day, watches a pixel-art garden grow with each entry, and reviews a bar graph showing emotional patterns across the week.</p>
+              <div class="card-people">
+                <div class="card-people-row"><span class="card-people-label">Students</span><span class="card-people-value">Emma Hernandez, Jinha Yoo, Dylan Shulman, Nicole Zhen, Vivian Chuang</span></div>
+                <div class="card-people-row"><span class="card-people-label">Co-designer</span><span class="card-people-value">Isabella Lombardo</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.grid -->
+      </div><!-- /.section__inner -->
+    </section>
+
+    <section class="interest-band" aria-label="Explore more">
+      <h2 class="interest-band__heading">Inspired by what these teams built?</h2>
+      <p class="interest-band__body">See projects from earlier years, or learn how to enter the CRE[AT]E Challenge with your own team.</p>
+      <div class="interest-band__ctas">
+        <a class="btn btn--red" href="https://beaver-works-assistive-tech.mit.edu/past-projects" target="_top">All past projects</a>
+        <a class="btn btn--outline-dark" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/getting-started" target="_top">Enter the challenge</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>&copy; 2026 MIT Beaver Works. All rights reserved.</p>
+        <nav aria-label="Footer links">
+          <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
+          &nbsp;·&nbsp;
+          <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </nav>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" title="YouTube" target="_blank" rel="noreferrer noopener">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" title="Instagram" target="_blank" rel="noreferrer noopener">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" title="X / Twitter" target="_blank" rel="noreferrer noopener">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-label="X / Twitter">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

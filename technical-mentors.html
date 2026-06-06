@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technical Mentors | CRE[AT]E Challenge — Beaver Works AT</title>
+  <meta name="description" content="Technical mentors volunteer to provide engineering guidance to CRE[AT]E Challenge student teams. Learn about the role, expectations, and how to sign up." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--mit-dark);
+      border-radius: 2px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    a { color: #7a5500; text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { opacity: 0.85; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow); color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 60px 24px; }
+    .section--gray { background: var(--mit-light); }
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section__subheading {
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+      margin-top: 40px;
+      line-height: 1.25;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      max-width: 680px;
+      margin-bottom: 16px;
+    }
+    .section__body:last-child { margin-bottom: 0; }
+
+    .section__list {
+      margin: 16px 0 20px 1.25rem;
+      color: var(--mit-gray);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .section__list li {
+      margin-bottom: 6px;
+    }
+
+    .section__callout {
+      max-width: 680px;
+      margin: 20px 0;
+      padding: 20px 22px 20px 18px;
+      border-left: 4px solid var(--yellow);
+      border-radius: 0 8px 8px 0;
+      background: rgba(255, 206, 16, 0.08);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      font-size: 1rem;
+      color: var(--mit-dark);
+      line-height: 1.75;
+    }
+
+    /* ── SCHEDULE TABLE ── */
+    .schedule-block {
+      margin-top: 32px;
+      max-width: 680px;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .schedule-table thead th {
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7a5500;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .schedule-table thead th:last-child {
+      text-align: right;
+    }
+    .schedule-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+    .schedule-table tbody tr:last-child {
+      border-bottom: none;
+    }
+    .schedule-table tbody tr:hover {
+      background: #fffbee;
+    }
+    .schedule-table td {
+      padding: 14px 12px;
+      vertical-align: top;
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+    }
+    .schedule-table td:first-child {
+      color: var(--mit-dark);
+    }
+    .schedule-table td:last-child {
+      text-align: right;
+      white-space: nowrap;
+      font-weight: 700;
+      color: var(--mit-dark);
+    }
+
+    /* ── INTEREST BAND ── */
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.8;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p {
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .footer__social a {
+      display: flex;
+      align-items: center;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img {
+      width: 28px;
+      height: 28px;
+      filter: brightness(0) invert(1);
+    }
+
+    @media (max-width: 480px) {
+      .schedule-table,
+      .schedule-table tbody,
+      .schedule-table tr,
+      .schedule-table td { display: block; }
+      .schedule-table thead { display: none; }
+      .schedule-table td:last-child {
+        text-align: left;
+        font-size: 0.9rem;
+        padding-top: 2px;
+        padding-bottom: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+
+    <h1 class="sr-only">CRE[AT]E Challenge — Technical Mentors</h1>
+
+    <!-- ── ROLE SECTION ── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Prospective Mentors</p>
+        <h2 class="section__heading">What is the role of a technical mentor?</h2>
+        <p class="section__body">Technical mentors volunteer to play an extremely valuable role providing technical guidance to student teams as they work on their prototypes. Due to the varied nature of students' projects, we are seeking mentors with various areas of expertise, including:</p>
+        <ul class="section__list" aria-label="Areas of expertise sought">
+          <li>Design</li>
+          <li>Mechanical engineering</li>
+          <li>Wearables and textiles</li>
+          <li>Electronics</li>
+          <li>Software engineering</li>
+          <li>Artificial intelligence</li>
+          <li>Working with the disability community</li>
+        </ul>
+        <blockquote class="section__callout">
+          The technical mentor role is distinct from the role of the team coach. Coaches are tied to a specific team and must be local to that team. Technical mentors may work with multiple teams and do not need to be local to any particular team. Coaches who want to offer their skills more broadly to the Challenge community may also serve separately as mentors.
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ── EXPECTATIONS SECTION ── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Expectations</p>
+        <h2 class="section__heading">What are the expectations for technical mentors?</h2>
+        <p class="section__body">Mentors choose how many teams they would like to mentor, then are matched with teams based on technical fit. The expected time commitment is about <strong>1–3 hours/month for each team</strong> (through meeting 1–2 times each month), January through April, with slightly more time to provide feedback during two Design Review periods.</p>
+        <p class="section__body">Mentors are also asked to assist with reviewing teams' submitted preliminary and critical Design Reviews, which are submitted as videos. This entails watching a few teams' videos (each 7–10 minutes long) and filling out a review form to submit feedback to the team(s). To ensure a diversity of feedback, these reviews are to be done for teams that are not the one(s) you have been mentoring. You will have about a week to submit feedback to ensure we can get it back to the teams with enough time for them to incorporate it into their next set of prototypes.</p>
+        <div class="section__callout">
+          All mentors must also complete MIT's Working with Minors training and adhere to the associated policies.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SCHEDULE SECTION ── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Dates</p>
+        <h2 class="section__heading">Schedule for Mentors</h2>
+
+        <div class="schedule-block">
+          <table class="schedule-table" aria-label="Mentor schedule">
+            <thead>
+              <tr>
+                <th scope="col">Activity</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mentor Matching</td>
+                <td>Final week of January</td>
+              </tr>
+              <tr>
+                <td>Initial Team Meeting</td>
+                <td>Early February</td>
+              </tr>
+              <tr>
+                <td>Design Review period #1</td>
+                <td>February 9th–17th</td>
+              </tr>
+              <tr>
+                <td>Design Review period #2</td>
+                <td>March 16th–24th</td>
+              </tr>
+              <tr>
+                <td>Final Event</td>
+                <td>April 26th (hybrid)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── INTEREST BAND ── -->
+    <div class="interest-band">
+      <h2 class="interest-band__heading">Interested in becoming a Technical Mentor?</h2>
+      <p class="interest-band__body">Fill out our Mentor Interest Form and we'll be in touch about matching you with student teams.</p>
+      <div class="interest-band__ctas">
+        <a class="btn btn--red"
+           href="https://forms.gle/b6Mc9RvRc5qfzHkx5"
+           target="_blank" rel="noreferrer noopener">
+          Mentor Interest Form
+        </a>
+        <a class="btn btn--outline-dark"
+           href="https://beaver-works-assistive-tech.mit.edu/create-challenge/about"
+           target="_top">
+          About the Challenge
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>&copy; 2025 MIT Beaver Works</p>
+        <p>
+          <a href="http://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
+          &nbsp;·&nbsp;
+          <a href="https://docs.google.com/document/d/e/2PACX-1vS0iFUQBw7R3N6jQLFIRiYUbZlBh2SkXHJWT_BzRkIcb_Wjn4L6JRvcI5gk2D4HkB_z6_WzJ56SYNUD/pub" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </p>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" aria-label="YouTube" target="_blank" rel="noreferrer noopener">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" aria-label="Instagram" target="_blank" rel="noreferrer noopener">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" aria-label="X (formerly Twitter)" target="_blank" rel="noreferrer noopener">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -200,3 +200,9 @@ This site should follow basic web accessibility principles to make content usabl
 - Use visible labels and supporting text for forms or inline inputs, and associate labels with fields.
 - Avoid conveying information by color alone; pair color with text, iconography, or other indicators.
 - Make page sections and cards easy to scan with clear headings, concise body copy, and consistent visual grouping.
+
+---
+
+## Testing
+
+When asked to create or check a particular page, ensure that any links are valid by attempting to reach them if you have access to the right tools.

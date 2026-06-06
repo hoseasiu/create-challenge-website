@@ -15,7 +15,7 @@ This document describes the visual language for the Beaver Works Assistive Techn
 | `--mit-light`  | `#f5f5f5` | Alternating section background (gray sections) |
 | `--border`     | `#e0e0e0` | Card and component borders |
 | `--white`      | `#ffffff` | Page background, card backgrounds |
-| Link color     | `#b8860b` | In-text links (dark gold); also used for section labels |
+| Link color     | `#7a5500` | In-text links (dark brown-gold); also used for section labels — meets WCAG AA contrast on both white and light-gray backgrounds |
 
 All colors are declared as CSS custom properties on `:root`. Always reference them via `var(--token)` rather than hard-coding hex values.
 

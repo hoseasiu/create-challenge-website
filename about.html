@@ -126,9 +126,14 @@
 
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
       margin-top: 32px;
+    }
+    @media (max-width: 600px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
     }
     .video-embed {
       position: relative;
@@ -300,7 +305,7 @@
     <div class="section__inner">
       <p class="section__label">Challenge outcomes</p>
       <h2 class="section__heading">What the challenge has delivered</h2>
-      <p class="section__body">Since 2022, 130 student teams have completed the CRE[AT]E Challenge, and nearly all have delivered working prototypes to their co-designers at the end.</p>
+      <p class="section__body">Since 2022, <strong>130 student teams have completed the CRE[AT]E Challenge</strong>, and nearly all have delivered working prototypes to their co-designers at the end.</p>
     </div>
   </section>
 
@@ -327,7 +332,7 @@
   <footer>
     <div class="inner">
       <div class="footer__left">
-        <p>&copy; 2026 MIT Beaver Works Institute. All rights reserved.</p>
+        <p>&copy; 2026 MIT Beaver Works. All rights reserved.</p>
         <nav aria-label="Footer links">
           <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
           &nbsp;·&nbsp;

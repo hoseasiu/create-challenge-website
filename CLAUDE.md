@@ -15,7 +15,7 @@ This document describes the visual language for the Beaver Works Assistive Techn
 | `--mit-light`  | `#f5f5f5` | Alternating section background (gray sections) |
 | `--border`     | `#e0e0e0` | Card and component borders |
 | `--white`      | `#ffffff` | Page background, card backgrounds |
-| Link color     | `#b8860b` | In-text links (dark gold); also used for section labels |
+| Link color     | `#7a5500` | In-text links (dark brown-gold); also used for section labels — meets WCAG AA contrast on both white and light-gray backgrounds |
 
 All colors are declared as CSS custom properties on `:root`. Always reference them via `var(--token)` rather than hard-coding hex values.
 
@@ -153,6 +153,16 @@ Since these pages are embedded in Google Sites (which provides its own navigatio
 1. Content sections (`.section`, alternating white/gray)
 2. Interest band — if there's a primary CTA to surface
 3. Footer
+
+---
+
+## Course Pages
+
+Course content pages (under `/create-challenge/create-course/`) are text-heavy and follow a prose-first layout. Keep these rules in mind:
+
+- **Videos are always one per row.** Never place two or more video embeds side by side in a course section. Use the `.video-stack` component (flex column, `max-width: 680px`) so each video takes its own full row. The `.video-grid` (multi-column) class is for non-course pages only.
+- Use the `.quiz-banner` (yellow background, bold dark text, full-width) after each major section to prompt Edly users to take the section quiz.
+- **Module navigation buttons follow a book convention.** In the interest band at the bottom of each course page, the left button goes back (previous module or course overview) and the right button goes forward (next module). The forward/right button is the primary action and uses the highlighted style (`.btn--red`); the back/left button is secondary (`.btn--outline-dark`).
 
 ---
 

@@ -31,7 +31,7 @@ All colors are declared as CSS custom properties on `:root`. Always reference th
 |--------------------|-------------------------------|--------|-------|
 | Section heading    | `clamp(1.4rem, 3.5vw, 2rem)`  | 800    | `line-height: 1.2` |
 | Section label      | `0.75rem`                     | 700    | Uppercase, `letter-spacing: 0.12em`, gold color `#b8860b` |
-| Section body copy  | `1rem`                        | 400    | `color: var(--mit-gray)`, `max-width: 680px` |
+| Section body copy  | `1rem`                        | 400    | `color: var(--mit-gray)`, `max-width: 680px` on non-course pages only |
 | Card title         | `1rem`                        | 700    | |
 | Card body          | `0.875rem`                    | 400    | `color: var(--mit-gray)` |
 | Footer text        | `0.85rem`                     | 400    | |
@@ -160,7 +160,9 @@ Since these pages are embedded in Google Sites (which provides its own navigatio
 
 Course content pages (under `/create-challenge/create-course/`) are text-heavy and follow a prose-first layout. Keep these rules in mind:
 
-- **Videos are always one per row.** Never place two or more video embeds side by side in a course section. Use the `.video-stack` component (flex column, `max-width: 680px`) so each video takes its own full row. The `.video-grid` (multi-column) class is for non-course pages only.
+- **Course pages use the full 960px content width.** Unlike non-course pages where `max-width: 680px` narrows body copy (because card grids fill the remaining space), course pages have all-prose layouts and look awkwardly narrow if that cap is applied. Do not add `max-width: 680px` to `.prose`, `.section__body`, `.prose-heading`, `.video-stack`, `.resource-list`, or `.reflect-box` on course pages — let them fill the `section__inner` (960px).
+- **Videos are always one per row.** Never place two or more video embeds side by side in a course section. Use the `.video-stack` component (flex column) so each video takes its own full row. The `.video-grid` (multi-column) class is for non-course pages only.
+- **`video-embed` aspect-ratio trap.** The `padding-bottom: 56.25%` trick on `.video-embed` is calculated against the *parent element's* width, not the element's own width. Never apply `max-width` directly to a `.video-embed` div — the height will be wrong. If a video needs to be narrower than its parent, wrap it in a plain `<div style="max-width: ...">` first, then put `.video-embed` inside that wrapper.
 - Use the `.quiz-banner` (yellow background, bold dark text, full-width) after each major section to prompt Edly users to take the section quiz.
 - **Module navigation buttons follow a book convention.** In the interest band at the bottom of each course page, the left button goes back (previous module or course overview) and the right button goes forward (next module). The forward/right button is the primary action and uses the highlighted style (`.btn--red`); the back/left button is secondary (`.btn--outline-dark`).
 

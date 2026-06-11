@@ -154,6 +154,8 @@ Since these pages are embedded in Google Sites (which provides its own navigatio
 2. Interest band — if there's a primary CTA to surface
 3. Footer
 
+**Link targets in iframe embeds:** Google Sites sandboxes embedded iframes and silently blocks `target="_top"` navigation — clicks do nothing, while Ctrl+click (opens new tab) works. Always use `target="_blank" rel="noreferrer noopener"` for any link that navigates to another page on the site. Never use `target="_top"`.
+
 ---
 
 ## Course Pages

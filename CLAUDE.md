@@ -31,12 +31,14 @@ All colors are declared as CSS custom properties on `:root`. Always reference th
 |--------------------|-------------------------------|--------|-------|
 | Section heading    | `clamp(1.4rem, 3.5vw, 2rem)`  | 800    | `line-height: 1.2` |
 | Section label      | `0.75rem`                     | 700    | Uppercase, `letter-spacing: 0.12em`, gold color `#b8860b` |
-| Section body copy  | `1rem`                        | 400    | `color: var(--mit-gray)`, `max-width: 680px` on non-course pages only |
+| Section body copy  | `1rem`                        | 400    | `color: var(--mit-gray)`, `max-width: 680px` only on pages with card grids (see note below) |
 | Card title         | `1rem`                        | 700    | |
 | Card body          | `0.875rem`                    | 400    | `color: var(--mit-gray)` |
 | Footer text        | `0.85rem`                     | 400    | |
 
 Section labels (the small uppercase eyebrow text above headings) always use gold `#b8860b` and all-caps + tracked letterforms. They provide context for the heading that follows.
+
+**`max-width: 680px` on body copy — when to apply it:** The 680px cap on `.section__body` (and on `.section__callout`, `.schedule-block`, and similar prose containers) is only appropriate when a page also has wide card grids (feature cards, callout cards, project cards) that fill the remaining horizontal space. On those pages the narrow intro text is balanced by the wide grids below it. On **prose-only pages** — any page whose sections contain only text, tables, or lists with no card grids — do **not** apply `max-width: 680px` to any content containers, so they fill the full 960 px `section__inner`. Course pages (under `/create-course/`) are always prose-only and are already covered by the course-page rules below. Non-course prose-only pages (e.g. `technical-mentors.html`, `schedule.html`) follow the same rule: omit the cap.
 
 ---
 

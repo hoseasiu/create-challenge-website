@@ -21,14 +21,12 @@
 
     /* ── Accessibility utilities ─────────────────────────────────────────── */
 
-    /* Screen-reader-only: visually hides element but keeps it in the a11y tree */
     .sr-only {
       position: absolute; width: 1px; height: 1px;
       padding: 0; margin: -1px; overflow: hidden;
       clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
 
-    /* Skip link: hidden until focused, then slides into view */
     .skip-link {
       position: absolute; top: -40px; left: 0;
       background: var(--mit-dark); color: var(--yellow);
@@ -38,7 +36,6 @@
     }
     .skip-link:focus { top: 0; }
 
-    /* Enhanced focus indicator (replaces thin browser default) */
     a:focus-visible,
     .btn:focus-visible {
       outline: 3px solid var(--yellow);
@@ -68,19 +65,15 @@
       text-decoration: none;
     }
     .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
-    .btn--white   { background: var(--mit-dark); color: var(--yellow); }
-    .btn--outline { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
-    .btn--red     { background: var(--yellow);  color: var(--mit-dark); }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow);  color: var(--mit-dark); }
     .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
 
-    .section {
-      padding: 60px 24px;
-    }
+    .section { padding: 60px 24px; }
     .section--gray { background: var(--mit-light); }
-    .section__inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-    }
+    .section__inner { max-width: var(--max-w); margin: 0 auto; }
+
     .section__label {
       font-size: 0.75rem;
       letter-spacing: 0.12em;
@@ -99,6 +92,38 @@
       color: var(--mit-gray);
       font-size: 1rem;
     }
+
+    /* ── Search bar ──────────────────────────────────────────────────────── */
+
+    .search-wrap {
+      margin-top: 32px;
+    }
+    .search-bar {
+      width: 100%;
+      max-width: 480px;
+      padding: 11px 16px;
+      font-size: 1rem;
+      font-family: inherit;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      color: var(--mit-dark);
+      background: var(--white);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .search-bar:focus {
+      outline: none;
+      border-color: var(--yellow-dk);
+      box-shadow: 0 0 0 3px rgba(230,184,0,0.25);
+    }
+    .search-bar::placeholder { color: #999; }
+
+    .no-results {
+      margin-top: 40px;
+      color: var(--mit-gray);
+      font-size: 1rem;
+    }
+
+    /* ── Resource grid ───────────────────────────────────────────────────── */
 
     .resource-grid {
       display: grid;
@@ -127,6 +152,9 @@
     .resource-card__list li {
       margin-bottom: 10px;
     }
+    .resource-card__list li:last-child {
+      margin-bottom: 0;
+    }
     .resource-card__list strong {
       color: var(--mit-dark);
     }
@@ -136,6 +164,8 @@
       min-height: 24px;
       line-height: 1.6;
     }
+
+    /* ── Community callouts ──────────────────────────────────────────────── */
 
     .callouts {
       display: grid;
@@ -163,29 +193,7 @@
       line-height: 1.7;
     }
 
-    .interest-band {
-      background: var(--mit-dark);
-      color: var(--white);
-      padding: 60px 24px;
-      text-align: center;
-    }
-    .interest-band__heading {
-      font-size: clamp(1.4rem, 3.5vw, 2rem);
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-    .interest-band__body {
-      font-size: 1rem;
-      opacity: 0.88;
-      max-width: 560px;
-      margin: 0 auto 32px;
-    }
-    .interest-band__ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: center;
-    }
+    /* ── Footer ──────────────────────────────────────────────────────────── */
 
     footer {
       background: var(--mit-dark);
@@ -236,48 +244,93 @@
     <div class="section__inner">
       <p class="section__label">Additional resources</p>
       <h2 class="section__heading">Tools and learning materials for assistive technology design</h2>
-      <p class="section__body">A curated set of CAD, electronics, documentation, and assistive technology resources used by Beaver Works AT students and alumni.</p>
+      <p class="section__body">A curated set of tools, platforms, and learning resources used across the CRE[AT]E Challenge — covering CAD, electronics, software, AI, accessibility, and more.</p>
 
-      <div class="resource-grid">
+      <div class="search-wrap">
+        <label for="resource-search" class="sr-only">Filter resources</label>
+        <input
+          type="search"
+          id="resource-search"
+          class="search-bar"
+          placeholder="Filter resources…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+
+      <p id="no-results" class="no-results" hidden>No resources match your search.</p>
+
+      <div class="resource-grid" id="resource-grid">
+
         <div class="resource-card">
-          <div class="resource-card__title">CAD / 3D Modeling</div>
+          <div class="resource-card__title">CAD &amp; 3D modeling</div>
           <ul class="resource-card__list">
-            <li><strong><a href="https://www.onshape.com/">Onshape</a></strong> — Cloud-based CAD with collaboration and free academic access.</li>
-            <li><strong><a href="https://www.autodesk.com/products/fusion-360/">Fusion 360</a></strong> — Autodesk CAD, engineering, electronics, and manufacturing software; free academic license.</li>
-            <li><strong><a href="https://www.tinkercad.com">Tinkercad</a></strong> — Beginner-friendly browser-based 3D modeling for new CAD users.</li>
-            <li><strong><a href="https://www.freecad.org/">FreeCAD</a></strong> — Open-source parametric modeling software for mechanical engineering and product design.</li>
-            <li><strong><a href="https://www.blender.org/">Blender</a></strong> — Free 3D creation suite for modeling, rendering, and animation.</li>
-            <li><strong><a href="https://www.keyshot.com/">Keyshot 3D</a></strong> — Rendering and animation software for photorealistic visuals.</li>
+            <li><strong><a href="https://www.onshape.com/products/education">Onshape</a></strong> — Cloud-based CAD with real-time collaboration; free academic license. The baseline CAD tool for BWSI AT.</li>
+            <li><strong><a href="https://learn.onshape.com">Onshape Learning Center</a></strong> — Self-paced courses: Navigating Onshape, Introduction to Sketching, and Part Design Using Part Studios.</li>
+            <li><strong><a href="https://www.autodesk.com/products/fusion-360/">Fusion 360</a></strong> — Autodesk's integrated CAD, engineering, electronics, and manufacturing suite; free for students and educators.</li>
+            <li><strong><a href="https://www.tinkercad.com">Tinkercad</a></strong> — Browser-based 3D modeling for beginners; completely free, no installation required.</li>
+            <li><strong><a href="https://www.freecad.org/">FreeCAD</a></strong> — Open-source parametric modeler for mechanical engineering and product design.</li>
+            <li><strong><a href="https://www.blender.org/">Blender</a></strong> — Free and open-source 3D creation suite covering modeling, rendering, and animation.</li>
+            <li><strong><a href="https://www.keyshot.com/">Keyshot 3D</a></strong> — Professional rendering and animation software for photorealistic product visuals.</li>
           </ul>
         </div>
 
         <div class="resource-card">
-          <div class="resource-card__title">Electronics & programming</div>
+          <div class="resource-card__title">Electronics &amp; physical making</div>
           <ul class="resource-card__list">
-            <li><strong><a href="https://www.arduino.cc/">Arduino</a></strong> — Open-source electronics platform with a free IDE for prototypes.</li>
-            <li><strong><a href="https://www.raspberrypi.com/">Raspberry Pi</a></strong> — Low-cost single-board computer for programming and electronics projects.</li>
-            <li><strong><a href="https://appinventor.mit.edu/">MIT App Inventor</a></strong> — Browser-based app builder from MIT for mobile apps without code.</li>
-            <li><strong><a href="https://scratch.mit.edu/">Scratch</a></strong> — Visual programming tool from MIT Media Lab for learning coding basics.</li>
+            <li><strong><a href="https://www.arduino.cc/">Arduino</a></strong> — Open-source microcontroller platform with a free IDE; the most common starting point for interactive electronics prototypes.</li>
+            <li><strong><a href="https://www.raspberrypi.com/">Raspberry Pi</a></strong> — Low-cost single-board computer with GPIO pins for interfacing with sensors and actuators; far more powerful than a typical microcontroller.</li>
+            <li><strong><a href="https://www.adafruit.com/">Adafruit</a></strong> — Electronics retailer; Feather, Lilypad, and Bluefruit boards are designed for wearable applications. The <a href="https://learn.adafruit.com/">Adafruit Learning Center</a> has tutorials for every product.</li>
+            <li><strong><a href="https://www.sparkfun.com/">SparkFun</a></strong> — Electronics retailer with an extensive library of beginner-friendly tutorials at <a href="https://learn.sparkfun.com/">learn.sparkfun.com</a>.</li>
+            <li><strong><a href="https://www.khanacademy.org/science/electrical-engineering">Khan Academy — Electrical Engineering</a></strong> — Free courses covering circuit analysis, semiconductors, and signals. A solid foundation before tackling hardware projects.</li>
+            <li><strong><a href="https://www.tinkercad.com/circuits">Tinkercad Circuits</a></strong> — Free browser-based circuit and Arduino simulator. Recommended: simulate first, buy hardware second.</li>
+            <li><strong><a href="https://fritzing.org/">Fritzing</a></strong> — Open-source electronics design tool for prototyping and documenting circuits.</li>
+            <li><strong><a href="https://www.kicad.org/">KiCad</a></strong> — Free and open-source PCB design suite for electronics layouts.</li>
+            <li><strong><a href="https://curriculum.affoa.org/EDP/index.html#/">AFFOA Wearables Curriculum</a></strong> — Engineering and design curriculum from the Advanced Functional Fabrics of America, focused on wearable technology and functional fabrics.</li>
           </ul>
         </div>
 
         <div class="resource-card">
-          <div class="resource-card__title">Circuit design</div>
+          <div class="resource-card__title">Software &amp; development</div>
           <ul class="resource-card__list">
-            <li><strong><a href="https://www.tinkercad.com/circuits">Tinkercad Circuits</a></strong> — Browser-based circuit simulator integrated with Tinkercad.</li>
-            <li><strong><a href="https://fritzing.org/">Fritzing</a></strong> — Open-source EDA software for prototyping circuits.</li>
-            <li><strong><a href="https://www.kicad.org/">KiCad</a></strong> — Free PCB design suite for electronics layouts.</li>
+            <li><strong><a href="https://github.com/">GitHub</a></strong> — Version control and code collaboration. <a href="https://pages.github.com/">GitHub Pages</a> can host a project website for free.</li>
+            <li><strong><a href="https://education.github.com/pack">GitHub Student Developer Pack</a></strong> — Free access to professional developer tools — hosting, domains, and more — for verified students.</li>
+            <li><strong><a href="https://www.figma.com/">Figma</a></strong> — Browser-based tool for wireframing and prototyping app and website interfaces. Free for students and educators.</li>
+            <li><strong><a href="https://appinventor.mit.edu/">MIT App Inventor</a></strong> — Visual drag-and-drop programming for building Android and iOS apps without prior coding experience.</li>
+            <li><strong><a href="https://scratch.mit.edu/">Scratch</a></strong> — Visual block-based programming from MIT Media Lab; good for learning programming fundamentals.</li>
+            <li><strong><a href="https://developer.android.com/get-started/overview">Android Developers</a></strong> — Official guide to Android app development using Java or Kotlin.</li>
+            <li><strong><a href="https://codingwithmitch.com/">CodingWithMitch</a></strong> — Video tutorials and example projects for Android development.</li>
+            <li><strong><a href="https://thingspeak.com/">ThingSpeak</a></strong> — IoT analytics platform for collecting, visualizing, and acting on data from connected sensors and devices.</li>
           </ul>
         </div>
 
         <div class="resource-card">
-          <div class="resource-card__title">Documentation & collaboration</div>
+          <div class="resource-card__title">AI &amp; machine learning</div>
           <ul class="resource-card__list">
-            <li><strong><a href="https://inkscape.org/">Inkscape</a></strong> — Free vector editor for diagrams and technical illustrations.</li>
-            <li><strong><a href="https://www.gimp.org/">GIMP</a></strong> — Open-source image editor for documentation and visuals.</li>
-            <li><strong><a href="https://obsproject.com/">OBS Studio</a></strong> — Recording and streaming software useful for documenting projects.</li>
+            <li><strong><a href="https://huggingface.co/">HuggingFace</a></strong> — The main hub for pre-trained ML models and datasets. Start here before training from scratch; see the <a href="https://huggingface.co/docs">documentation</a> to get started.</li>
+            <li><strong><a href="https://teachablemachine.withgoogle.com/">Teachable Machine</a></strong> — Google's graphical tool for training image, sound, or pose classification models without writing any code.</li>
+            <li><strong><a href="https://www.cvat.ai/">CVAT</a></strong> — Online platform for annotating images and videos to create labeled datasets for machine learning.</li>
           </ul>
         </div>
+
+        <div class="resource-card">
+          <div class="resource-card__title">Accessibility tools</div>
+          <ul class="resource-card__list">
+            <li><strong><a href="https://www.randoma11y.com/">randoma11y</a></strong> — Generates accessible color palette combinations with built-in contrast checking.</li>
+            <li><strong><a href="https://accessibe.com/accessscan">accessiBe accessScan</a></strong> — Scans a website URL and reports WCAG compliance issues.</li>
+            <li><strong>Firefox Accessibility Inspector</strong> — Built-in browser tool with a colorblindness simulator and accessibility tree viewer. Open DevTools → Accessibility tab; no installation needed.</li>
+          </ul>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-card__title">Documentation &amp; media</div>
+          <ul class="resource-card__list">
+            <li><strong><a href="https://inkscape.org/">Inkscape</a></strong> — Free and open-source vector graphics editor for diagrams, technical illustrations, and design files.</li>
+            <li><strong><a href="https://www.gimp.org/">GIMP</a></strong> — Free and open-source image editor for photo editing and documentation visuals.</li>
+            <li><strong><a href="https://obsproject.com/">OBS Studio</a></strong> — Free recording and streaming software for capturing project demonstrations.</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
@@ -321,28 +374,65 @@
 
 </main>
 
-  <footer>
-    <div class="inner">
-      <div class="footer__left">
-        <p>&copy; 2026 MIT Beaver Works. All rights reserved.</p>
-        <nav aria-label="Footer links">
-          <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a> &nbsp;·&nbsp;
-          <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
-        </nav>
-      </div>
-      <div class="footer__social">
-        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" aria-label="YouTube">
-          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
-        </a>
-        <a href="http://instagram.com/bwsiat" aria-label="Instagram">
-          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
-        </a>
-        <a href="https://x.com/mitbwsi" aria-label="X (formerly Twitter)">
-          <img src="https://ssl.gstatic.com/atari/images/sociallinks/twitter_colored_36dp.png" alt="X" />
-        </a>
-      </div>
+<footer>
+  <div class="inner">
+    <div class="footer__left">
+      <p>&copy; 2026 MIT Beaver Works. All rights reserved.</p>
+      <nav aria-label="Footer links">
+        <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a> &nbsp;·&nbsp;
+        <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+      </nav>
     </div>
-  </footer>
+    <div class="footer__social">
+      <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" aria-label="YouTube">
+        <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+      </a>
+      <a href="http://instagram.com/bwsiat" aria-label="Instagram">
+        <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+      </a>
+      <a href="https://x.com/mitbwsi" aria-label="X (formerly Twitter)">
+        <img src="https://ssl.gstatic.com/atari/images/sociallinks/twitter_colored_36dp.png" alt="X" />
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var input = document.getElementById('resource-search');
+    var noResults = document.getElementById('no-results');
+    var grid = document.getElementById('resource-grid');
+
+    input.addEventListener('input', function () {
+      var q = input.value.toLowerCase().trim();
+      var cards = grid.querySelectorAll('.resource-card');
+      var anyVisible = false;
+
+      cards.forEach(function (card) {
+        if (!q) {
+          card.hidden = false;
+          card.querySelectorAll('li').forEach(function (li) { li.hidden = false; });
+          anyVisible = true;
+          return;
+        }
+
+        var items = card.querySelectorAll('li');
+        var cardHasMatch = false;
+
+        items.forEach(function (li) {
+          var matches = li.textContent.toLowerCase().includes(q);
+          li.hidden = !matches;
+          if (matches) cardHasMatch = true;
+        });
+
+        card.hidden = !cardHasMatch;
+        if (cardHasMatch) anyVisible = true;
+      });
+
+      noResults.hidden = anyVisible || !q;
+    });
+  })();
+</script>
 
 </body>
 </html>

@@ -119,8 +119,15 @@
       flex-direction: column;
     }
     .callout-card__icon {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
+      width: 40px;
+      height: 40px;
+      margin-bottom: 16px;
+      color: var(--mit-dark);
+    }
+    .callout-card__icon svg {
+      width: 40px;
+      height: 40px;
+      display: block;
     }
     .callout-card__title {
       font-weight: 700;
@@ -252,28 +259,44 @@
         <div class="callouts" role="list">
 
           <div class="callout-card" role="listitem">
-            <div class="callout-card__icon" aria-hidden="true">🔩</div>
+            <div class="callout-card__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M11.4194 15.1694L17.25 21C18.2855 22.0355 19.9645 22.0355 21 21C22.0355 19.9645 22.0355 18.2855 21 17.25L15.1233 11.3733M11.4194 15.1694L13.9155 12.1383C14.2315 11.7546 14.6542 11.5132 15.1233 11.3733M11.4194 15.1694L6.76432 20.8219C6.28037 21.4096 5.55897 21.75 4.79768 21.75C3.39064 21.75 2.25 20.6094 2.25 19.2023C2.25 18.441 2.59044 17.7196 3.1781 17.2357L10.0146 11.6056M15.1233 11.3733C15.6727 11.2094 16.2858 11.1848 16.8659 11.2338C16.9925 11.2445 17.1206 11.25 17.25 11.25C19.7353 11.25 21.75 9.23528 21.75 6.75C21.75 6.08973 21.6078 5.46268 21.3523 4.89779L18.0762 8.17397C16.9605 7.91785 16.0823 7.03963 15.8262 5.92397L19.1024 2.64774C18.5375 2.39223 17.9103 2.25 17.25 2.25C14.7647 2.25 12.75 4.26472 12.75 6.75C12.75 6.87938 12.7555 7.00749 12.7662 7.13411C12.8571 8.20956 12.6948 9.39841 11.8617 10.0845L11.7596 10.1686M10.0146 11.6056L5.90901 7.5H4.5L2.25 3.75L3.75 2.25L7.5 4.5V5.90901L11.7596 10.1686M10.0146 11.6056L11.7596 10.1686M18.375 18.375L15.75 15.75M4.86723 19.125H4.87473V19.1325H4.86723V19.125Z"/>
+              </svg>
+            </div>
             <div class="callout-card__title">Mechanical Making</div>
             <p class="callout-card__body">Physical fabrication techniques for designing and building AT devices. Covers machine tools and shops (laser cutters, drill presses, mills), 3D printing and FDM fundamentals, and computer-aided design using Onshape — BWSI AT's recommended free, browser-based CAD platform.</p>
             <a class="callout-card__link" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/maker-skills/mechanical-making" target="_blank" rel="noreferrer noopener">Mechanical Making →</a>
           </div>
 
           <div class="callout-card" role="listitem">
-            <div class="callout-card__icon" aria-hidden="true">💻</div>
+            <div class="callout-card__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M17.25 6.75L22.5 12L17.25 17.25M6.75 17.25L1.5 12L6.75 6.75M14.25 3.75L9.75 20.25"/>
+              </svg>
+            </div>
             <div class="callout-card__title">Software</div>
             <p class="callout-card__body">Programming for web, desktop, mobile, or microcontroller-based projects. Covers version control with GitHub, UI design with Figma, web and mobile development (including MIT App Inventor for Android), and AI and machine learning tools — with guidance on accessibility and data bias for AT applications.</p>
             <a class="callout-card__link" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/maker-skills/software" target="_blank" rel="noreferrer noopener">Software →</a>
           </div>
 
           <div class="callout-card" role="listitem">
-            <div class="callout-card__icon" aria-hidden="true">⚡</div>
+            <div class="callout-card__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M3.75 13.5L14.25 2.25L12 10.5H20.25L9.75 21.75L12 13.5H3.75Z"/>
+              </svg>
+            </div>
             <div class="callout-card__title">Electronics</div>
             <p class="callout-card__body">Circuits, microcontrollers, and sensors for devices that can sense the world and respond dynamically. Introduces electrical engineering principles via Khan Academy, popular microcontroller platforms (Arduino, Adafruit Feather, Raspberry Pi), and hands-on circuit simulation with Tinkercad before investing in hardware.</p>
             <a class="callout-card__link" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/maker-skills/electronics" target="_blank" rel="noreferrer noopener">Electronics →</a>
           </div>
 
           <div class="callout-card" role="listitem">
-            <div class="callout-card__icon" aria-hidden="true">🧤</div>
+            <div class="callout-card__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M7.84786 8.25005L9.38443 9.13719M7.84786 8.25005C7.01943 9.68493 5.18501 10.1765 3.75013 9.34807C2.31526 8.51965 1.82363 6.68488 2.65206 5.25C3.48049 3.81512 5.31526 3.32349 6.75013 4.15192C8.18501 4.98035 8.67629 6.81517 7.84786 8.25005ZM9.38443 9.13719C10.043 9.51741 10.4538 10.2153 10.4666 10.9756C10.4725 11.3272 10.5207 11.6706 10.607 12.0001M9.38443 9.13719L11.4608 10.336M7.84786 15.7501L9.38443 14.863M7.84786 15.7501C8.67629 17.185 8.18501 19.0196 6.75013 19.8481C5.31526 20.6765 3.48049 20.1849 2.65206 18.75C1.82363 17.3151 2.31526 15.4803 3.75013 14.6519C5.18501 13.8235 7.01943 14.3152 7.84786 15.7501ZM9.38443 14.863C10.043 14.4828 10.4538 13.7849 10.4666 13.0246C10.4725 12.673 10.5207 12.3296 10.607 12.0001M9.38443 14.863L11.4608 13.6642M11.4608 10.336C11.9882 9.69899 12.6991 9.21094 13.5294 8.95701L18.8541 7.32853C19.6606 7.08187 20.5202 7.06683 21.3348 7.28511L22.1373 7.50012L14.3431 12.0001M11.4608 10.336C11.062 10.8178 10.7681 11.3847 10.607 12.0001M14.3431 12.0001L22.1373 16.5001L21.3348 16.7151C20.5202 16.9333 19.6606 16.9183 18.8541 16.6716L13.5294 15.0432C12.6991 14.7892 11.9882 14.3012 11.4608 13.6642M14.3431 12.0001L11.4608 13.6642"/>
+              </svg>
+            </div>
             <div class="callout-card__title">Wearables</div>
             <p class="callout-card__body">Technology worn on the body — from body-mounted sensors to electronics embedded in clothing or mechanical braces. Covers electronic components suited to wearables, key design considerations (ergonomics, measuring for fit, hygiene, aesthetics), and the AFFOA wearable technology curriculum for hands-on prototyping.</p>
             <a class="callout-card__link" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/maker-skills/wearables" target="_blank" rel="noreferrer noopener">Wearables →</a>

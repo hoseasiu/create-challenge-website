@@ -39,7 +39,6 @@ The rows below were seeded on 2026-07-12 by comparing each file's last local-edi
 | [technical-mentors.html](technical-mentors.html) | [/create-challenge/technical-mentors](https://beaver-works-assistive-tech.mit.edu/create-challenge/technical-mentors) | 2026-06-11 | 🔄 Needs sync | — | Snapshot dated 2026-06-06; local file edited after (small corrections, max-width fix). |
 | [tips-for-teams.html](tips-for-teams.html) | [/create-challenge/tips-for-teams](https://beaver-works-assistive-tech.mit.edu/create-challenge/tips-for-teams) | 2026-06-06 | 🔄 Needs sync | — | Snapshot dated 2026-05-11; local file edited after (WCAG fixes, link fixes, nav consistency). |
 | [2026-projects.html](2026-projects.html) | [/past-projects/2026-projects](https://beaver-works-assistive-tech.mit.edu/past-projects/2026-projects) | 2026-06-11 | 🔄 Needs sync | — | Snapshot dated 2026-06-06; local file edited after (iframe link-target fix). |
-| [project-funding.html](project-funding.html) | [/create-challenge/project-funding](https://beaver-works-assistive-tech.mit.edu/create-challenge/project-funding) | 2026-08-05 | 🔄 Needs sync | — | New page created for issue #18 (canonical funding mechanism); not yet pushed live — this URL does not exist on the live site yet. |
 
 ## Local drafts not yet linked to a snapshot
 

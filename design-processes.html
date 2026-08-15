@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Processes | CRE[AT]E Course | Beaver Works Assistive Technology</title>
+  <meta name="description" content="Module 2 of the CRE[AT]E Course: work with co-designers, learn the engineering design process, write user needs and product specifications, and walk through a real assistive technology prototyping case study." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--mit-dark);
+      border-radius: 2px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    a { color: #7a5500; text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { opacity: 0.85; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow);  color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    /* ── Sections ────────────────────────────────────────────────────────── */
+
+    .section { padding: 60px 24px; }
+    .section--gray { background: var(--mit-light); }
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    /* ── Prose (long-form text) ──────────────────────────────────────────── */
+
+    .prose { }
+    .prose p {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose ul, .prose ol {
+      margin: 0 0 16px 24px;
+      color: var(--mit-gray);
+    }
+    .prose ul li, .prose ol li {
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 4px;
+    }
+
+    /* ── Prose subheadings (h3, h4) ──────────────────────────────────────── */
+
+    .prose-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin: 36px 0 12px;
+    }
+    .prose-subheading {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin: 24px 0 8px;
+    }
+
+    /* ── Video embeds (responsive 16:9) ─────────────────────────────────── */
+
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #000;
+    }
+    .video-embed iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* ── Figures (diagrams, renderings, photos) ────────────────────────── */
+
+    .prose-figure {
+      margin: 28px 0;
+    }
+    .prose-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--white);
+    }
+    .prose-figure figcaption {
+      font-size: 0.875rem;
+      color: var(--mit-gray);
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* ── Quiz banner ─────────────────────────────────────────────────────── */
+
+    .quiz-banner {
+      background: var(--yellow);
+      color: var(--mit-dark);
+      padding: 18px 24px;
+      text-align: center;
+    }
+    .quiz-banner__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    /* ── Reflect / Definition / Activity callout ───────────────────────── */
+
+    .reflect-box {
+      background: var(--white);
+      border-left: 4px solid var(--yellow);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+    .reflect-box__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .reflect-box p {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+    }
+    .reflect-box p:not(:last-child) { margin-bottom: 12px; }
+    .reflect-box ol, .reflect-box ul {
+      margin: 12px 0 0 20px;
+    }
+    .reflect-box ol li, .reflect-box ul li {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+    .reflect-box ol li:last-child, .reflect-box ul li:last-child { margin-bottom: 0; }
+
+    /* ── Interest band ───────────────────────────────────────────────────── */
+
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p { font-size: 0.85rem; margin-bottom: 4px; }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social { display: flex; gap: 16px; align-items: center; }
+    .footer__social a {
+      display: flex; align-items: center;
+      opacity: 0.85; transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img { width: 28px; height: 28px; filter: brightness(0) invert(1); }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <h1 class="sr-only">Design Processes — CRE[AT]E Course</h1>
+
+    <!-- ── Module overview ─────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Module 2 · CRE[AT]E Course</p>
+        <h2 class="section__heading">Design Processes</h2>
+        <p class="section__body">This module covers the engineering design process you'll use throughout the CRE[AT]E Challenge. You'll learn what it means to work with a co-designer, walk through a general design process for hardware products, practice turning user needs into measurable product specifications, and follow a real case study of iterative prototyping for an assistive technology device.</p>
+      </div>
+    </section>
+
+    <!-- ── Co-Designers ────────────────────────────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Working With Co-Designers</p>
+        <h2 class="section__heading">Co-Designers</h2>
+
+        <div class="video-embed" style="margin-bottom: 28px;">
+          <iframe
+            src="https://www.youtube.com/embed/c_dw0la-v7U"
+            title="Working with Co-Designers"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <h3 class="prose-heading">What is co-design, and who are co-designers?</h3>
+        <div class="prose">
+          <p>When we design solutions for people, end users can have widely varying levels of input during the design process. In this course, we emphasize the use of co-design, in which the end user of the product plays an active role in the process, from requirements development, to testing, feedback, and refinement. The term co-designer not only emphasizes their active participation, but also acknowledges their own domain expertise on how they carry out their own lives. This knowledge is especially important in the context of disability, because different disabilities manifest in different ways, and people have very individual adaptations that they may be used to.</p>
+          <p>Although we typically mean people with disabilities when we say co-designers, in some cases, you may find yourself working mainly with the caretaker or family member of a person with a disability. This is particularly common when the disability in question involves communication challenges, or if the person with the disability is young (either purely by age, or in terms of cognitive development). In these cases, you should consider the caretakers, family members, and anyone else you are working with in a similar capacity to be co-designers as well. They are certainly part of the design team!</p>
+          <p>In other contexts, the terms users, clients, or customers might be used. Depending on the situation, the terms client and customer might be entirely appropriate, but they tend to be more passive (or transactional) than the relationship we are interested in. We will also sometimes refer to co-designers as users when speaking of their relationship to the product in question.</p>
+          <p>Co-design isn't always practical or possible though, especially when building general products for use by lots of people, or because of the time involved by the user, but the skills learned in the co-design process are very transferable to general product design and engineering.</p>
+        </div>
+
+        <h3 class="prose-heading">How do I find a co-designer?</h3>
+        <div class="prose">
+          <p>One of the most important things to keep in mind when finding a co-designer is your ability to meet to brainstorm, test, and get feedback about your product. In some cases, it may be possible to have a co-design process without being able to meet in person, but those tend to be the exception rather than the rule. Second, consider the type of disability and activity challenges involved, and the skills on your team. For example, mobility challenges often involve solutions that are physical in nature (mechanical, wearable, etc), while cognitive challenges often involve solutions that are more software-based. It isn't necessary for your team to be extremely knowledgeable in the technical aspects of the solution space — this is a learning experience after all — but it can be helpful to know at least a little bit, and very helpful to know about resources to learn the skills that you need.</p>
+          <p>Oftentimes, co-designers are people who the student team already know, but sometimes, there isn't a great match there. In that case, it can be helpful to reach out to local organizations that serve people with disabilities — anything from school-based special education programs, to community advocacy organizations. More generally speaking, it is pretty likely that you're just one step removed from someone who would be a good co-designer, so reaching out to community organizations that are not specifically focused on people with disabilities can also be a good idea, from community/fitness centers, to local charities and religious organizations that you may already be in touch with.</p>
+          <p>Also, don't forget that even the healthiest among us are just temporarily able-bodied! Your elderly family members and neighbors, who may have age-related challenges we don't typically think of as disabilities (because nearly everyone has them eventually) may also be great co-designers.</p>
+        </div>
+
+        <h3 class="prose-heading">Things to keep in mind</h3>
+        <div class="prose">
+          <p>Your co-designer is a part of your team, and their challenges should drive the mission of your product. While co-designers might encompass a person and their parents/family/caretaker, they should not be an abstract class of people. You might design for "Tony, who has mobility difficulties from cerebral palsy, and wants a better way to use an umbrella," or "Tony and his sister, who want an easier way to help lift Tony into the car," but you should not be designing for "people with mobility issues" at large.</p>
+          <p>Co-designers' feedback is extremely valuable, but they (like you) don't know everything. Just because someone wants a robot butler doesn't mean that a robot butler is the right solution. Be respectful of your co-designer's information. While we strive to be open with our design processes for the CRE[AT]E Challenge, the topics that we deal with often involve details of a person's life and/or medical condition that may not be appropriate to put in public. Be sure to ask your co-designer what information they are okay with putting in public, including names, descriptions of conditions, living situations, pictures, videos, etc.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="quiz-banner" role="note">
+      <div class="quiz-banner__inner">If you are following this course on Edly, pause here and take the section quiz.</div>
+    </div>
+
+    <!-- ── The Design Process ─────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Design Methodology</p>
+        <h2 class="section__heading">The Design Process</h2>
+
+        <div class="prose">
+          <p>The video below was recorded from the 2022 Beaver Works Summer Institute Design of Assistive Technology class, covering the design process as a whole.</p>
+        </div>
+
+        <div class="video-embed" style="margin-bottom: 28px;">
+          <iframe
+            src="https://www.youtube.com/embed/TDJkJOriU0U"
+            title="The Design Process"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <div class="prose">
+          <p>The video below is a follow-up to the Design Process talk, specifically focusing on testing and test plans.</p>
+        </div>
+
+        <div class="video-embed">
+          <iframe
+            src="https://www.youtube.com/embed/vJiwBeU-M2Q"
+            title="User Testing and Test Plans"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <div class="quiz-banner" role="note">
+      <div class="quiz-banner__inner">If you are following this course on Edly, pause here and take the section quiz.</div>
+    </div>
+
+    <!-- ── Product Development Process Flows ──────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">From Needs to Specifications</p>
+        <h2 class="section__heading">Product Development Process Flows</h2>
+
+        <div class="prose">
+          <p>There are many process flows that have been used by teams to design new products. One determining factor on what development process to choose is whether your project is mainly hardware or software. For software, different development processes, for example, Agile, have been shown to be very effective. For hardware processes, it is more difficult, and variations on a general process flow are used.</p>
+          <p>The general process flow for hardware product development is shown. We will first cover gathering user preferences, concept generation and selection, then move on to prototyping loops with components of design, build, test.</p>
+        </div>
+
+        <h3 class="prose-heading">User Needs</h3>
+        <div class="prose">
+          <p>Identifying user needs is a crucial step in the development process. The development team must create a complete set of user need statements. To accomplish this, interviews or focus groups with users must be done and the raw data from these interactions analyzed and prioritized for design.</p>
+        </div>
+        <div class="reflect-box">
+          <p class="reflect-box__label">Definition</p>
+          <p><strong>User need statement:</strong> taking what the user states in an interview or focus group and transferring that into a positive, specific product attribute that addresses this concern.</p>
+        </div>
+
+        <h3 class="prose-heading">Product Specifications</h3>
+        <div class="prose">
+          <p>Once user need statements have been created, these are turned into preliminary product specifications. To do this effectively, needs can be categorized into a hierarchy including primary "must-haves," secondary "nice-to-haves," and tertiary "neutral" needs.</p>
+        </div>
+        <div class="reflect-box">
+          <p class="reflect-box__label">Definition</p>
+          <p><strong>Product specifications</strong> are a list of statements that describe what the product has to do in measurable terms.</p>
+        </div>
+        <div class="prose">
+          <p>For example, for a vacuum cleaner here is a user need statement turned into a product specification:</p>
+          <p><strong>User need statement:</strong> "I need to be able to clean up confetti after parties in the conference room."</p>
+          <p><strong>Product specification:</strong> The vacuum cleaner has the power to suck up fragments up to 1 inch in diameter and 0.1 lbs in weight.</p>
+        </div>
+
+        <h3 class="prose-heading">Activity: User Needs and Product Specifications</h3>
+        <div class="prose">
+          <p>In the following activity, we will take the following statements and translate them into a user need. The situation is an interview with a parent of a child (Kenzie) with cerebral palsy. She has expressed a need for something that will help stabilize her child's arm to help with the eating process.</p>
+          <p>Below are 5 statements that were gathered in a user interview with Kenzie's mom. Please transform these into actionable user need statements. Then, please write a product specification for that need statement.</p>
+          <p>For students following on Edly, the Edly page will provide space for you to submit free-response answers for this activity.</p>
+        </div>
+        <div class="reflect-box">
+          <p class="reflect-box__label">Activity</p>
+          <p>For each of the following statements that Kenzie's mom provides, please write a need statement and a product specification.</p>
+          <ol>
+            <li>"Food is messy, so it would need to handle things being spilled on it and easily cleaned."</li>
+            <li>"We eat at a table and also the kitchen counter, so something that attaches to both of those surfaces would be good."</li>
+            <li>"Kenzie's arm shakes so something that can hold the arm in place comfortably is needed."</li>
+            <li>"It would need to allow her to move from the plate to her mouth smoothly. She can hold the utensil though."</li>
+            <li>"The last thing we purchased to help her eat was okay, but it cut into her arm and she had to bend her whole body within 3 inches of the plate to get the food."</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <div class="quiz-banner" role="note">
+      <div class="quiz-banner__inner">If you are following this course on Edly, pause here and take the section quiz.</div>
+    </div>
+
+    <!-- ── What is Prototyping? ───────────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Case Study, Part 1</p>
+        <h2 class="section__heading">What Is Prototyping?</h2>
+
+        <div class="prose">
+          <p>In this section we will step through an example of how to iteratively prototype towards a solution. We will be following the product design process for an actual prototype designed and fabricated in an undergraduate project at the University of Alabama Huntsville (Randall Hajjar, Stephanie Shelton, Madison Howard, Giulia Palma, Nicolas Ward, and Erin Looney).</p>
+        </div>
+        <div class="reflect-box">
+          <p class="reflect-box__label">Definition</p>
+          <p><strong>Prototype:</strong> a model that a design team builds of a solution to test and validate ideas quickly.</p>
+        </div>
+        <div class="prose">
+          <p>To do this we will be going back to the example of the arm holder for Kenzie, the child with cerebral palsy. In this scenario, Kenzie and her mom are the co-designers and you (and the AT course staff) are the design team creating this device.</p>
+          <p>Through the activities in this module, you will work through the design process and learn how to make decisions during prototyping quickly and cheaply towards the best solution.</p>
+        </div>
+
+        <h3 class="prose-heading">Mission Statement</h3>
+        <div class="prose">
+          <p>You are a part of a team that has this mission statement:</p>
+          <p><em>"To design and build a mobile arm support for children and adults with cerebral palsy that will aid in arm mobilization when working on everyday movements in therapy; specifically eating and writing."</em></p>
+        </div>
+
+        <h3 class="prose-heading">Benchmarking</h3>
+        <div class="prose">
+          <p>The team did some benchmarking during the concept generation phase. Some of those results are here.</p>
+          <p>The first system researched was the <a href="http://www.medifab.co.nz/products/arm-supports-feeding/multilink-dynamic-arm-support" target="_blank" rel="noreferrer noopener">Medifab Dynamic Arm Support</a>. The team discussed the pros of this product including its advantages of user-friendly clamp, flexibility in movement, and the simple height adjustment. The major disadvantages include its unwieldy size as well as a lack of tension adjustment. Lastly, it is expensive and difficult to purchase.</p>
+          <p>The second system researched was the <a href="http://www.armonproducts.com/products/edero/" target="_blank" rel="noreferrer noopener">Armon Edero</a>, which has key elements required by the co-designer, including a clamping mechanism compatible with tables and chairs, portability, and all the required axes of rotation with adjustable tension at the joints. The pitfalls of this product include its expense, appearance, and overall safety of moving joints for young users.</p>
+        </div>
+
+        <h3 class="prose-heading">Lead User and Experts Survey</h3>
+        <div class="prose">
+          <p>The team did a survey with therapists and parents of potential patients who may be interested in the project to gain a better understanding of how the product will be used in the future.</p>
+          <p>The team learned these things from the surveys:</p>
+          <ul>
+            <li>Safety is the most important.</li>
+            <li>The device needs to be easy to clean and maintain.</li>
+            <li>The device needs to be comfortable.</li>
+            <li>The device needs to be light and easy to transport.</li>
+            <li>The arm support should have more functionality than the movements described (writing and eating).</li>
+            <li>The movement required to eat is the most important function for this device.</li>
+            <li>Users will use this device between 1 and 4 hours at a time.</li>
+            <li>More than 60% of the participants would not pay over $500 for this device.</li>
+          </ul>
+          <p>More extensive interviewing and testing was also done until all user needs were understood by the design team. The next step is to turn these needs into requirements.</p>
+        </div>
+
+        <h3 class="prose-heading">Requirements</h3>
+        <div class="prose">
+          <p>These requirements are written in technical engineering terms. The terminology may be unfamiliar, but the point of sharing these is to give an example of what real requirements would look like.</p>
+          <p>Here are some of the requirements the team defined for the product:</p>
+        </div>
+
+        <h4 class="prose-subheading">Physical Requirements</h4>
+        <div class="prose">
+          <ul>
+            <li>The product shall weigh under 25 lbs.</li>
+            <li>The product shall fit within a 1.5 ft. cube.</li>
+          </ul>
+        </div>
+
+        <h4 class="prose-subheading">Functional Requirements</h4>
+        <div class="prose">
+          <ul>
+            <li>The product shall provide 2 degrees of freedom.*</li>
+            <li>The product should provide 5 degrees of freedom with a z-direction (height) adjustability.</li>
+            <li>The product shall have a common interface for the various arm molds provided by the user.</li>
+            <li>The product shall attach to desk and chair surfaces.</li>
+          </ul>
+        </div>
+
+        <h4 class="prose-subheading">Performance Requirements</h4>
+        <div class="prose">
+          <ul>
+            <li>The product shall support load imposed by individuals between the ages of 8 and 40 years old.</li>
+            <li>The product shall attach to a surface between 0.5" and 3" in thickness.</li>
+            <li>The product shall attach to a surface with at least a depth of 1" using a clamp.</li>
+            <li>The product will rotate 180 degrees about the z-axis and 30 degrees about the y-axis.</li>
+          </ul>
+        </div>
+
+        <h4 class="prose-subheading">Operational Requirements</h4>
+        <div class="prose">
+          <ul>
+            <li><strong>Facilities, transportation, storage:</strong> the product shall be able to be transported easily by one person.</li>
+            <li><strong>Reliability:</strong> the product shall function for maximum usage multiple times a day, five days a week, for up to 5 years.</li>
+            <li><strong>Installation and removal:</strong> the product shall be clamped to a surface.</li>
+            <li><strong>Safety:</strong> the product shall be free of pinch points, sharp edges, loud noises, splinters and burrs, and extreme temperatures.</li>
+          </ul>
+          <p>*Degrees of freedom: this is a concept in the field of mechanics. Please read more about <a href="https://en.wikipedia.org/wiki/Six_degrees_of_freedom" target="_blank" rel="noreferrer noopener">degrees of freedom here</a>.</p>
+        </div>
+
+        <h3 class="prose-heading">Device Concept</h3>
+        <div class="prose">
+          <p>Given the requirements made from user needs and a rigorous selection process, the concept selected was a ball joint based system with a product breakdown shown here. This shows the components of the system and how they are connected. Level 1 is the entire system. Level 2 and 3 break the system down into the individual components.</p>
+        </div>
+
+        <figure class="prose-figure">
+          <img src="https://raw.githubusercontent.com/hoseasiu/create-challenge-website/main/website-images/design-process-system-components.png" alt="Product breakdown diagram with three levels: Level 1 is the Mobile Arm Support as a whole system; Level 2 breaks it into Forearm Support, Ball Joint, and Fixed Clamp; Level 3 breaks each of those down further into Wood Cuff, Tensioner, and C-clamp." />
+          <figcaption>Product breakdown: the Mobile Arm Support system decomposed into its Level 2 subassemblies and Level 3 components.</figcaption>
+        </figure>
+
+        <div class="prose">
+          <p>Here is a computer-aided design (CAD) rendering of the design that the team has come up with to prototype:</p>
+        </div>
+
+        <figure class="prose-figure">
+          <img src="https://raw.githubusercontent.com/hoseasiu/create-challenge-website/main/website-images/design-process-cad.png" alt="Labeled CAD rendering of the mobile arm support concept, showing the arm rest, collet, ball joint, height, and clamp components with their dimensions." />
+          <figcaption>CAD rendering of the initial concept, with key dimensions called out: 5" arm rest, 2" collet, 1" diameter ball joint, 1.5" height, and an 8"×5" clamp with 6" of slit adjustment.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── Prototyping in Practice ────────────────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Case Study, Part 2</p>
+        <h2 class="section__heading">Prototyping in Practice</h2>
+
+        <h3 class="prose-heading">Prototyping Round 1</h3>
+        <div class="prose">
+          <p>The team is ready to build the first prototype, which is often referred to as a feasibility prototype. This prototype should demonstrate the desired concept, but not necessarily with all the features or materials. In this challenge, we also refer to this as the low-fidelity prototype.</p>
+          <p>Often the feasibility prototype is done while the team doesn't fully know what they are trying to build or what it will look like. In this example, the team already has CAD drawings, but this is not always the case. In other words, prototyping early before everything is perfect is a good idea! Build early and build often.</p>
+          <p>In this case, the team is given 3 materials to work with: cardboard, duct tape, and scissors. With this rudimentary set of prototyping tools, the team works to build a model of the arm support system. They mold cardboard for a cuff, strengthening and keeping it in place with duct tape. Then a post is added to hold up the arm support.</p>
+        </div>
+
+        <h4 class="prose-subheading">Feasibility prototype, Scenario 1</h4>
+        <div class="prose">
+          <p>This feasibility prototype is tried on the team members and after 3 people have tried it, the post holding up the arm support breaks.</p>
+          <p><em>Does this mean the prototype has failed and a new design is needed?</em></p>
+        </div>
+
+        <h4 class="prose-subheading">Feasibility prototype, Scenario 2</h4>
+        <div class="prose">
+          <p>Scenario 1 was not a design problem, but was a material problem. Therefore, this was not a failure, as the actual device will not be made of cardboard. So the team moves forward.</p>
+          <p>In Scenario 2, the prototype is patched back together, but then the users notice that the arm cuff only works for those with forearms above a certain length.</p>
+          <p><em>Does this mean the prototype has failed and a new design is needed?</em></p>
+        </div>
+
+        <h4 class="prose-subheading">Decision Point 1</h4>
+        <div class="prose">
+          <p>Scenario 2 was a design flaw. Within the requirements, this device must work for children down to the age of 8, so it must be able to adjust for many sizes.</p>
+          <p><em>Do you think the team should move on to prototyping with more expensive materials?</em></p>
+        </div>
+
+        <h3 class="prose-heading">Prototyping Round 2</h3>
+        <div class="prose">
+          <p>In this case, the team is not ready to prototype with more expensive materials. Instead, they decide that doing one or two more iterations with cardboard to get the right cuff length would be useful. This is cheap and quick prototyping that will give the team a better idea of how to create a more expensive and time-consuming prototype.</p>
+          <p>The team builds two more prototypes until an arm cuff shape has been finalized, using input from the co-designer. It is time to try out more realistic prototyping. Here are the three major components:</p>
+          <ul>
+            <li>The arm cuff is now made out of wood, with the design decided on from the cardboard prototypes.</li>
+            <li>The team decides to outsource the ball joint design, buying an off-the-shelf component and designing a connector between the clamp, ball joint, and arm cuff.</li>
+            <li>Due to metal working expertise on the team, the clamp was prototyped in parallel with the arm cuff using cheap metal scraps.</li>
+          </ul>
+          <p>The team assembles the arm cuff, ball joint, and clamp for the next prototype. Here is an updated rendering with the new materials in place.</p>
+        </div>
+
+        <figure class="prose-figure">
+          <img src="https://raw.githubusercontent.com/hoseasiu/create-challenge-website/main/website-images/design-process-render.png" alt="Rendering of the second prototype: a wooden arm cuff mounted on a ball joint, attached with a metal clamp to the edge of a table." />
+          <figcaption>Updated rendering of Prototyping Round 2, with the wood arm cuff, off-the-shelf ball joint, and metal clamp in place.</figcaption>
+        </figure>
+
+        <h4 class="prose-subheading">Prototyping 2 Scenario</h4>
+        <div class="prose">
+          <p>The prototype is working well! The clamp fits to the table, the ball joint allows for all ranges of motion, and the arm cuff is the right size. However, during user testing, several points come up, including:</p>
+          <ol>
+            <li>The edges of the clamp are too sharp for safety.</li>
+            <li>The weight of the object is too much.</li>
+            <li>The ball joint is sticking after continued use.</li>
+            <li>The arm cuff is uncomfortable against the skin.</li>
+          </ol>
+          <p><em>All of these points should be addressed for the next iteration. How would you prioritize this list?</em></p>
+        </div>
+
+        <h4 class="prose-subheading">Prototyping 2 Decision Point</h4>
+        <div class="prose">
+          <p>The team discusses the four changes that need to be made and prioritizes the ones that could deal with safety or drastically change the design: the sharpness of the clamp's edges and the weight of the object.</p>
+          <p>The team goes about these changes for the 3rd prototyping round:</p>
+          <ol>
+            <li>A lighter weight material is found for the clamp.</li>
+            <li>It is decided that the edges of the clamp can easily be filed down to be round.</li>
+            <li>The arm cuff walls are thinned down to drop more weight.</li>
+            <li>Different lubricants are tried on the ball joint to prevent sticking.</li>
+          </ol>
+          <p>It is decided that the edges of the clamp can easily be filed down to be round, and a cushioning material can be added to the arm cuff to address the comfort. This can be done in the next round, and is skipped for this prototype to save time.</p>
+          <p>The team shows this to users, and receives positive feedback on the changes.</p>
+          <p><em>Should the team move on to the next prototype (adding cushions and generally making the device more attractive)?</em></p>
+        </div>
+
+        <div class="prose">
+          <p>Here is the final design delivered to the United Cerebral Palsy center for use with patients. It had several cushioned inserts delivered as well.</p>
+        </div>
+
+        <figure class="prose-figure">
+          <img src="https://raw.githubusercontent.com/hoseasiu/create-challenge-website/main/website-images/design-process-final-picture.png" alt="Photo of the completed mobile arm support prototype: a wooden arm cuff mounted on a ball joint atop a metal clamp, sitting on a wood table." />
+          <figcaption>The final mobile arm support, delivered to the United Cerebral Palsy center for use with patients.</figcaption>
+        </figure>
+
+        <h3 class="prose-heading">Review</h3>
+        <div class="prose">
+          <p>This exercise has been a walkthrough of what prototyping looked like for one team doing assistive technology. No two prototyping processes are the same, as different challenges come with each device, team, and co-designer. Hopefully by walking through this real-life scenario, you have an understanding of how the process goes and what kind of decisions must be made.</p>
+          <p>It is important to remember that small failures are always a part of prototyping, and many things will go wrong. These should be seen as opportunities to learn and make the next prototype better!</p>
+        </div>
+
+        <h3 class="prose-heading">Reflections</h3>
+        <div class="reflect-box">
+          <p class="reflect-box__label">Reflect</p>
+          <p>Reflect on the prototyping process you just read through. Have you ever done any prototyping or building? What was the process like for you? If you haven't, what did you think of the mobile arm support process? What was done well? Done poorly?</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="quiz-banner" role="note">
+      <div class="quiz-banner__inner">If you are following this course on Edly, pause here and take the section quiz.</div>
+    </div>
+
+    <!-- ── Interest band / module navigation ─────────────────────────────── -->
+    <section class="interest-band" aria-label="Module navigation">
+      <h2 class="interest-band__heading">Ready for the next module?</h2>
+      <p class="interest-band__body">Continue to Module 3: Idea to Ink — turning your concepts into drawings ready for fabrication.</p>
+      <div class="interest-band__ctas">
+        <a class="btn btn--outline-dark" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/introduction" target="_blank" rel="noreferrer noopener">← Introduction</a>
+        <a class="btn btn--red" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/idea-to-ink" target="_blank" rel="noreferrer noopener">Next: Idea to Ink →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>&copy; 2026 MIT Beaver Works Institute. All rights reserved.</p>
+        <nav aria-label="Footer links">
+          <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
+          &nbsp;·&nbsp;
+          <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </nav>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" target="_blank" rel="noreferrer noopener" title="YouTube">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" target="_blank" rel="noreferrer noopener" title="Instagram">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" target="_blank" rel="noreferrer noopener" title="X / Twitter">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+          <span class="sr-only">X / Twitter</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

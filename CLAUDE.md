@@ -4,6 +4,14 @@ This document describes the visual language for the Beaver Works Assistive Techn
 
 ---
 
+## Cowork vs. Claude Code: who may edit this repo
+
+**Only a local Claude Code session may edit, create, or delete files in this repository.** Running git against this working directory from both a Cowork session and a local Claude Code session at the same time causes `.git/index.lock` contention and has already caused null-byte corruption of `.git/config` once (see "Cowork Session Limitations" below).
+
+**If a Cowork session is asked to edit anything in this repo — HTML/CSS files, `CLAUDE.md`, `website-update-status.md`, anything — it must refuse and tell Hosea to make the change from Claude Code instead.** This applies even to small or "quick" edits; there's no exception for size. Cowork may still read files here freely (to answer questions, review content, check `website-update-status.md`, or look things up in `site-snapshot/`) — the restriction is on writes only.
+
+---
+
 ## Color Palette
 
 | Token          | Value     | Usage |
@@ -156,7 +164,14 @@ Since these pages are embedded in Google Sites (which provides its own navigatio
 2. Interest band — if there's a primary CTA to surface
 3. Footer
 
-**Link targets in iframe embeds:** Google Sites sandboxes embedded iframes and silently blocks `target="_top"` navigation — clicks do nothing, while Ctrl+click (opens new tab) works. Always use `target="_blank" rel="noreferrer noopener"` for any link that navigates to another page on the site. Never use `target="_top"`.
+**Link targets in iframe embeds (corrected 2026-07-12 — see Cowork Session Limitations below):** Google Sites sandboxes embedded iframes and silently blocks `target="_top"` navigation — clicks do nothing, while Ctrl+click (opens new tab) works. Never use `target="_top"`.
+
+An earlier version of this guide over-generalized that finding into "always use `target="_blank"` for internal links too." That's wrong and has been corrected: a plain link with **no `target` attribute** (default `_self`) navigates correctly in place — confirmed live on `index.html`, whose links have always lacked `target="_blank"` and work perfectly. `target="_top"` was the specific thing that broke; omitting `target` entirely is not the same as using it, and does not hit that bug.
+
+**Current rule:**
+- **Internal links** (anywhere on `beaver-works-assistive-tech.mit.edu`) — use a plain `<a href="...">` with **no `target` attribute**. This matches the homepage's proven behavior and avoids spawning a new tab for ordinary site navigation.
+- **External links** (Google Forms, `giving.mit.edu`, `accessibility.mit.edu`, social media, `bwsi.mit.edu`, etc.) — keep `target="_blank" rel="noreferrer noopener"`, per normal web convention for leaving the site.
+- **Never** use `target="_top"` anywhere in this repo.
 
 ---
 
@@ -193,6 +208,47 @@ When a page is converted from the Google Sites version to a standalone full-page
 7. Update the corresponding `site-snapshot` markdown file and snapshot date to keep the archive current.
 
 This workflow ensures the published version, the snapshot archive, and the markup all stay synchronized.
+
+---
+
+## Local-to-Live Sync Workflow
+
+**Standard update flow, in order:**
+
+1. Update the HTML page locally in this repo.
+2. Push the change to GitHub.
+3. Update the corresponding HTML embed on the live Google Site.
+4. Update local documentation (e.g. `website-update-status.md`, TODO notes in the vault) to remove any TODO items tied to that update.
+
+Full-page HTML embeds are edited locally in this repo, then manually pasted into the matching embed block on the live Google Site — there is no automated deploy. [website-update-status.md](website-update-status.md) is the handoff log between the editing step (Claude Code) and the publishing step (Claude in Chrome, or the user pasting by hand). Keep it current:
+
+1. **After editing a local HTML embed (Claude Code):** mark that page's row in `website-update-status.md` as 🔄 **Needs sync**, and add a one-line note on what changed. Do this even for small edits — the whole point of the log is that nothing gets pushed live silently.
+2. **Before pushing an update (Claude in Chrome or the user):** check `website-update-status.md` for pages marked 🔄 Needs sync or ❓ Unknown to know what's stale on the live site.
+3. **After pushing an update:** flip the row to ✅ **Synced** and set "Last synced" to the date it was confirmed live. If Claude in Chrome performs the push, it should verify the live page reflects the change (reload and check) before marking it synced.
+4. **New embed pages:** when a page is converted from Google Sites to a local HTML embed for the first time (see the workflow above), add it to the table in `website-update-status.md` rather than leaving it in the "not yet converted" list.
+5. `website-update-status.md` tracks push status only. `site-snapshot/` remains the separate content archive — keep updating snapshot dates per the workflow above regardless of sync status.
+
+Never assume a local edit is live until `website-update-status.md` says so.
+
+---
+
+## Cowork Session Limitations (learned 2026-07-12)
+
+A few things that don't work the way you'd hope in a Cowork session on this repo — check here before re-discovering them the hard way. See also "Cowork vs. Claude Code: who may edit this repo" at the top of this file — as of 2026-07-12, Cowork no longer edits this repo at all, specifically because of the lock/corruption issues documented below.
+
+**`git push` doesn't work from the Cowork sandbox.** The sandboxed shell has no SSH access to github.com (DNS resolution fails, no SSH keys configured). Don't attempt `git push`/`git fetch` over SSH from Cowork's bash tool — it will fail. Make all local commits as normal, but tell the user the push step needs to happen from their own machine (or set up an HTTPS remote with a token if that becomes available). Don't silently skip this step either — flag it explicitly so it doesn't get missed.
+
+**`.git/config` can get silently corrupted with null bytes**, which breaks every git command with `fatal: bad config line N in file .git/config` and looks unrelated to anything you did. If git commands mysteriously fail at the very start of a session, check `.git/config` for null bytes (`sed -n 'Np' .git/config | cat -A` around the failing line) before assuming something else is wrong — stripping null bytes (`tr -d '\000'`) fixes it.
+
+**The bash sandbox's view of this folder can go stale and lag well behind what `Edit`/`Write`/`Read` actually wrote — don't use bash (`cat`, `python3 open(...)`, `check-styles.py`, etc.) to verify a write that was just made with `Edit` or `Write`.** On 2026-07-12, bash reads of several files (including this `CLAUDE.md`) showed content cut off mid-sentence or mid-tag well after `Edit`/`Write` had reported success — in one case bash still showed a stale, truncated snapshot even several minutes and many tool calls later, while the `Read` tool (and presumably the user's own OneDrive-synced copy) showed the file complete and correct the whole time. Bash's own writes-then-reads within the same tool (e.g. a Python script that both edits and re-reads a file) were reliable; the staleness only showed up when bash tried to read something `Edit`/`Write` had just changed. **Practical rule: after using `Edit` or `Write`, verify the result with the `Read` tool, not bash.** If bash output disagrees with what `Edit`/`Write` reported, trust `Edit`/`Write`/`Read` over bash. This also means: don't assume a `check-styles.py` run via bash reflects an edit you just made with `Edit`/`Write` — re-run it, or verify manually via `Read`, if the timing is close. Separately, because the user's own local OneDrive sync can lag the same way, if a live-paste attempt right after an edit comes out truncated, the fix is usually to wait a bit and re-copy rather than assume the source file is broken — check the actual file with `Read` first before doing surgery on it.
+
+**Caution when using the git-diff technique above:** a diff against `git show HEAD:<file>` can also surface *intentional* uncommitted content changes from earlier sessions, not just corruption — confirm with the user before "restoring" anything that looks like a deletion. (The `create-course.html` "Classroom guides" feature card was deliberately removed by the user in an earlier, uncommitted session and got wrongly re-added during a 2026-07-12 corruption sweep; it had to be removed again.)
+
+**Don't try to push large HTML embeds into the Google Sites editor via Claude in Chrome + JS injection.** The "Embed from the web" dialog is a plain textarea with no file-upload or URL option, so the only way to get content into it is to have the content already exist somewhere fetchable (it doesn't, pre-push) or to transmit it through chat. Reliable single-call size for that transmission is roughly 9,000 characters of base64 — anything past that risks a silent mid-string truncation that breaks the JS (this happened when trying to push `index.html`, a 27KB file, in one shot). Chunking around that limit works but costs multiple round trips per page and duplicates the file's content in the conversation both as bash output and as the tool call payload — for a repo where several pages run 20–90KB, pushing all of them this way is impractically expensive. Default to finishing and verifying the local HTML files, then handing the user a clear list (via `website-update-status.md`) of which pages changed and why, and let them paste manually. Only attempt the Chrome-based push for a single small, already-agreed-upon page, and say upfront that it'll take several tool calls.
+
+**A stuck `.git/index.lock` may not be deletable from the Cowork sandbox at all.** On 2026-07-12 a leftover `index.lock` (0 bytes, no owning process) resisted `rm`, `os.unlink`/`os.remove`, `find -delete`, `mv`, and `chmod` — all failed with `Operation not permitted`, and `chmod` didn't even silently take effect (permissions stayed `0700`). This looks like the OneDrive-backed mount itself refusing deletion from the sandbox side, not a normal permissions problem. Workaround: point git at a scratch index instead of fighting the lock — `GIT_INDEX_FILE=/tmp/git_index_alt git status` (copy `.git/index` to that path first) works fine and avoids ever touching the stuck file, since git's lock naming follows the index file path. The real fix is for the user to delete `.git\index.lock` directly from their own machine, where they have normal OS-level file access.
+
+**Re-verify "synced" status before trusting it — don't take a prior sync record at face value.** `maker-skills.html` was marked ✅ Synced from a June push, but a fresh `check-styles.py` run in July found 3 drift issues on it that the earlier push apparently missed or predated. When doing a style/content audit, always run the actual check script in full and read its complete output rather than assuming a page is fine because a status file says so or because an earlier partial read of the output looked clean.
 
 ---
 

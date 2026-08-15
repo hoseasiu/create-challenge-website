@@ -313,7 +313,7 @@ Add to the `<style>` block if not already present:
 <footer>
   <div class="footer__inner">
     <div class="footer__left">
-      <p>&copy; 2026 MIT Beaver Works Institute. All rights reserved.</p>
+      <p>&copy; 2026 MIT Beaver Works. All rights reserved.</p>
       <nav aria-label="Footer links">
         <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
         <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>

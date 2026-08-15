@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | CRE[AT]E Challenge — Beaver Works AT</title>
+  <meta name="description" content="Frequently asked questions about the CRE[AT]E Challenge, including team eligibility, application criteria, funding, Edly, and co-designers." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--mit-dark);
+      border-radius: 2px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    a { color: #7a5500; text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { opacity: 0.85; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow); color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 60px 24px; }
+    .section--gray { background: var(--mit-light); }
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+      scroll-margin-top: 20px;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .section__body:last-child { margin-bottom: 0; }
+
+    .section__list {
+      margin: 16px 0 20px 1.25rem;
+      color: var(--mit-dark);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .section__list li {
+      margin-bottom: 12px;
+    }
+
+    .section__callout {
+      margin: 20px 0;
+      padding: 20px 22px 20px 18px;
+      border-left: 4px solid var(--yellow);
+      border-radius: 0 8px 8px 0;
+      background: rgba(255, 206, 16, 0.08);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      font-size: 1rem;
+      color: var(--mit-dark);
+      line-height: 1.75;
+    }
+
+    /* ── FAQ QUESTIONS ── */
+    .faq-item { margin-bottom: 28px; }
+    .faq-item:last-child { margin-bottom: 0; }
+    .faq-item__q {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin-bottom: 8px;
+      line-height: 1.4;
+      scroll-margin-top: 20px;
+    }
+    .faq-item__a {
+      color: var(--mit-gray);
+      font-size: 1rem;
+    }
+    .faq-item__a p { margin-bottom: 10px; }
+    .faq-item__a p:last-child { margin-bottom: 0; }
+    .faq-item__a ul {
+      margin: 8px 0 8px 1.25rem;
+      line-height: 1.7;
+    }
+
+    /* ── JUMP LINKS ── */
+    .jump-nav {
+      background: var(--mit-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-top: 24px;
+    }
+    .jump-nav__title {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 12px;
+    }
+    .jump-nav__list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px 20px;
+    }
+    .jump-nav__list a {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* ── INTEREST BAND ── */
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p {
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .footer__social a {
+      display: flex;
+      align-items: center;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img {
+      width: 28px;
+      height: 28px;
+      filter: brightness(0) invert(1);
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+
+    <!-- ── INTRO + JUMP LINKS ── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">CRE[AT]E Challenge</p>
+        <h1 class="section__heading">Frequently Asked Questions</h1>
+        <p class="section__body">Answers to common questions about forming a team, eligibility, applying, funding, and more. Use the links below to jump to a section, or scroll through the full list.</p>
+
+        <nav class="jump-nav" aria-label="FAQ sections">
+          <p class="jump-nav__title">Jump to a section</p>
+          <ul class="jump-nav__list">
+            <li><a href="#forming-a-team">Forming a Team</a></li>
+            <li><a href="#team-eligibility">Team Eligibility</a></li>
+            <li><a href="#application-criteria">Application Criteria</a></li>
+            <li><a href="#resources-for-participating">Resources for Participating</a></li>
+            <li><a href="#edly">Edly</a></li>
+            <li><a href="#co-designers">Co-Designers</a></li>
+            <li><a href="#other-questions">Other Questions</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ── FORMING A TEAM ── -->
+    <section class="section section--gray" id="forming-a-team">
+      <div class="section__inner">
+        <h2 class="section__heading">Forming a Team</h2>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am a high school student in the US and interested in participating. What should I do next?</h3>
+          <div class="faq-item__a"><p>You should talk to your teachers or other adults in your life and identify a team coach. Your team coach can then apply the team for the challenge. You should also recruit team members from your school for the challenge.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am a college student in the US and interested in participating. What should I do next?</h3>
+          <div class="faq-item__a"><p>College students may form their own teams and register, with one person who is 18 or older acting as the Team Captain. This person will be the primary point of contact for the team. College teams do not need to fill a "coach" role.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am a high school or college student outside of the US and interested in participating. What should I do next?</h3>
+          <div class="faq-item__a"><p>The Challenge works with teams outside of the United States only through specific partner organizations.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Can our team have fewer than 2 students or more than 5 students?</h3>
+          <div class="faq-item__a">
+            <p>This is a strict limit. If you have only one student, please find another student to work with. If you have more than five students, consider forming multiple teams. Teams are encouraged to work together when appropriate, and may work with the same co-designer.</p>
+            <p>We have historically had a few teams with more than 5 students, but coordination becomes extremely difficult, and often not worth the team size.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Do all team members have to be from the same school?</h3>
+          <div class="faq-item__a"><p>No, but all team members should be from the same geographical area so that you will be able to work together in person.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Can the team roster change during the season?</h3>
+          <div class="faq-item__a"><p>Yes, team members can be added or dropped during the season. Team members that drop do not need to do anything. Team members that are added need to fill out the same acceptance and media release form as other members of the team. The team rosters provided during the final project submission at the end of the season will be what we use as the official roster. Please remember when changing your team that we still recommend a 2-5 person team size.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Do co-designers count as part of the 2-5 person limit?</h3>
+          <div class="faq-item__a"><p>Co-designers are very much part of their teams, but do not normally count towards the 5-person limit. The only exceptions are the uncommon cases where they are also 1) students and 2) actively working on the design of the product apart from user testing and feedback.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am interested in participating but we do not have enough team members. What should I do?</h3>
+          <div class="faq-item__a"><p>You should consider reaching out to other high schools and/or community centers/organizations/programs to identify a team coach and recruit other students.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Can one of our parents serve as our team coach?</h3>
+          <div class="faq-item__a"><p>Yes.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Can there be more than one team coach for a team?</h3>
+          <div class="faq-item__a"><p>Yes. If your team is accepted then please ask additional team coaches to fill out the team acceptance form. However, only one team coach will be the team's primary point of contact.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Are we allowed to have more than one team from our school?</h3>
+          <div class="faq-item__a"><p>Yes.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TEAM ELIGIBILITY ── -->
+    <section class="section" id="team-eligibility">
+      <div class="section__inner">
+        <h2 class="section__heading">Team Eligibility</h2>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am a middle school student in the USA. Can I participate?</h3>
+          <div class="faq-item__a">
+            <p>Middle school teams are not part of the Challenge as a matter of course — our direct support is focused on high school and college students. That said, if you're able to assemble a team and find a coach and co-designer, please <a href="mailto:bwsi-create-challenge@mit.edu">contact us</a> and we'll work with you to see how you might be able to participate.</p>
+            <p>Middle school teams that join are assigned 2-digit team numbers, distinct from the 3-digit numbers used for high school teams and the 4-digit numbers used for college teams. See <a href="#other-questions">How are team numbers chosen?</a> below.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am home-schooled in the USA. Will I be able to participate?</h3>
+          <div class="faq-item__a"><p>Yes, so long as you are a high school student.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am a high school student in the USA, but am not a US citizen or permanent resident. Will I be able to participate?</h3>
+          <div class="faq-item__a"><p>Yes. The Challenge does not ask for or consider students' immigration status.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am a university student in the USA. Can I participate?</h3>
+          <div class="faq-item__a"><p>Yes. Please see the answer under the Forming a Team section.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am outside of the USA. Can I participate?</h3>
+          <div class="faq-item__a"><p>Only if you are working with one of our partner organizations. See the answer under the Forming a Team section.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Are there prerequisites for a student to have taken certain classes before signing up for this challenge?</h3>
+          <div class="faq-item__a"><p>There are no prerequisites but we expect students to be interested in STEM and the topics covered in the challenge and to be committed to learning throughout the challenge.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── APPLICATION CRITERIA ── -->
+    <section class="section section--gray" id="application-criteria">
+      <div class="section__inner">
+        <h2 class="section__heading">Application Criteria</h2>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">What criteria will be used in selecting the teams that receive direct support?</h3>
+          <div class="faq-item__a">
+            <p>Selection criteria include, but limited to, the following:</p>
+            <ul>
+              <li>Skill background for successfully completing the challenge</li>
+              <li>Commitment from all team members (including co-designers and coaches) to successfully participate and complete the challenge</li>
+              <li>Need for technical and/or financial support</li>
+              <li>Diversity of team members</li>
+              <li>Plan for leveraging this experience to teach other students in the future</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">The Selection Criteria includes "Skill background for successfully completing the challenge." What is the technical background needed for the selection of a team?</h3>
+          <div class="faq-item__a">
+            <p>The technical background required will vary strongly depending on what kind of project you choose to tackle. Skills that previous students have found helpful include:</p>
+            <ul>
+              <li>computer-aided design</li>
+              <li>3D printing, laser cutting, hand and machine tools</li>
+              <li>wood- and metal-working</li>
+              <li>drawing and sketching</li>
+              <li>sewing and clothing design</li>
+              <li>computer programming, mobile app development, and web design</li>
+              <li>electronics, particularly Arduinos, sensors, and actuators</li>
+              <li>familiarity with classical mechanics and mechanical structures</li>
+            </ul>
+            <p>You <strong>do not</strong> need to be familiar with all of these to do well. We are looking for a good match with the rough category of your project.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">My team does not have all of the technical background described in the selection criteria. Can we still apply?</h3>
+          <div class="faq-item__a"><p>Yes! The Challenge is intended to be a learning experience. We do not expect you to know how to do everything ahead of time. However, think about putting together a team with a mix of skills. A team with a diverse mix of technical experience will have the best chance of success in this challenge. Also, think about how you might learn some of the skills you might find yourself needing.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RESOURCES FOR PARTICIPATING ── -->
+    <section class="section" id="resources-for-participating">
+      <div class="section__inner">
+        <h2 class="section__heading">Resources for Participating</h2>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">How much does it cost to participate in the challenge?</h3>
+          <div class="faq-item__a"><p>Participation in the challenge is free thanks to donations from our generous sponsors!</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am on a participating team, how do I receive funding?</h3>
+          <div class="faq-item__a">
+            <p>If your team needs funding to build your AT product, please send us an email at <a href="mailto:bwsi-create-challenge@mit.edu">bwsi-create-challenge@mit.edu</a> with the subject "TEAM NUMBER - funding request" replacing TEAM NUMBER with your 2-, 3-, or 4-digit team number, and cc all team members. Please explain what you need funding for — the more details you are able to provide, the easier it will be for us to make a determination. Teams may receive up to $125 of funding from Beaver Works, and students' financial backgrounds (as provided during registration) will be used to prioritize funding requests.</p>
+            <p>At the moment, we are only able to provide grants to <strong>US-based high school teams</strong>.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">What computer resources would I need to participate in this challenge?</h3>
+          <div class="faq-item__a">
+            <p>Laptop/computer (including Chromebook) with camera/microphone and internet access. A mouse will also be much more user-friendly for some of the CAD activities than a trackpad.</p>
+            <p>Other computer resources that we use heavily include Google Workspace (Forms, Sheets, Docs) for assignment submission, and Discord (for general communication).</p>
+            <p>If you cannot access Google Workspace or Discord products due to restrictions on a school-provided device, please email us at <a href="mailto:bwsi-create-challenge@mit.edu">bwsi-create-challenge@mit.edu</a> for alternatives.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I do not have the necessary resources. What are my options?</h3>
+          <div class="faq-item__a"><p>If your team is selected then you will be able to indicate in the acceptance form which computer resources you require. We have a limited number of loaner laptops made available to students who need them. If your school or organization requires access to devices such as a 3D printer, please contact us at <a href="mailto:bwsi-create-challenge@mit.edu">bwsi-create-challenge@mit.edu</a> and we will try to work with you.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EDLY ── -->
+    <section class="section section--gray" id="edly">
+      <div class="section__inner">
+        <h2 class="section__heading">Edly</h2>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I'm having trouble logging into Edly. What can I do?</h3>
+          <div class="faq-item__a"><p>Please see the help guide <a href="https://docs.google.com/presentation/d/e/2PACX-1vROOzlY0X_Vs50GUpjfnsphawdgil6WzxUgGYZsHfihIsNL1LJidk63JJff3IqTJQ/pub?start=false&loop=false&delayms=3000&slide=id.p3" target="_blank" rel="noreferrer noopener">here</a>. We use the same process as the CubeSat course.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CO-DESIGNERS ── -->
+    <section class="section" id="co-designers">
+      <div class="section__inner">
+        <h2 class="section__heading">Co-Designers</h2>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Will the CRE[AT]E Challenge match our team with co-designers?</h3>
+          <div class="faq-item__a">
+            <p>Broadly speaking, no. We do not match teams with co-designers for two reasons:</p>
+            <ul>
+              <li>Teams are extremely distributed, and we cannot easily match students with people who are local to them. We believe that being able to meet in person with co-designers is an important part of the design process that should be encouraged when possible.</li>
+              <li>We do not feel comfortable matching people we do not know (many potential co-designers) with minors (our high school division students).</li>
+            </ul>
+            <p>The only potential exception where we may be able to assist in matching is if you are a Boston-area College Division team.</p>
+            <p>See <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/finding-a-co-designer">Finding a Co-Designer</a> for more information.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── OTHER QUESTIONS ── -->
+    <section class="section section--gray" id="other-questions">
+      <div class="section__inner">
+        <h2 class="section__heading">Other Questions</h2>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">How are team numbers chosen?</h3>
+          <div class="faq-item__a"><p>Team numbers are randomly assigned at the time when teams are accepted. The number of digits indicates the team's division: <strong>2 digits</strong> for middle school teams, <strong>3 digits</strong> for high school teams, and <strong>4 digits</strong> for college teams.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am interested in being a remote mentor but I live outside the USA. Will I be able to volunteer?</h3>
+          <div class="faq-item__a"><p>Unfortunately, we cannot currently accept mentors outside of the USA.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I am under 18, can I be a team coach (high school) or team captain (college)?</h3>
+          <div class="faq-item__a"><p>No. If you are under 18, you can participate as a team member.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">How can I support the CRE[AT]E Challenge?</h3>
+          <div class="faq-item__a"><p>Individual and corporate donations can be sent to the <a href="https://giving.mit.edu/form/?fundId=3902501#/" target="_blank" rel="noreferrer noopener">Beaver Works Fund</a>. If you are considering in-kind donations or other ways to support the Challenge, we would love to chat further. Please contact us at <a href="mailto:bwsi-create-challenge@mit.edu">bwsi-create-challenge@mit.edu</a>.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">I have additional questions not covered here. Who should I contact?</h3>
+          <div class="faq-item__a"><p>Email us at <a href="mailto:bwsi-create-challenge@mit.edu">bwsi-create-challenge@mit.edu</a>.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── INTEREST BAND ── -->
+    <div class="interest-band">
+      <h2 class="interest-band__heading">Still have questions?</h2>
+      <p class="interest-band__body">We're happy to help — including working with middle school teams to see what's possible.</p>
+      <div class="interest-band__ctas">
+        <a class="btn btn--red" href="mailto:bwsi-create-challenge@mit.edu">Email Us</a>
+        <a class="btn btn--outline-dark" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/about" target="_blank" rel="noreferrer noopener">About the Challenge</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>&copy; 2026 MIT Beaver Works</p>
+        <p>
+          <a href="http://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
+          &nbsp;·&nbsp;
+          <a href="https://docs.google.com/document/d/e/2PACX-1vS0iFUQBw7R3N6jQLFIRiYUbZlBh2SkXHJWT_BzRkIcb_Wjn4L6JRvcI5gk2D4HkB_z6_WzJ56SYNUD/pub" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </p>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" aria-label="YouTube" target="_blank" rel="noreferrer noopener">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" aria-label="Instagram" target="_blank" rel="noreferrer noopener">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" aria-label="X (formerly Twitter)" target="_blank" rel="noreferrer noopener">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

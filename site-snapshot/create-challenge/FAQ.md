@@ -18,3 +18,5 @@ Frequently Asked Questions about the CRE[AT]E Challenge, organized into seven se
 - Added a jump-links section index at the top of the page linking to all seven sections.
 
 Full verbatim Q&A content is preserved from the live page as of the 2026-08-15 snapshot — see `faq.html` for the complete text.
+
+**Resolves issue #18's funding-wording note:** the "I am on a participating team, how do I receive funding?" answer under Resources for Participating remains the canonical, sole description of the funding mechanism — no separate funding page was built (project funding is intentionally low-emphasis, not a promoted feature). The 2026-08-15 conversion above folds in the digit-count fix that issue #18 had flagged as still needed (see the second bullet), so the answer is now consistent with Getting Started's description as well.

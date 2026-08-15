@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation and Presentation | CRE[AT]E Course | Beaver Works Assistive Technology</title>
+  <meta name="description" content="Module 5 of the CRE[AT]E Course: how to document your design process and present your work clearly for design reviews and the Final Event." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--mit-dark);
+      border-radius: 2px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    a { color: #7a5500; text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { opacity: 0.85; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow);  color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    /* ── Sections ────────────────────────────────────────────────────────── */
+
+    .section { padding: 60px 24px; }
+    .section--gray { background: var(--mit-light); }
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    /* ── Prose (long-form text) ──────────────────────────────────────────── */
+
+    .prose { }
+    .prose p {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose ul,
+    .prose ol {
+      margin: 0 0 16px 24px;
+      color: var(--mit-gray);
+    }
+    .prose ul li,
+    .prose ol li {
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 4px;
+    }
+    .prose ul ul,
+    .prose ol ul {
+      margin-top: 4px;
+    }
+
+    /* ── Prose subheadings (h3) ──────────────────────────────────────────── */
+
+    .prose-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin: 36px 0 12px;
+    }
+
+    /* ── Video embeds (responsive 16:9) ─────────────────────────────────── */
+
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #000;
+    }
+    .video-embed iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .video-caption {
+      font-size: 0.875rem;
+      color: var(--mit-gray);
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* ── Video stack (single column) ────────────────────────────────────── */
+
+    .video-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin: 28px 0;
+    }
+
+    /* ── Quiz banner ─────────────────────────────────────────────────────── */
+
+    .quiz-banner {
+      background: var(--yellow);
+      color: var(--mit-dark);
+      padding: 18px 24px;
+      text-align: center;
+    }
+    .quiz-banner__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    /* ── Resource link list ──────────────────────────────────────────────── */
+
+    .resource-list {
+      list-style: none;
+      margin: 20px 0 0;
+      padding: 0;
+    }
+    .resource-list li {
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+    }
+    .resource-list li:first-child { border-top: 1px solid var(--border); }
+
+    /* ── Interest band ───────────────────────────────────────────────────── */
+
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p { font-size: 0.85rem; margin-bottom: 4px; }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social { display: flex; gap: 16px; align-items: center; }
+    .footer__social a {
+      display: flex; align-items: center;
+      opacity: 0.85; transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img { width: 28px; height: 28px; filter: brightness(0) invert(1); }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <h1 class="sr-only">Documentation and Presentation — CRE[AT]E Course</h1>
+
+    <!-- ── Module overview ─────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Module 5 · CRE[AT]E Course</p>
+        <h2 class="section__heading">Documentation and Presentation</h2>
+        <p class="section__body">A large part of the CRE[AT]E Challenge will be documenting and presenting your work. Since the Challenge is distributed, the only way that most of the remote mentors, staff, and other students will ever see your project is through the design reviews and documents you submit.</p>
+
+        <div class="prose">
+          <p>Being able to effectively communicate what you have done will make it much easier for all of the following:</p>
+          <ul>
+            <li>letting remote mentors understand what you are doing in order to provide better feedback</li>
+            <li>justifying your funding requests to Beaver Works, or your funding pitches to other potential sponsors</li>
+            <li>preserving your process for others who may want to make something similar in the future (dramatically expanding your impact)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Documentation and Storytelling ──────────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Recorded Lecture</p>
+        <h2 class="section__heading">Documentation and Storytelling</h2>
+
+        <div class="video-embed" style="margin-top: 8px;">
+          <iframe
+            src="https://www.youtube.com/embed/D-2sV5aNaV0"
+            title="Documentation and Storytelling"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Guidelines for Clear Presentation ───────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Recorded Lecture</p>
+        <h2 class="section__heading">Guidelines for Clear Presentation</h2>
+
+        <div class="video-embed" style="margin-top: 8px;">
+          <iframe
+            src="https://www.youtube.com/embed/wX_g62y3c2A"
+            title="Guidelines for Clear Presentation"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tips for Design Review Videos ───────────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Submitting Your Design Reviews</p>
+        <h2 class="section__heading">Tips for Design Review Videos</h2>
+
+        <div class="prose">
+          <p>Over the years, we have seen some common problems and solutions from teams when submitting design reviews. Please consider the following:</p>
+          <ul>
+            <li>We want to see your team! Please have your cameras on while you are presenting.</li>
+            <li>Consider where your team's faces are when you are recording - sometimes your faces end up blocking important information on the slides, so if your recording is such that your faces are over the slides, position the camera view somewhere blank.</li>
+            <li>We recommend the use of Zoom to make your recordings - this will let your team record from more than one location and without watermarks.</li>
+            <li>If you wish, you may use software like <a href="https://obsproject.com/" target="_blank" rel="noreferrer noopener">Open Broadcaster Software (OBS)</a> to fine-tune your camera and presentation placements.</li>
+            <li>Make sure to check your audio - we cannot review what we cannot hear.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Documentation and Presentation Review ───────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Assignment</p>
+        <h2 class="section__heading">Documentation and Presentation Review</h2>
+
+        <div class="prose">
+          <ol>
+            <li>Review the <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/design-reviews">final submission requirements</a> under the "Black Gate" heading</li>
+            <li>Each member of your team should pick a different team from a previous season (either <a href="https://beaver-works-assistive-tech.mit.edu/past-projects/2023-projects">2022-2023</a> or <a href="https://beaver-works-assistive-tech.mit.edu/past-projects/2024-projects">2023-2024</a>)
+              <ul>
+                <li>At least one member of your team should pick a team that won the Documentation Award</li>
+                <li>If you were on a team that participated in a previous season, do not choose your own team</li>
+              </ul>
+            </li>
+            <li>Watch the final presentation video for that year (from the Presentation Playlist) and read the team's final document</li>
+            <li>Using the lectures above and the final submission requirements as guidelines, answer the following questions separately for the video and the document:
+              <ul>
+                <li>What did that team do well (according to the submission requirements)?
+                  <ul>
+                    <li>Note that there were slight differences in time allowances for the videos between the previous seasons</li>
+                  </ul>
+                </li>
+                <li>What could have been improved?</li>
+                <li>Comment on how elements of either the video or document would apply to your project if you know already for your project</li>
+              </ul>
+            </li>
+          </ol>
+          <p>Remember that we are having you review final submissions for this assignment - the earlier design reviews that you complete will likely not look quite as polished (and will have different requirements) and that is to be expected.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="quiz-banner" role="note">
+      <div class="quiz-banner__inner">If you are following this course on Edly, pause here and take the section quiz.</div>
+    </div>
+
+    <!-- ── Interest band ──────────────────────────────────────────────────── -->
+    <section class="interest-band" aria-label="Module navigation">
+      <h2 class="interest-band__heading">Finished the CRE[AT]E Course?</h2>
+      <p class="interest-band__body">With the five course modules complete, your team is ready to move on to the CRE[AT]E Project — finding a co-designer and starting your build.</p>
+      <div class="interest-band__ctas">
+        <a class="btn btn--outline-dark" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/maker-skills">← Maker Skills</a>
+        <a class="btn btn--red" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project">Next: CRE[AT]E Project →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>&copy; 2026 MIT Beaver Works Institute. All rights reserved.</p>
+        <nav aria-label="Footer links">
+          <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
+          &nbsp;·&nbsp;
+          <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </nav>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" target="_blank" rel="noreferrer noopener" title="YouTube">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" target="_blank" rel="noreferrer noopener" title="Instagram">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" target="_blank" rel="noreferrer noopener" title="X / Twitter">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+          <span class="sr-only">X / Twitter</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

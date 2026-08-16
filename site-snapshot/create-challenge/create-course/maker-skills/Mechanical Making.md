@@ -1,9 +1,10 @@
 ---
 title: "Mechanical Making"
-url: https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/maker-skills/mechanical-making
-snapshot_date: 2026-05-11
+url: https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/maker-skills/mechanical
+snapshot_date: 2026-08-15
 content_status: full
 nav_parent: "Maker Skills"
+source_html: maker-skills-mechanical.html
 ---
 
 # Mechanical Making

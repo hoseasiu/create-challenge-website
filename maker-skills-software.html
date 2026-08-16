@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software | Maker Skills | CRE[AT]E Course | Beaver Works Assistive Technology</title>
+  <meta name="description" content="Module 4 of the CRE[AT]E Course: software development for web, desktop, mobile, and microcontroller projects, plus accessibility and AI/ML considerations for assistive technology." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--mit-dark);
+      border-radius: 2px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    a { color: #7a5500; text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { opacity: 0.85; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow);  color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    /* ── Sections ────────────────────────────────────────────────────────── */
+
+    .section { padding: 60px 24px; }
+    .section--gray { background: var(--mit-light); }
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    /* ── Prose (long-form text) ──────────────────────────────────────────── */
+
+    .prose { }
+    .prose p {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose ul,
+    .prose ol {
+      margin: 0 0 16px 24px;
+      color: var(--mit-gray);
+    }
+    .prose ul li,
+    .prose ol li {
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 4px;
+    }
+    .prose ul ul,
+    .prose ol ul {
+      margin-top: 4px;
+    }
+
+    /* ── Prose subheadings (h3) ──────────────────────────────────────────── */
+
+    .prose-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin: 36px 0 12px;
+    }
+
+    /* ── Video embeds (responsive 16:9) ─────────────────────────────────── */
+
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #000;
+    }
+    .video-embed iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .video-caption {
+      font-size: 0.875rem;
+      color: var(--mit-gray);
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* ── Video stack (single column) ────────────────────────────────────── */
+
+    .video-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin: 28px 0;
+    }
+
+    /* ── Quiz banner ─────────────────────────────────────────────────────── */
+
+    .quiz-banner {
+      background: var(--yellow);
+      color: var(--mit-dark);
+      padding: 18px 24px;
+      text-align: center;
+    }
+    .quiz-banner__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    /* ── Resource link list ──────────────────────────────────────────────── */
+
+    .resource-list {
+      list-style: none;
+      margin: 20px 0 0;
+      padding: 0;
+    }
+    .resource-list li {
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+    }
+    .resource-list li:first-child { border-top: 1px solid var(--border); }
+
+    /* ── Reflect / Definition / Activity callout ───────────────────────── */
+
+    .reflect-box {
+      background: var(--white);
+      border-left: 4px solid var(--yellow);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin-top: 32px;
+      margin-bottom: 24px;
+    }
+    .reflect-box__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .reflect-box p {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+    }
+    .reflect-box p:not(:last-child) { margin-bottom: 12px; }
+    .reflect-box ol, .reflect-box ul {
+      margin: 12px 0 0 20px;
+    }
+    .reflect-box ol li, .reflect-box ul li {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+    .reflect-box ol li:last-child, .reflect-box ul li:last-child { margin-bottom: 0; }
+
+    /* ── Interest band ───────────────────────────────────────────────────── */
+
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p { font-size: 0.85rem; margin-bottom: 4px; }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social { display: flex; gap: 16px; align-items: center; }
+    .footer__social a {
+      display: flex; align-items: center;
+      opacity: 0.85; transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img { width: 28px; height: 28px; filter: brightness(0) invert(1); }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <h1 class="sr-only">Software — Maker Skills — CRE[AT]E Course</h1>
+
+    <!-- ── Module overview ─────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Maker Skills · Module 4</p>
+        <h2 class="section__heading">Software</h2>
+
+        <div class="prose">
+          <p>Software-focused projects in the CRE[AT]E Challenge typically take one of four forms:</p>
+          <ul>
+            <li><strong>Web/webapp</strong> — public or just for the co-designer</li>
+            <li><strong>Desktop software</strong> — non-web</li>
+            <li><strong>Mobile app</strong> — iOS or Android</li>
+            <li><strong>MCU/SBC software</strong> — for microcontroller units (like Arduino or BeagleBone) or single-board computers (like Raspberry Pi or NVIDIA Jetson) to interface with sensors and actuators</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Version Control ─────────────────────────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Collaboration</p>
+        <h2 class="section__heading">Version Control</h2>
+
+        <div class="prose">
+          <p><a href="https://github.com/" target="_blank" rel="noreferrer noopener">GitHub</a> is a code repository for tracking changes and collaborating, and can host websites via <a href="https://pages.github.com/" target="_blank" rel="noreferrer noopener">GitHub Pages</a>. The <a href="https://education.github.com/pack" target="_blank" rel="noreferrer noopener">GitHub Student Developer Pack</a> provides access to many additional resources.</p>
+          <p>Teams writing significant code should use GitHub for version control.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="quiz-banner" role="note">
+      <div class="quiz-banner__inner">If you are following this course on Edly, pause here and take the section quiz.</div>
+    </div>
+
+    <!-- ── User Interface and Front-End Development ────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Design</p>
+        <h2 class="section__heading">User Interface and Front-End Development</h2>
+
+        <div class="prose">
+          <p>Teams must consider the user interface regardless of whether the product has a visual interface. Some interactions are self-contained, like a desktop skill-practice app, while others involve the user, the software, and the external environment, like medication reminders or clothing-choice aids.</p>
+          <p>For software with a visual UI, think about what "pages" or states the user moves through and how they transition between them. <a href="https://www.figma.com/" target="_blank" rel="noreferrer noopener">Figma</a> is a popular app for creating framework prototype mockups (wireframes) of an app or website without building all the features. It's free for students and educators and is recommended as a starting point for prototyping front-ends.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Web Development ──────────────────────────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">In Progress</p>
+        <h2 class="section__heading">Web Development</h2>
+
+        <div class="prose">
+          <p>This section is still being developed — check back for additional learning resources. In the meantime, if you're testing a mobile-first design, <a href="https://developer.chrome.com/docs/devtools/device-mode" target="_blank" rel="noreferrer noopener">Chrome DevTools device mode</a> is a useful way to simulate a mobile viewport from your desktop browser.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="quiz-banner" role="note">
+      <div class="quiz-banner__inner">If you are following this course on Edly, pause here and take the section quiz.</div>
+    </div>
+
+    <!-- ── Desktop Software Development ─────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Non-Web Applications</p>
+        <h2 class="section__heading">Desktop Software Development</h2>
+
+        <div class="prose">
+          <p>Desktop development is the most general kind of software development, with the broadest set of resources available.</p>
+        </div>
+
+        <h3 class="prose-heading">Packaging</h3>
+        <div class="prose">
+          <p>Packaging bundles software — executables, libraries, configuration, and metadata — into a structured format for deployment. For example, <code>.msi</code>, <code>.exe</code>, or <code>.msix</code> on Windows, or <code>.dmg</code> on macOS.</p>
+        </div>
+
+        <h3 class="prose-heading">Why packaging matters</h3>
+        <div class="prose">
+          <ol>
+            <li><strong>Different environments</strong> — a development machine has the right libraries installed, but a user's laptop likely doesn't</li>
+            <li><strong>Dependency management</strong> — packaged apps detail their dependencies</li>
+            <li><strong>Consistent installs</strong> — uniform behavior across users, supporting automation, version control, and clean uninstalls</li>
+            <li><strong>Security &amp; isolation</strong> — modern formats like MSIX on Windows grant package identity for system services, such as notifications</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Mobile Application Development ───────────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Apps</p>
+        <h2 class="section__heading">Mobile Application Development</h2>
+
+        <h3 class="prose-heading">iOS Development</h3>
+        <div class="prose">
+          <p>Currently behind significant barriers:</p>
+          <ol>
+            <li>Must own a Mac for development</li>
+            <li>An Apple Developer Account is required ($99/year per user)</li>
+            <li>Must know Swift or Objective-C</li>
+          </ol>
+          <p>Unless your team is already familiar with iOS development and willing to pay the costs, we recommend building a webapp instead that the co-designer can access from their phone.</p>
+        </div>
+
+        <h3 class="prose-heading">Android Development</h3>
+        <div class="prose">
+          <p>Far more accessible: you can develop on any computer using Java or Kotlin. See the <a href="https://developer.android.com/get-started/overview" target="_blank" rel="noreferrer noopener">Android Developers getting-started guide</a> and <a href="https://codingwithmitch.com/" target="_blank" rel="noreferrer noopener">CodingWithMitch</a> for tutorials and example projects.</p>
+        </div>
+
+        <h3 class="prose-heading">Visual Programming for Mobile: MIT App Inventor</h3>
+        <div class="prose">
+          <p><a href="https://appinventor.mit.edu/" target="_blank" rel="noreferrer noopener">MIT App Inventor</a> is an intuitive, visual (drag-and-drop) programming environment for building fully functional apps for Android phones, iPhones, and tablets — though iOS still requires a developer license to deploy.</p>
+          <p>Best for:</p>
+          <ul>
+            <li><strong>Rapid Prototyping</strong> — quickly create and test app ideas without extensive coding skills</li>
+            <li><strong>IoT and Hardware Integration</strong> — connects mobile apps with Arduino or Raspberry Pi for sensor data, home automation, or remote control</li>
+          </ul>
+        </div>
+
+        <ul class="resource-list">
+          <li><a href="https://appinventor.mit.edu/explore/content/system-requirements" target="_blank" rel="noreferrer noopener">System Requirements</a></li>
+          <li><a href="https://appinventor.mit.edu/explore/library" target="_blank" rel="noreferrer noopener">Documentation</a></li>
+          <li><a href="https://appinventor.mit.edu/explore/app-month-gallery" target="_blank" rel="noreferrer noopener">App of the Month Gallery</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="quiz-banner" role="note">
+      <div class="quiz-banner__inner">If you are following this course on Edly, pause here and take the section quiz.</div>
+    </div>
+
+    <!-- ── Software Accessibility Considerations ────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Inclusive Design</p>
+        <h2 class="section__heading">Software Accessibility Considerations</h2>
+
+        <div class="prose">
+          <p>Check that images have descriptive alt text for screen-reader accessibility. Color and contrast are also important for low-vision and colorblind users.</p>
+        </div>
+
+        <ul class="resource-list">
+          <li><a href="https://xd.adobe.com/ideas/principles/web-design/color-contrast-considerations-accessibility-design/" target="_blank" rel="noreferrer noopener">Adobe's article on color contrast for accessibility</a></li>
+          <li><a href="https://www.randoma11y.com/" target="_blank" rel="noreferrer noopener">randoma11y.com</a> — generates accessible color palettes with contrast checking</li>
+          <li><a href="https://accessibe.com/accessscan" target="_blank" rel="noreferrer noopener">accessiBe's accessScan</a> — checks a website's WCAG compliance</li>
+          <li>Firefox has a <a href="https://www.youtube.com/watch?v=eBefjaWud-M" target="_blank" rel="noreferrer noopener">built-in colorblindness simulator</a> in its Accessibility Inspector</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── AI and Machine Learning Tools for Accessibility ──────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Emerging Tools</p>
+        <h2 class="section__heading">AI and Machine Learning Tools for Accessibility</h2>
+
+        <div class="prose">
+          <p>AI/ML tools are increasingly popular for student projects.</p>
+        </div>
+
+        <div class="video-stack">
+          <div>
+            <div class="video-embed">
+              <iframe
+                src="https://www.youtube.com/embed/ZmBUnJ7lGvQ"
+                title="The Machine Learning Lifecycle"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <p class="video-caption">The Machine Learning Lifecycle — a video covering the machine learning life cycle from initial conception to deployment.</p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p><a href="https://huggingface.co/" target="_blank" rel="noreferrer noopener">HuggingFace</a> is a common platform for getting trained ML models and datasets — see their <a href="https://huggingface.co/docs" target="_blank" rel="noreferrer noopener">documentation page</a> to get started.</p>
+        </div>
+
+        <h3 class="prose-heading">Data Bias and Disability</h3>
+        <div class="prose">
+          <p>A critical consideration in AT: dataset biases may work against you. For example, consider emotion recognition via computer vision for autism or neurodivergence. If you're recognizing the emotions of neurotypical individuals, standard datasets work. But if you're recognizing the emotions of your specific co-designer, public datasets may be insufficient, and fine-tuning with co-designer-specific data may be necessary.</p>
+        </div>
+
+        <div class="reflect-box">
+          <p class="reflect-box__label">Rule of Thumb</p>
+          <p>If the model's input is <strong>not</strong> affected by the co-designer's disability (for example, household objects), public datasets may be fine. If the input <strong>is</strong> affected by the disability (for example, facial expressions or vocalizations), you likely need co-designer-specific fine-tuning.</p>
+        </div>
+
+        <div class="prose">
+          <p>Example: <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/2023-projects-section/2023-project-page-the-optechs">The OpTECHs</a> used visually identifying Uno cards and collected dataset data from their school.</p>
+        </div>
+
+        <h3 class="prose-heading">Training Models</h3>
+        <div class="prose">
+          <p>Don't train from scratch unless necessary — try to get an existing model and use it (see HuggingFace above). For fine-tuning, data collection, and labeling, you can do manual annotation on your own computer, or use <a href="https://www.cvat.ai/" target="_blank" rel="noreferrer noopener">CVAT</a>, an online platform for dataset annotation, or <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noreferrer noopener">Teachable Machine</a>, a graphical interface for annotating datasets and automated workflows.</p>
+        </div>
+
+        <h3 class="prose-heading">Other Resources</h3>
+        <div class="prose">
+          <p>If you're using App Inventor, see <a href="https://appinventor.mit.edu/explore/ai-with-mit-app-inventor" target="_blank" rel="noreferrer noopener">example AI projects with App Inventor</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="quiz-banner" role="note">
+      <div class="quiz-banner__inner">If you are following this course on Edly, pause here and take the section quiz.</div>
+    </div>
+
+    <!-- ── Interest band / module navigation ─────────────────────────────── -->
+    <section class="interest-band" aria-label="Module navigation">
+      <h2 class="interest-band__heading">Ready to explore another skill area?</h2>
+      <p class="interest-band__body">Once your team has completed two of the four Maker Skills sections, continue to Module 5: Documentation and Presentation.</p>
+      <div class="interest-band__ctas">
+        <a class="btn btn--outline-dark" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/maker-skills">← Maker Skills</a>
+        <a class="btn btn--red" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/documentation-and-presentation">Next: Documentation and Presentation →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>&copy; 2026 MIT Beaver Works Institute. All rights reserved.</p>
+        <nav aria-label="Footer links">
+          <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
+          &nbsp;·&nbsp;
+          <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </nav>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" target="_blank" rel="noreferrer noopener" title="YouTube">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" target="_blank" rel="noreferrer noopener" title="Instagram">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" target="_blank" rel="noreferrer noopener" title="X / Twitter">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+          <span class="sr-only">X / Twitter</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scoping a Project | CRE[AT]E Project | Beaver Works Assistive Technology</title>
+  <meta name="description" content="Guidance on scoping a CRE[AT]E project, including a team exercise for taking stock of time, funding, and expertise, and a list of project types that generally aren't recommended." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--mit-dark);
+      border-radius: 2px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    a { color: #7a5500; text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { opacity: 0.85; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow);  color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    /* ── Sections ────────────────────────────────────────────────────────── */
+
+    .section { padding: 60px 24px; }
+    .section--gray { background: var(--mit-light); }
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    /* ── Prose (long-form text) ──────────────────────────────────────────── */
+
+    .prose { }
+    .prose p {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose ul, .prose ol {
+      margin: 0 0 16px 24px;
+      color: var(--mit-gray);
+    }
+    .prose ul li, .prose ol li {
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 4px;
+    }
+
+    /* ── Prose subheadings (h3, h4) ──────────────────────────────────────── */
+
+    .prose-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin: 36px 0 12px;
+    }
+    .prose-subheading {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin: 24px 0 8px;
+    }
+
+    /* ── Reflect / Definition / Activity callout ───────────────────────── */
+
+    .reflect-box {
+      background: var(--white);
+      border-left: 4px solid var(--yellow);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin-top: 32px;
+      margin-bottom: 24px;
+    }
+    .reflect-box__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .reflect-box p {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+    }
+    .reflect-box p:not(:last-child) { margin-bottom: 12px; }
+    .reflect-box ol, .reflect-box ul {
+      margin: 12px 0 0 20px;
+    }
+    .reflect-box ol li, .reflect-box ul li {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+    .reflect-box ol li:last-child, .reflect-box ul li:last-child { margin-bottom: 0; }
+
+    /* ── Interest band ───────────────────────────────────────────────────── */
+    /* Defined for style-guide parity even though this page has no CTA band. */
+
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p { font-size: 0.85rem; margin-bottom: 4px; }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social { display: flex; gap: 16px; align-items: center; }
+    .footer__social a {
+      display: flex; align-items: center;
+      opacity: 0.85; transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img { width: 28px; height: 28px; filter: brightness(0) invert(1); }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <h1 class="sr-only">Scoping a Project</h1>
+
+    <!-- ── Intro ────────────────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">CRE[AT]E Project</p>
+        <h2 class="section__heading">Scoping a Project</h2>
+
+        <div class="prose">
+          <p>Project scope can be one of the more difficult aspects of product design when you are first starting out. In the broadest sense, project scope is driven by your co-designer's needs, your team's expertise, and the resources available to you (including funding, equipment, mentorship, etc). It is often tempting to try to tackle the most ambitious, or most exciting idea that is on your list, but a key factor to remember is that a good solution that is fully executed is better than an amazing solution that is only half-built.</p>
+        </div>
+
+        <h3 class="prose-heading">Team exercise: Taking Stock</h3>
+        <div class="reflect-box">
+          <p class="reflect-box__label">Team Exercise</p>
+          <p>You came up with a set of needs and ideas in the previous section, and started doing some initial sketches of what they might look like, focusing mainly on your product and your co-designer. Now we'll turn our gaze inward, so to speak, and take a look at what you have to build with. What we're trying to do here is to get very rough estimates, to rule out things that may be a little too ambitious.</p>
+
+          <p><strong>Time</strong></p>
+          <ul>
+            <li>How often is your team planning to meet? How long is your team planning to meet each time? Will that time be constant, or change during the school year?</li>
+            <li>What other time commitments does your team have? Class load? Sports teams? Music practices? Responsibilities at home?</li>
+          </ul>
+
+          <p><strong>Funding</strong></p>
+          <ul>
+            <li>How much money are you working with? What are the aspects of your design that will need money?</li>
+            <li>Will you need to raise funds? If so, how will that impact your project time?</li>
+          </ul>
+
+          <p><strong>Expertise</strong></p>
+          <ul>
+            <li>What skills do each of your team members currently possess? Does your team collectively have some sense of what you need to do during various steps of the building process?</li>
+            <li>What experts do you have access to? Who do you know in your community who you might be able to ask about various aspects of building your product? Remember that if your team is supported directly by Beaver Works, you also have access to the technical mentors there.</li>
+          </ul>
+
+          <p>Gather up these factors as a team, and compare them against your ideas. What do you have "in stock" and what would you need more of? You don't have to have everything you need at the moment, but if you are well short of some resource that is needed for your product idea, then consider how you might get more of what you need, or if another idea is better-suited for your team to tackle.</p>
+        </div>
+
+        <h3 class="prose-heading">What we (generally) don't recommend</h3>
+        <div class="prose">
+          <p>There are a few project ideas that we have seen proposed frequently in the past that are often a bit too ambitious, and/or carry higher risk. We generally do not recommend the following. If you choose to pursue something that seems like any of the following, please talk to a CRE[AT]E mentor first.</p>
+          <ul>
+            <li>exoskeletons (or more broadly, orthotics and body-worn actuators)</li>
+            <li>robots (especially more general-purpose robots)</li>
+            <li>modifications to wheelchair actuation (e.g. adding motors)</li>
+          </ul>
+          <p>Also, a general category of products that we will not allow for the Challenge are safety-critical products. One way to think about this category is "what happens if your product fails during operation?" If failure is no worse than if the product didn't exist, then you're likely okay. However, if failure leads to an unsafe situation, including being in such a situation because your co-designer thought the product was working, then you will need to reconsider.</p>
+          <p>A typical example of this kind of product are things that are designed to help visually impaired people cross the street. Technically, product failure makes the situation no worse than if it wasn't there (likely the current way the user would cross the street), but if the user was expecting help from the product, which is now missing, then it may place them in a dangerous situation.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>&copy; 2026 MIT Beaver Works Institute. All rights reserved.</p>
+        <nav aria-label="Footer links">
+          <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
+          &nbsp;·&nbsp;
+          <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </nav>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" target="_blank" rel="noreferrer noopener" title="YouTube">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" target="_blank" rel="noreferrer noopener" title="Instagram">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" target="_blank" rel="noreferrer noopener" title="X / Twitter">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+          <span class="sr-only">X / Twitter</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

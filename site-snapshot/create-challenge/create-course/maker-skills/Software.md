@@ -1,9 +1,10 @@
 ---
 title: "Software"
 url: https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/maker-skills/software
-snapshot_date: 2026-05-11
+snapshot_date: 2026-08-15
 content_status: full
 nav_parent: "Maker Skills"
+source_html: maker-skills-software.html
 ---
 
 # Software

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Brainstorming | CRE[AT]E Project | Beaver Works Assistive Technology</title>
+  <meta name="description" content="Structured brainstorming methods — the Five Whys, SCAMPER, and Add Constraints — for generating and evaluating project ideas with your co-designer." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--mit-dark);
+      border-radius: 2px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    a { color: #7a5500; text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { opacity: 0.85; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow);  color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    /* ── Sections ────────────────────────────────────────────────────────── */
+
+    .section { padding: 60px 24px; }
+    .section--gray { background: var(--mit-light); }
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    /* ── Prose (long-form text) ──────────────────────────────────────────── */
+
+    .prose { }
+    .prose p {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose ul {
+      margin: 0 0 16px 24px;
+      color: var(--mit-gray);
+    }
+    .prose ul li {
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 4px;
+    }
+
+    /* ── Prose subheadings (h3) ──────────────────────────────────────────── */
+
+    .prose-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin: 36px 0 12px;
+    }
+
+    /* ── Reflect / Definition / Activity / Warning / Assignment callout ──── */
+
+    .reflect-box {
+      background: var(--white);
+      border-left: 4px solid var(--yellow);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin-top: 32px;
+      margin-bottom: 24px;
+    }
+    .reflect-box__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .reflect-box p {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+    }
+    .reflect-box p:not(:last-child) { margin-bottom: 12px; }
+    .reflect-box ol, .reflect-box ul {
+      margin: 12px 0 0 20px;
+    }
+    .reflect-box ol li, .reflect-box ul li {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+    .reflect-box ol li:last-child, .reflect-box ul li:last-child { margin-bottom: 0; }
+
+    /* ── Interest band ───────────────────────────────────────────────────── */
+
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p { font-size: 0.85rem; margin-bottom: 4px; }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social { display: flex; gap: 16px; align-items: center; }
+    .footer__social a {
+      display: flex; align-items: center;
+      opacity: 0.85; transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img { width: 28px; height: 28px; filter: brightness(0) invert(1); }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <h1 class="sr-only">Project Brainstorming</h1>
+
+    <!-- ── Overview ─────────────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">CRE[AT]E Project</p>
+        <h2 class="section__heading">Brainstorming</h2>
+        <p class="section__body">Now that you've <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/co-designer-interviews">interviewed your co-designer</a> and gathered some user needs, it's time to figure out what you're going to do about them — which one(s) will you tackle, and how will you try to meet those needs?</p>
+
+        <div class="prose">
+          <p>We'll first consider brainstorming, then look at existing solutions that you might modify.</p>
+        </div>
+
+        <div class="reflect-box">
+          <p class="reflect-box__label">Note</p>
+          <p>We recognize that some teams have already moved ahead with the project without formally performing a brainstorming process or recording it. Even if you have already moved ahead, please do this assignment anyway. The goal is for you to learn this process. Also, while you are doing these assignments keep an open mind about changes to anything you may have already done with your project as a result of this assignment.</p>
+        </div>
+
+        <div class="prose">
+          <p>Brainstorming is a process by which people work together to come up with ways to approach a problem. The goal of brainstorming is not to arrive at a final answer, but to generate as many possibilities as you can. It is perfectly okay at this stage if some of your ideas are wild, and a little (or very) unrealistic. Brainstorming can sometimes just be unstructured discussion in your group, but there are many different ways to do it in a structured format as well.</p>
+        </div>
+
+        <h3 class="prose-heading">A couple rules about brainstorming:</h3>
+        <div class="prose">
+          <ul>
+            <li>You can choose a method below, or find your own method, but we ask that you try at least one structured brainstorming approach. If you do find your own method, we will ask you to describe it.</li>
+            <li>If they are available and interested, consider including your co-designer and parents/caretakers/etc in your brainstorming.</li>
+            <li>Assign a facilitator, a person in your group who is responsible for moving the discussion along, and making sure everyone's voices are heard.</li>
+            <li>Assign a scribe, a person in your group who is responsible for writing down the group's ideas.</li>
+            <li>No bad ideas (yet). We'll discuss project scoping next, when you may consider what ideas are more or less realistic for your team, but for now, there are no bad ideas — please refrain from criticizing or dwelling on the limitations of any particular idea.</li>
+          </ul>
+        </div>
+
+        <div class="reflect-box">
+          <p class="reflect-box__label">Warning</p>
+          <p>It is sometimes tempting to skip this step and just run with a single idea. There have even been teams in the Challenge that have come up with a specific idea for a product before finding a co-designer for it. Please do not do this. Following the brainstorming step of the product design cycle can help you come up with more and better combinations of ideas, get you unstuck faster, and help meet your co-designer's needs better.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Brainstorming methods ───────────────────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Structured Approaches</p>
+        <h2 class="section__heading">Brainstorming Methods</h2>
+
+        <h3 class="prose-heading">Brainstorming Method: The Five Whys</h3>
+        <div class="prose">
+          <p>This method tries to get at the root causes of a problem, and is great for "out of the box" thinking, particularly when you don't have an existing solution. Take one of your user needs, and ask "why" that need is present. Take the answer to that question, and ask "why" again. Continue doing this five times, or until you cannot answer the "why" anymore. If there are multiple reasons that come up at some point, you can "branch" your "why" questions to come up with multiple causes.</p>
+        </div>
+
+        <h3 class="prose-heading">Brainstorming Method: SCAMPER</h3>
+        <div class="prose">
+          <p>The SCAMPER approach is a brainstorming method used when you have a process or product that you want to improve (less so when you're starting completely from scratch). SCAMPER is an acronym that walks you through seven different ways of thinking about the process or product. You'll find that some of these lenses overlap — that is okay!</p>
+          <ul>
+            <li><strong>S</strong>ubstitute — Is there a component that you can substitute? When thinking about "components," you might consider physical parts, but also things like procedures, people, locations, or other elements of the thing you are considering.</li>
+            <li><strong>C</strong>ombine — Are there components that you can combine together?</li>
+            <li><strong>A</strong>dapt — What existing solutions can you adapt? This is often a particularly useful lens to view assistive technology, as relatively small modifications of existing products or processes can sometimes have big impacts. Don't be afraid to adapt an existing solution. You do not lose (metaphorical) points for not building a solution from scratch. You do lose (metaphorical) points for building something from scratch unnecessarily.</li>
+            <li><strong>M</strong>agnify/Minify — Are there components that you might emphasize or de-emphasize? Make bigger or smaller? Make faster or slower? Process to streamline or add friction to?</li>
+            <li><strong>P</strong>ut to another use — Is there something else that your process or product might be used for? (In our context, this lens is typically less directed at the product or process that is driving a user need, and more at other processes that may be adjacent.)</li>
+            <li><strong>E</strong>liminate — Are there components that you can eliminate? This lens applies to both an existing product/process that your co-designer has, and also to any idea that you develop later. Are there things that you can remove without affecting functionality (but may save time, money, or complexity)?</li>
+            <li><strong>R</strong>earrange — Can you change the way something is laid out — either spatially or temporally?</li>
+          </ul>
+          <p>Since SCAMPER works on an existing product or process, it can be useful to apply it a few times, at various stages of your product design process. In fact, one way to use SCAMPER is to apply it after each design review or product iteration.</p>
+        </div>
+
+        <h3 class="prose-heading">Brainstorming Method: Add Constraints</h3>
+        <div class="prose">
+          <p>This approach is useful when you have one or more ideas/directions that you're considering. Take one of the things that your product idea depends on, and pretend that you can't use it anymore. How does that affect your solution?</p>
+          <p>For example, if you were considering an Arduino-based internet-connected camera approach, what happens if you take away web access? Or electricity? Or light (for the camera)? If you were considering 3D printing an enclosure, what happens if you took away the ability to 3D print?</p>
+          <p>Write down what your alternatives would be — sometimes they can be relatively straightforward component substitutions (e.g. "instead of 3D printing, we will make an enclosure out of wood"), but other times, they can force you to think of entirely different solutions (e.g. "instead of a reminder system based on web services, we will implement it using colored index cards"). Remember, the key is to think about how you might solve the same problem(s) that your original idea was trying to tackle, under new constraints.</p>
+        </div>
+
+        <h3 class="prose-heading">Modification: Individual Brainstorming</h3>
+        <div class="prose">
+          <p>Group brainstorming is great, but it can also be helpful for team members to work through ideas on their own before coming back together. This modification to any brainstorming method is particularly helpful to make sure that people who may not speak up as much in a group setting get some ideas down. You can combine this with any of the methods above, or unstructured brainstorming, but decide roughly on some minimum measure of "quantity of ideas" for each person to come up with, as a guideline before coming back together. You can also do this as an "assignment" to your team between meetings.</p>
+        </div>
+
+        <div class="reflect-box">
+          <p class="reflect-box__label">Assignment</p>
+          <p><strong>Assignment: Brainstorming Document</strong></p>
+          <p>Each team should submit a document with the following information:</p>
+          <ul>
+            <li>Who contributed to brainstorming?</li>
+            <li>What user need(s) was/were under consideration?</li>
+            <li>What brainstorming method(s) did you use?</li>
+            <li>What ideas did you have?</li>
+          </ul>
+          <p>The "document" doesn't have to be purely text — it can be text, images, photos of whiteboards, Jamboards, drawings, pictures of your teammates making gestures and shapes with their hands, whatever helps you capture your ideas. The last bullet also does not need to be terribly organized, though it may help you to organize your ideas at some point towards the end of your brainstorming.</p>
+          <p>It may be appropriate to do this for more than one user need. Remember, the more ideas you have at this point, the better.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── External search ─────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Looking Beyond Your Team</p>
+        <h2 class="section__heading">External Search</h2>
+
+        <div class="prose">
+          <p>Do some searching to see if existing products can address the challenges you identified. Oftentimes in assistive technology, off-the-shelf products may come close to solving a problem, but need some modification — that is where you can come in. Alternatively, sometimes, commercial solutions exist, but are prohibitively expensive. Would it be feasible for you to create a more (financially) accessible version of the product? Those are just two ways of staying with a product idea even if something technically exists in the market already.</p>
+        </div>
+
+        <div class="reflect-box">
+          <p class="reflect-box__label">Assignment</p>
+          <p><strong>Assignment: External Search</strong></p>
+          <p>Consider both your brainstorming and your external search.</p>
+          <p>How do these existing solutions address your problems? Where do they fall short? Are there ways for you to combine these ideas with the things your team has brainstormed? Feel free to add new items to your brainstorming list.</p>
+          <p>If you are following this course on Edly, pause here and look at the Brainstorming and External Search Assignment under the Project Assignments section. Both the brainstorming assignment and the external search assignment are to be submitted as one document.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Interest band ──────────────────────────────────────────────────── -->
+    <section class="interest-band" aria-label="Project step navigation">
+      <h2 class="interest-band__heading">Ready to scope your project?</h2>
+      <p class="interest-band__body">Once you've generated a wide range of ideas, the next step is narrowing them down — Scoping a Project walks through how to weigh your brainstormed ideas against your team's time, skills, and resources.</p>
+      <div class="interest-band__ctas">
+        <a class="btn btn--outline-dark" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/co-designer-interviews">← Co-Designer Interviews</a>
+        <a class="btn btn--red" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/scoping-a-project">Next: Scoping a Project →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>&copy; 2026 MIT Beaver Works Institute. All rights reserved.</p>
+        <nav aria-label="Footer links">
+          <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
+          &nbsp;·&nbsp;
+          <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </nav>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" target="_blank" rel="noreferrer noopener" title="YouTube">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" target="_blank" rel="noreferrer noopener" title="Instagram">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" target="_blank" rel="noreferrer noopener" title="X / Twitter">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+          <span class="sr-only">X / Twitter</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

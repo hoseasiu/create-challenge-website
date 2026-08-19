@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Reviews | CRE[AT]E Project | Beaver Works Assistive Technology</title>
+  <meta name="description" content="Requirements and guidelines for the four CRE[AT]E Challenge design reviews — two peer reviews and two remote mentor reviews — plus a Design Review FAQ." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    a:focus-visible,
+    .btn:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--mit-dark);
+      border-radius: 2px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    a { color: #7a5500; text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { opacity: 0.85; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow);  color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    /* ── Sections ────────────────────────────────────────────────────────── */
+
+    .section { padding: 60px 24px; }
+    .section--gray { background: var(--mit-light); }
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .section__body:last-child { margin-bottom: 0; }
+
+    /* ── Prose (long-form text) ──────────────────────────────────────────── */
+
+    .prose { }
+    .prose p {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose ul, .prose ol {
+      margin: 0 0 16px 24px;
+      color: var(--mit-gray);
+    }
+    .prose ul li, .prose ol li {
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 4px;
+    }
+
+    /* ── Prose subheadings (h3) ──────────────────────────────────────────── */
+
+    .prose-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin: 36px 0 12px;
+    }
+    .prose-subheading {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin: 24px 0 8px;
+    }
+
+    /* ── FAQ items (non-collapsible Q&A list, per faq.html) ──────────────── */
+
+    .faq-item { margin-bottom: 28px; }
+    .faq-item:last-child { margin-bottom: 0; }
+    .faq-item__q {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .faq-item__a {
+      color: var(--mit-gray);
+      font-size: 1rem;
+    }
+    .faq-item__a p { margin-bottom: 10px; }
+    .faq-item__a p:last-child { margin-bottom: 0; }
+    .faq-item__a ul {
+      margin: 8px 0 8px 1.25rem;
+      line-height: 1.7;
+    }
+
+    /* ── Interest band ───────────────────────────────────────────────────── */
+    /* Not used in the body of this page (the live page has no Previous/Next
+       navigation), but kept here so this page's inline styles stay in sync
+       with reference-style.css. */
+
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p { font-size: 0.85rem; margin-bottom: 4px; }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social { display: flex; gap: 16px; align-items: center; }
+    .footer__social a {
+      display: flex; align-items: center;
+      opacity: 0.85; transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img { width: 28px; height: 28px; filter: brightness(0) invert(1); }
+
+    /* ── Gate accordion (page-specific) ─────────────────────────────────────
+       NEW component, unique to this page: the live Google Sites page uses
+       collapsible sections ("Expand each section to see the specific
+       guidelines.") for each of the five design-review Gates. Implemented
+       here with native <details>/<summary> for built-in keyboard and
+       screen-reader support, styled to match the site's callout-card
+       language (yellow left-border accent, card-like surface). ───────────── */
+
+    .gate-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .gate {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .gate summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 22px 18px 20px;
+      border-left: 4px solid var(--yellow);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--mit-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: background 0.1s;
+    }
+    .gate summary::-webkit-details-marker { display: none; }
+    .gate summary:hover { background: var(--mit-light); }
+    .gate summary::after {
+      content: '▸';
+      flex-shrink: 0;
+      color: #7a5500;
+      font-size: 0.85rem;
+      transition: transform 0.15s;
+    }
+    .gate[open] summary::after { transform: rotate(90deg); }
+    .gate[open] summary { border-bottom: 1px solid var(--border); }
+    .gate__content {
+      padding: 24px 22px 28px;
+    }
+    .gate__content > .prose:first-child p:first-child { margin-top: 0; }
+    .gate__content .prose-heading:first-child { margin-top: 0; }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <h1 class="sr-only">Design Reviews</h1>
+
+    <!-- ── Overview ──────────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">CRE[AT]E Project</p>
+        <h2 class="section__heading">Design Reviews</h2>
+        <p class="section__body">Design reviews are an integral part of the product design process. It is a step in the process where a team is able to present and check their product ideas and prototypes against the requirements that have been developed, to see if they are on the right track. It's also a good time to check project scope, as well as get directed to useful resources.</p>
+        <div class="prose">
+          <p>The Challenge requires teams to complete four design reviews: two peer reviews with another teams, and two remote mentor reviews. The requirements and suggestions for the peer reviews are presented below. Presentation requirements are strict, but specific content may vary depending on the team and their progress. General tips on documentation and presentation are given in the <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/documentation-and-presentation">Documentation and Presentation</a> section of the course.</p>
+          <p>All design reviews should be student-led. Team coaches should not be primary presenters in any design review.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Peer Reviews & Remote Mentor Reviews ─────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Two Kinds of Reviews</p>
+        <h2 class="section__heading">Peer Reviews &amp; Remote Mentor Reviews</h2>
+
+        <h3 class="prose-heading">Peer Reviews</h3>
+        <div class="prose">
+          <p>Barring any exceptional circumstances, these should be done live over a video call, or in person if possible. Peer reviews can be done with more than one other team at the same time to get additional feedback (e.g. three or four teams arrange a video conference and present to each other in turn). If there are multiple teams in the school/organization, it is preferred that those teams do not do their official peer reviews only with each other (though they should certainly practice with each other, if possible).</p>
+          <p>Teams must arrange their own peer reviews. We recommend using the Challenge Discord #looking-for-peer-reviewers channel to arrange peer review.</p>
+          <p>All peer review presentations should be followed by a Q&amp;A period for the presenting team. Presenting teams should designate a scribe who is prepared to write down reviewers' comments.</p>
+        </div>
+
+        <h3 class="prose-heading">Remote Mentor Reviews</h3>
+        <div class="prose">
+          <p>Because of the number of teams in the Challenge, we are also performing design reviews by our remote mentors asynchronously. These will be done by remote mentors who are not the ones assigned to the team they are reviewing.</p>
+          <p>Teams will record a video that shows their presentation, the speaker(s), and any product demonstrations. Feedback will be given by remote mentors. Challenge staff will try to match mentors and projects with the most appropriate expertise when possible, outside of existing team assignments.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Time Zones & Extensions ───────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Deadlines</p>
+        <h2 class="section__heading">Time Zones &amp; Extensions</h2>
+
+        <h3 class="prose-heading">Time Zones</h3>
+        <div class="prose">
+          <p>All due dates are 11:59:59 PM (23:59:59) <a href="https://time.is/Anywhere_on_Earth" target="_blank" rel="noreferrer noopener">Anywhere on Earth</a> (AoE). It means that if every place on Earth has passed the given date, it is past the due date. AoE is UTC-12:00.</p>
+        </div>
+
+        <h3 class="prose-heading">Extensions</h3>
+        <div class="prose">
+          <p>You may attempt to submit any design review past the due date, though the following consequences apply:</p>
+          <ul>
+            <li>Peer reviews: you may find it difficult to find a team to review with you</li>
+            <li>Mentor reviews: you will not be guaranteed to receive feedback</li>
+            <li>Final event: your project will not be considered for the final event</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── The Gates (accordion) ────────────────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Requirements by Gate</p>
+        <h2 class="section__heading">The Gates</h2>
+        <p class="section__body">Design review guidelines are below. Expand each section to see the specific guidelines.</p>
+
+        <div class="gate-list">
+
+          <!-- White Gate -->
+          <details class="gate">
+            <summary>White Gate — Preliminary Peer Review (due by February 1st, 2026)</summary>
+            <div class="gate__content">
+              <div class="prose">
+                <p>The purpose of this peer review is to share your team's initial progress with at least one other team. At this point, we nominally expect that teams have done the following:</p>
+                <ul>
+                  <li>found a co-designer to work with</li>
+                  <li>conducted an interview with the co-designer (and/or caretakers, family, etc, as appropriate)</li>
+                  <li>come up with a few initial ideas, and perhaps run them by the co-designer, and/or done some low-fidelity prototyping testing.</li>
+                </ul>
+                <p>These steps correspond to the <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/introduction">Introduction</a> and most of the <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/design-processes">Design Processes</a> sections of the course.</p>
+                <p>Preliminary prototyping often looks like <a href="https://en.wikipedia.org/wiki/Paper_prototyping" target="_blank" rel="noreferrer noopener">paper prototypes</a> (for user interfaces), or prototypes made of basic materials like cardboard, clay, and duct tape (to check measurements, fit, and movement). These generally should not look like complete products - if they do, you've likely over-engineered for this stage of the product design cycle.</p>
+                <p>Not every team will be quite at this point - some will be further ahead, and some will need a bit more time. That is okay! For this review, go down the list of requirements as much as you are able, keeping in mind that you are trying to present where your team is at so that you can get external feedback and help.</p>
+              </div>
+
+              <h4 class="prose-subheading">Presenter Guidelines</h4>
+              <div class="prose">
+                <ul>
+                  <li>Presentation is 7-10 minutes long</li>
+                  <li>Introduce your co-designer (Who are they? What do they like to do? What challenges would they to tackle? Are there any other relevant pieces of information, such as living situation, family, caretaking, profession, etc?)</li>
+                  <li>Discuss the results of your interview – user needs statements, product requirements, any down-selection and justification</li>
+                  <li>Single-sentence product objective</li>
+                  <li>Discuss product risks</li>
+                  <li>Give a visual representation of your product (e.g. drawing, CAD, flow diagram, etc - see FAQ below about visual representations of your co-designer)</li>
+                  <li>Preliminary prototype objective (Which risks or uncertainties were you trying to test/resolve?)</li>
+                  <li>Preliminary prototype picture/video demonstration</li>
+                  <li>Results of testing</li>
+                  <li>Next steps</li>
+                </ul>
+                <p>To submit: Submit the White Gate design review form (provided in Edly, under "Project Assignments") immediately after finishing this design review.</p>
+              </div>
+
+              <h4 class="prose-subheading">Reviewer Guidelines</h4>
+              <div class="prose">
+                <p>If you are a student on another team watching a peer review, you are a reviewer. Here are some things to keep in mind.</p>
+                <ul>
+                  <li>Do you have a sense of who the co-designer is as a person?</li>
+                  <li>Did the presenting team conduct an appropriate interview and obtain a set of user needs and product requirements?</li>
+                  <li>Do you have a sense of the direction of the project, and what the team is trying to accomplish? Does it seem appropriate given the co-designer interview?</li>
+                  <li>How is the scope of the project, particularly given the skills of the team? Is it too ambitious? Too simple? (You may need to ask about the team's skillset and resources to answer this question.)</li>
+                  <li>Are the risks and methods of addressing the risks appropriate for this setting?</li>
+                  <li>Did the preliminary prototype appropriately check the initial design ideas for the product? Are there changes they should be making that they didn't mention?</li>
+                  <li>Are there tasks or features that can be simplified or eliminated without affecting the team's ability to meet the user needs?</li>
+                  <li>Are there resources that the team might not be taking advantage of that you can point them to?</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- Orange Gate -->
+          <details class="gate">
+            <summary>Orange Gate — Preliminary Design Review (due by February 8th, 2026)</summary>
+            <div class="gate__content">
+              <div class="prose">
+                <p>The purpose of this mentor design review is similar to the White Gate review, but should incorporate any revisions and testing made since the initial peer review (White Gate). This review is also a prerequisite for requesting funding from Beaver Works, which also involves providing a bill of materials for your next iteration. Beaver Works will provide up to $125 of project funding based on team needs, though teams may supplement with their own fundraising, as needed.</p>
+              </div>
+
+              <h4 class="prose-subheading">Presenter Guidelines</h4>
+              <div class="prose">
+                <ul>
+                  <li>Presentation is 7-10 minutes long</li>
+                  <li>Introduce your co-designer (Who are they? What do they like to do? What challenges would they to tackle? Are there any other relevant pieces of information, such as living situation, family, caretaking, profession, etc?)</li>
+                  <li>Discuss the results of your interview – user needs statements, product requirements, any down-selection and justification</li>
+                  <li>Single-sentence product objective</li>
+                  <li>Discuss product risks</li>
+                  <li>Give a visual representation of your product (e.g. drawing, CAD, flow diagram, etc - see FAQ below about visual representations of your co-designer)</li>
+                  <li>Lo-fi prototype objective (Which risks or uncertainties were you trying to test/resolve?)</li>
+                  <li>Lo-fi prototype picture/video demonstration</li>
+                  <li>Results of testing</li>
+                  <li>Bill of materials (if applicable)</li>
+                  <li>Next steps</li>
+                </ul>
+              </div>
+
+              <h4 class="prose-subheading">Submission Guidelines (Officially Supported Teams)</h4>
+              <div class="prose">
+                <p>Submit the Orange Gate design review form (provided in Edly, under "Project Assignments"), by giving us a link to a YouTube video of your presentation. Your link may be public or unlisted (but not private). Make sure that your video follows the rules about co-designer information (in the FAQ below). In particular, make sure that your video only contains personally-identifiable information about your co-designer if they have filled out a media release form (for pictures and video) and you have asked for their permission (for all information).</p>
+                <p>CRE[AT]E mentors and staff will provide feedback for these reviews asynchronously.</p>
+              </div>
+            </div>
+          </details>
+
+          <!-- Blue Gate -->
+          <details class="gate">
+            <summary>Blue Gate — Critical Peer Review (due by March 8th, 2026)</summary>
+            <div class="gate__content">
+              <div class="prose">
+                <p>The purpose of this peer review is to share your team's progress with at least one other team. At this point, we nominally expect that teams have gone through at least two design iterations, getting feedback from their co-designers at each step.</p>
+                <p>Hi-fidelity prototypes can start to look like final products, and should be moving away from notional or stand-in components. For example, most, if not all hardware components should be made of sturdier materials than cardboard and duct tape, and software wireframes and paper prototypes should be giving way to real software demonstrations. That does not mean all components have to be in a complete state, and having some remaining in a lo-fi state is okay if you haven't gotten to those yet.</p>
+                <p>Not every team will be quite at this point - some will be further ahead, and some will need a bit more time. That is okay! For this review, go down the list of requirements as much as you are able, keeping in mind that you are trying to present where your team is at so that you can get external feedback and help.</p>
+              </div>
+
+              <h4 class="prose-subheading">Presenter Guidelines</h4>
+              <div class="prose">
+                <p>Go through the <a href="https://youtu.be/wX_g62y3c2A" target="_blank" rel="noreferrer noopener">guidelines on clear presentation from the course</a>, if you haven't done so already.</p>
+                <ul>
+                  <li>Presentation is 7-10 minutes long</li>
+                  <li>Re-introduce your co-designer (Who are they? What do they like to do? What challenges would they to tackle? Are there any other relevant pieces of information, such as living situation, family, caretaking, profession, etc?)</li>
+                  <li>Provide a single-sentence product objective</li>
+                  <li>Briefly discuss your initial idea and previous prototypes, focusing on what you learned from feedback, and any changes you made to your product's direction or requirements.</li>
+                  <li>Discuss any risks you have resolved in previous iterations, and any remaining risks. Remember that user rejection is a risk.</li>
+                  <li>Give a visual representation of your product through its iterations (e.g. drawing, CAD, flow diagram, etc - see FAQ below about visual representations of your co-designer)</li>
+                  <li>If it is important to show your product in relation to a user (e.g. if it is a wearable device or mounted near/on a user), you should include a figure representing the user and/or related body part(s).</li>
+                  <li>Hi-fi prototype objectives (Which risks or uncertainties were you trying to test/resolve?)</li>
+                  <li>Hi-fi prototype picture/video demonstration</li>
+                  <li>Results of testing</li>
+                  <li>Next steps</li>
+                  <li>Remember that while this is called "high-fidelity" prototype, what that means will vary from team to team, and typically does not represent a finished product</li>
+                </ul>
+                <p>To submit: Submit the Blue Gate design review form (provided in Edly, under "Project Assignments") immediately after finishing this design review.</p>
+              </div>
+
+              <h4 class="prose-subheading">Reviewer Guidelines</h4>
+              <div class="prose">
+                <p>If you are a student on another team watching a peer review, you are a reviewer. Here are some things to keep in mind.</p>
+                <ul>
+                  <li>Do you have a sense of who the co-designer is as a person?</li>
+                  <li>Did the presenting team clearly articulate their product's goals and how they will achieve them?</li>
+                  <li>How has the team managed product risk? Did the previous iterations of the product help the team figure things out?</li>
+                  <li>Are appropriate changes being made from iteration to iteration? Are there changes they should be making that they didn't mention?</li>
+                  <li>Are there resources that the team might not be taking advantage of that you can point them to?</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- Brown Gate -->
+          <details class="gate">
+            <summary>Brown Gate — Critical Design Review (due by March 15th, 2026)</summary>
+            <div class="gate__content">
+              <div class="prose">
+                <p>The purpose of this critical mentor design review is similar to the Blue Gate review.</p>
+              </div>
+
+              <h4 class="prose-subheading">Presenter Guidelines</h4>
+              <div class="prose">
+                <p>Same as Blue Gate</p>
+              </div>
+
+              <h4 class="prose-subheading">Submission Guidelines (Officially Supported Teams)</h4>
+              <div class="prose">
+                <p>Submit the Blue Gate design review form (provided in Edly, under "Project Assignments"), by giving us a link to a YouTube video of your presentation. Your link may be public or unlisted (but not private). Make sure that your video follows the rules about co-designer information (in the FAQ below). In particular, make sure that your video only contains personally-identifiable information about your co-designer if they have filled out a media release form (for pictures and video) and you have asked for their permission (for all information).</p>
+                <p>CRE[AT]E mentors and staff will provide feedback for these reviews asynchronously.</p>
+              </div>
+            </div>
+          </details>
+
+          <!-- Black Gate -->
+          <details class="gate">
+            <summary>Black Gate — Final Event Submissions (due by April 12th, 2026 — no extensions)</summary>
+            <div class="gate__content">
+              <div class="prose">
+                <p>There are three parts to the final event submission: a document, a video, and a snapshot.</p>
+              </div>
+
+              <h4 class="prose-subheading">Part 1: Document</h4>
+              <div class="prose">
+                <p>The final prototype is a more refined version of your product that has gone through some iterations of design, test, and re-design. It might just be what your co-designer needed, or you may have a ways to go (so it may only be "final" for the purposes of this class). We'd like to know how you made it, and how others could make it as well! Also, please include pictures and videos whenever possible. Videos in the document should be GIFs, since they will auto-play when the document is viewed.</p>
+              </div>
+
+              <h4 class="prose-subheading">Who is your co-designer?</h4>
+              <div class="prose">
+                <p>In your own words, tell us about your co-designer and what you learned from interviewing. And not just about the co-designer's impairment - who is the co-designer as a person? Include anything that your co-designer would be comfortable sharing. Some of these things you may be able to answer before your interview, and others are things you should try to gather information on. Some suggestions:</p>
+                <ul>
+                  <li>introductions</li>
+                  <li>living situation</li>
+                  <li>daily routines</li>
+                  <li>hobbies</li>
+                  <li>occupation</li>
+                  <li>any relation to you or others in the community</li>
+                  <li>impairments or AT-related needs</li>
+                  <li>solutions they have already tried</li>
+                </ul>
+              </div>
+
+              <h4 class="prose-subheading">Needs and Requirements</h4>
+              <div class="prose">
+                <ul>
+                  <li>co-designer needs statements</li>
+                  <li>product requirements (derived from needs)</li>
+                </ul>
+              </div>
+
+              <h4 class="prose-subheading">Concept Generation and Selection</h4>
+              <div class="prose">
+                <p>Give us a narrative of your brainstorming! Tell us about the following:</p>
+                <ul>
+                  <li>How did you clarify the problem?</li>
+                  <li>What did your external search and brainstorming look like? Any particularly notable ideas that you wanted to keep or ended up discarding?</li>
+                  <li>How did you select the concept with which you'll move forward?</li>
+                </ul>
+                <p>Please also tell us briefly about your design iterations, how you went from earlier to more sophisticated prototypes, and what design elements you were testing in earlier iterations.</p>
+              </div>
+
+              <h4 class="prose-subheading">Tell Us About Your Product</h4>
+              <div class="prose">
+                <ul>
+                  <li><strong>Bill of Materials</strong> - What are you using to build your final prototype? Include quantities, order links, and cost breakdown of any purchased materials.</li>
+                  <li><strong>Software Tools</strong> - For software projects, please include any existing software frameworks, tools, and languages you used. Do not include search engines or large language models here (see LLM section below).</li>
+                  <li><strong>Technical Drawing</strong> - Can be a CAD model, a wireframe, a hand-drawn sketch, a fabric pattern, a wiring diagram, and more! Include multiple views and detailed specifications and/or constraints (sizes, shapes, resistances, weights, etc) when possible. If you're using something like an obj or stl file (anything to be read by specific software), please also include an image of the item(s).</li>
+                  <li><strong>Build Instructions</strong> - How would another maker build this? Include any specific pain points you noticed, or any particularly sensitive parts of the design (things that were strongly affected by slight changes). See these Instructables articles on <a href="https://www.instructables.com/Full-Body-Oven-Mitts/" target="_blank" rel="noreferrer noopener">Nico's Full Body Oven Mitt</a> and <a href="https://www.instructables.com/The-Bom-bidet/" target="_blank" rel="noreferrer noopener">the Bom Bidet</a> as examples. For software components, in place of a "how to build," please include a full README file that tells the reader what frameworks and languages you used, how to navigate your code, and how to execute your software. Pointers to your GitHub repositories are preferable for software (make sure they're public).</li>
+                  <li><strong>Large Language Model Use</strong> - If you used large language models (i.e. chatbots, or "AI", such as ChatGPT, Claude, Gemini, etc) at any point in the design or build process, please describe how you did it. Which model(s) did you use? What did you use them for? Please describe your experience using these tools - what did they make easy? What did they make difficult? Please copy and paste some of the prompts that you used for this process that you feel are representative of your interactions with the large language model.</li>
+                </ul>
+              </div>
+
+              <h4 class="prose-subheading">Test Results</h4>
+              <div class="prose">
+                <ul>
+                  <li><strong>Test Plan</strong> - What was your prototype test plan? What can you test by yourself, with your co-designer, or with others? Are there specific times or places that you need to pay attention to for testing?</li>
+                  <li><strong>Testing Pictures/Video</strong> - If your tester(s) are okay with it, document your tests with pictures and video! Always be sure to ask for permission (and submit a media release form) first, though. If you cannot provide a picture with your co-designer (or it is difficult to do so), please approximate a demonstration of your product to the best of your ability with a member of your team.</li>
+                  <li><strong>Testing Results</strong> - What happened? What did you learn? Detail any quantitative ("The plastic sleeve was 2 cm too long") and qualitative ("My co-designer had to strain her neck to reach the spot where her head was supposed to go") observations, as well as any direct user feedback.</li>
+                </ul>
+              </div>
+
+              <h4 class="prose-subheading">Reflections</h4>
+              <div class="prose">
+                <p>We'd like you to think about a few things after going through your final prototype.</p>
+                <ul>
+                  <li><strong>Future Improvements</strong> - What did you learn from this iteration? What worked, and what needs to be tweaked or entirely redesigned? What would you do if you had more time and/or resources?</li>
+                  <li><strong>Scalability</strong> - We're doing individual co-design in this course, but can you tell us something about how scalable your design is? How specific is your solution to your co-designer and/or their environment? Are there other people it might help? How do you think you'd go about making 100, 1,000, or 10,000 copies of this? It's perfectly fine if the answer is that your product is completely unscalable and is super-specific to your co-designer. Tell us why, and congratulations on tackling a problem that would likely have otherwise been ignored!</li>
+                  <li><strong>Design Process Reflection</strong> - What would you do differently if you had to go through this process again? This part is focused on the process, rather than anything about your product that you learned along the way.</li>
+                </ul>
+              </div>
+
+              <h4 class="prose-subheading">Part 2: Video</h4>
+              <div class="prose">
+                <p>Go through the <a href="https://youtu.be/wX_g62y3c2A" target="_blank" rel="noreferrer noopener">guidelines on clear presentation from the course</a>, if you haven't done so already.</p>
+                <ul>
+                  <li>Presentation is 4-5 minutes long (this is a strict time limit)</li>
+                  <li>Briefly introduce yourselves, including where you're from and what school or organization your team is part of, if relevant.</li>
+                  <li>Introduce your co-designer (Who are they? What do they like to do? What challenges would they to tackle? Are there any other relevant pieces of information, such as living situation, family, caretaking, profession, etc?)</li>
+                  <li>Provide a single-sentence product objective</li>
+                  <li>Briefly step through your iterations in 1-2 slides, focusing on any major changes you may have made between low and high fidelity versions, or changes in product direction.</li>
+                  <li>Focus your presentation on your final product, giving us a visual representation and a demonstration of how it works. Include your videos of it in use, by your co-designer if possible.</li>
+                  <li>Briefly describe any future plans you have for your product.</li>
+                  <li>End by telling us the top 2-3 things your team learned during the CRE[AT]E Challenge.</li>
+                </ul>
+                <p>You will also be asked to upload a thumbnail (cover image) for your video for when we upload it to YouTube (after the end of the Challenge).</p>
+                <p>Finalists should be prepared to take 2-3 minutes of questions live after videos video during the final event. Teams will be notified if they are finalists shortly before the event.</p>
+              </div>
+
+              <h4 class="prose-subheading">Part 3: Snapshot</h4>
+              <div class="prose">
+                <p>The Snapshot is a set of two slides that will be shown during breaks in the Challenge.</p>
+                <ul>
+                  <li><strong>Slide 1</strong>: A photo of your team, including your co-designer (if your co-designer has filled out the media release).</li>
+                  <li><strong>Slide 2</strong>: Your product "hero shot" and/or product testing photos (see <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/documentation-and-presentation">Documentation and Storytelling</a>), and a concise single-sentence product objective.</li>
+                </ul>
+                <p>Snapshots must be provided as a 16:9 aspect ratio PowerPoint slide. Both slides should have your team name and number on them.</p>
+              </div>
+
+              <h4 class="prose-subheading">Submission Instructions</h4>
+              <div class="prose">
+                <p>Black Gate submission will be via Google Form, with the video uploaded onto a separate Dropbox folder. Instructions will be on Edly.</p>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Design Review FAQ ─────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Common Questions</p>
+        <h2 class="section__heading">Design Review FAQ</h2>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Are design review checkoffs required for the Challenge?</h3>
+          <div class="faq-item__a"><p>Yes.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Where do I find the checkoff forms?</h3>
+          <div class="faq-item__a"><p>Checkoff form links are provided on Edly.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Does everyone on a team need to present?</h3>
+          <div class="faq-item__a"><p>Not everyone on a team needs to present at every review, though we would prefer that everyone on each team present at some point during the Challenge.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Can we do our reviews early?</h3>
+          <div class="faq-item__a"><p>Sure! Teams may want to do reviews early because of scheduling reasons, or because they are requesting funding from Beaver Works. If you are planning to do a peer review early, please arrange with another team. If you are planning to do a mentor review early, please just submit it as usual.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Can my team have an extension on our design review?</h3>
+          <div class="faq-item__a">
+            <p>Sure! You may attempt to submit any design review past the due date. However, the following consequences apply:</p>
+            <ul>
+              <li>Peer reviews: you will find it difficult to find a team to review with you.</li>
+              <li>Mentor reviews: you will not be guaranteed to receive feedback.</li>
+              <li>Final event: your project will not be considered for the final event, and may not make it onto the site after the Challenge.</li>
+            </ul>
+            <p>Please manage your time accordingly.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Help! I need to find another team to do a peer review!</h3>
+          <div class="faq-item__a"><p>We recommend using the Challenge Discord #looking-for-peer-reviewers channel to arrange peer review. If all else fails, ping @mentor and @staff and we'll see what we can do.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">How should we do visual representations?</h3>
+          <div class="faq-item__a">
+            <p>Visual representations are very important, as they help ensure that you and your reviewers have the same idea of what you are doing. Here are some suggestions, depending on what you are presenting:</p>
+            <ul>
+              <li><strong>Co-designer challenges</strong> - photos, including of the environment (with permission and co-designer media sign-off!); cartoon storyboards, diagrams; see <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/idea-to-ink">Idea to Ink</a></li>
+              <li><strong>Mechanical products</strong> - hand-drawn diagrams; CAD drawings (from multiple views); photos; include measurements when possible</li>
+              <li><strong>Electrical products</strong> - block diagrams of system components and interfaces; circuit diagrams; photos</li>
+              <li><strong>Fabric/wearable products</strong> - hand-drawn pictures/diagrams; cutting layouts and patterns; photos, including while the product is being worn</li>
+              <li><strong>Software products</strong> - block diagrams of system components and interfaces; user interaction flow diagrams; paper prototypes; screenshots</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">How should we handle pictures, videos, and other information about co-designers?</h3>
+          <div class="faq-item__a">
+            <p>If your presentations or any later documentation contains identifiable pictures or video of your co-designer (meaning someone can tell who that person is), your co-designer (or their parent or guardian) must fill out a <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/current-forms">Media Release form</a>. Regardless of whether or not your presentations contain identifiable information, you should ask your co-designer what information they are comfortable being public. Specific things that people may have varying levels of comfort with include:</p>
+            <ul>
+              <li>names (e.g. full names, first names only, first name last initial, first and last initial, a complete pseudonym, etc)</li>
+              <li>locations</li>
+              <li>schools, workplaces, or professions</li>
+              <li>any medical diagnoses</li>
+              <li>photographs and videos, particularly anything including their faces or other identifying features</li>
+            </ul>
+            <p>Visual representations are important to the design process, especially as your product matures, so if your co-designer does not want any photos of them at all, you will have to be creative in how you present your work. Ideas include pictures without your co-designer, sketches of their use case, having a team member stand in for demonstrations as feasible, etc. This is not an easy thing to deal with, even outside the context of this course, so please do your best, remember to check with your co-designer, and ask course staff if you need any help.</p>
+            <p>If co-designers want to fill out a media release form (required if you are submitting videos or photographs that include identifying information, or other identifying information in text), please have them do so <a href="https://mit-bwsi.formstack.com/forms/create_codesigner_media_release_24_25" target="_blank" rel="noreferrer noopener">here</a>. They will also need your team and coach's information.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Why are the design reviews "gates" and why do they have colors?</h3>
+          <div class="faq-item__a"><p>Beaver Works AT courses have a tradition of calling design reviews and documentation assignments "gates" and giving them a theme. Previous themes have included Middle Earth locations and dairy products.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-item__q">Why are the design reviews called "preliminary" and "critical"?</h3>
+          <div class="faq-item__a">
+            <p>Preliminary and critical design reviews (PDR and CDR) are terms borrowed from Systems Development Life Cycle and the way it is usually carried out in projects done for the United States Government. PDR and CDR (among other types of reviews) are commonly used by medical device developers (with the US Food and Drug Administration), space systems development (by NASA), and the US Department of Defense.</p>
+            <p>The common theme among all these (and what we want you to exercise) is to have independent outside experts (your peers and your remote mentors) examine your project's problem, approach, risks, and constraints, and ensure that you are on a good path towards project completion, providing suggestions, feedback, and possibly redirection as needed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>&copy; 2026 MIT Beaver Works Institute. All rights reserved.</p>
+        <nav aria-label="Footer links">
+          <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
+          &nbsp;·&nbsp;
+          <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </nav>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" target="_blank" rel="noreferrer noopener" title="YouTube">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" target="_blank" rel="noreferrer noopener" title="Instagram">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" target="_blank" rel="noreferrer noopener" title="X / Twitter">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+          <span class="sr-only">X / Twitter</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

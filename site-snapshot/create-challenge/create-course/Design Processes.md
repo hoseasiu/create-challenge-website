@@ -1,14 +1,14 @@
 ---
 title: "Design Processes"
 url: https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/design-processes
-snapshot_date: 2026-08-15
+snapshot_date: 2026-08-19
 source_html: design-processes.html
 content_status: full
 ---
 
 # Design Processes
 
-Module 2 of the CRE[AT]E Course. Covers the engineering design process used throughout the CRE[AT]E Challenge.
+Module 2 of the CRE[AT]E Course. Covers the engineering design process used throughout the CRE[AT]E Challenge. The page has no overview/intro paragraph in the source — it goes straight from the title into "Co-Designers" (a fabricated intro paragraph was found and removed here 2026-08-19; see the audit note at the bottom of this file).
 
 ## Co-Designers
 
@@ -49,7 +49,7 @@ Four "pause and take the section quiz" (Edly) prompts appear after Co-Designers,
 
 ## Images
 
-Four images sourced from the live page and stored in `website-images/`:
+Four images sourced from the live page and stored in `website-images/`, none of which are captioned in the source (captions were added locally at first conversion, then removed 2026-08-19 as invented text — see audit note below; images keep descriptive `alt` text):
 - `design-process-system-components.png` — Level 1/2/3 product breakdown diagram.
 - `design-process-cad.png` — labeled CAD rendering of the initial concept.
 - `design-process-render.png` — updated rendering for Prototyping Round 2.
@@ -58,3 +58,7 @@ Four images sourced from the live page and stored in `website-images/`:
 ## Navigation
 
 Back: Introduction. Forward: Idea to Ink.
+
+## Verbatim audit (2026-08-19)
+
+Checked against the live source at `.../create-course/old-design-processes`. See [design-processes-idea-to-ink-verbatim-audit.md](../../../design-processes-idea-to-ink-verbatim-audit.md) for the full before/after — found and removed a fabricated module-overview paragraph, restored 2 reworded sentences and a wording swap to verbatim, and removed 4 invented image figcaptions. Everything else on the page (Co-Designers, the case-study requirements/survey/numbers, Review, Reflections) checked out as genuinely verbatim, aside from a number of previously-unlogged-but-in-scope typo/grammar fixes (also listed in that file).

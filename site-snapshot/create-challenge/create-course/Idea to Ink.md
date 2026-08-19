@@ -1,7 +1,7 @@
 ---
 title: "Idea to Ink"
 url: https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/idea-to-ink
-snapshot_date: 2026-08-15
+snapshot_date: 2026-08-19
 source_html: idea-to-ink.html
 content_status: complete
 ---
@@ -22,11 +22,11 @@ Label: "Communicating Your Idea"
 
 Storyboarding described as comic-book-style panels depicting the user's full interaction with the product, start to finish. Emphasizes doing this with/reviewing with the co-designer and other stakeholders. Guidance: list all user actions, then sketch 3–10 panels — enough to force laying out steps, not so many that focus shifts from the big picture.
 
-Resource links:
-- "Half the Blank Page: Storyboarding for Product Design" by Cheryl Platz — https://medium.com/ideaplatz/half-the-blank-page-storyboarding-for-product-design-8f92d47fc588
-- "Storyboarding for Product Design" by Veronica Spencer — https://www.instructables.com/Storyboarding-for-Product-Design/
+Resource links (full verbatim descriptions, restored 2026-08-19 after a source audit found they'd been condensed):
+- "Half the Blank Page: Storyboarding for Product Design" — https://medium.com/ideaplatz/half-the-blank-page-storyboarding-for-product-design-8f92d47fc588 — by Cheryl Platz, who has been a designer for Microsoft and Amazon; "very articulately describes the motivation behind storyboarding, shows beautiful examples, and provides tips for creating your own storyboards in the context of designing user experiences."
+- "Storyboarding for Product Design" — https://www.instructables.com/Storyboarding-for-Product-Design/ — another approach by product designer Veronica Spencer, focused on storyboarding for product design.
 
-Two example storyboard images (downloaded locally to `website-images/idea-to-ink-storyboard-1.jpg` and `-2.jpg`):
+Two example storyboard images (downloaded locally to `website-images/idea-to-ink-storyboard-1.jpg` and `-2.jpg`), captioned per the source's own terse credit lines ("Credit to Cheryl Platz" / "Credit to Veronica Spencer"):
 - Cheryl Platz's Echo Look storyboard frames
 - Veronica Spencer's New Invention Studio paint booth storyboard (Instructables)
 
@@ -56,3 +56,7 @@ Raster vs. vector art explained. Raster: pixel-based, DPI, .jpg/.png, tools like
 
 ### Footer
 © 2026 MIT Beaver Works Institute. MIT Accessibility · Privacy Policy. Social: YouTube, Instagram, X.
+
+## Verbatim audit (2026-08-19)
+
+Checked against the live source at `.../create-course/old-idea-to-ink`. See [design-processes-idea-to-ink-verbatim-audit.md](../../../design-processes-idea-to-ink-verbatim-audit.md) for the full before/after — the storyboard resource-list descriptions and the 2 storyboard figcaptions were restored to verbatim source text; everything else on the page checked out as genuinely verbatim.

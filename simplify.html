@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simplify | CRE[AT]E Project | Beaver Works Assistive Technology</title>
+  <meta name="description" content="Why simplifying your design pays off, a case study on how Team Vextraordinary simplified a project for their co-designer, and exercises to help you simplify your own product." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:     #ffce10;
+      --yellow-dk:  #e6b800;
+      --mit-dark:   #1a1a1a;
+      --mit-gray:   #555;
+      --mit-light:  #f5f5f5;
+      --border:     #e0e0e0;
+      --white:      #ffffff;
+      --max-w:      960px;
+    }
+
+    /* ── Accessibility utilities ─────────────────────────────────────────── */
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--mit-dark); color: var(--yellow);
+      padding: 8px 16px; z-index: 100;
+      font-weight: 700; text-decoration: none;
+      border-radius: 0 0 4px 0;
+    }
+    .skip-link:focus { top: 0; }
+
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--mit-dark);
+      border-radius: 2px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--mit-dark);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    a { color: #7a5500; text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { opacity: 0.85; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+    .btn--white        { background: var(--mit-dark); color: var(--yellow); }
+    .btn--outline      { background: transparent; color: var(--mit-dark); border: 2px solid rgba(0,0,0,0.35); }
+    .btn--red          { background: var(--yellow);  color: var(--mit-dark); }
+    .btn--outline-dark { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); }
+
+    /* ── Sections ────────────────────────────────────────────────────────── */
+
+    .section { padding: 60px 24px; }
+    .section--gray { background: var(--mit-light); }
+    .section__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .section__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section__body {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    /* ── Prose (long-form text) ──────────────────────────────────────────── */
+
+    .prose { }
+    .prose p {
+      color: var(--mit-gray);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose ul {
+      margin: 0 0 16px 24px;
+      color: var(--mit-gray);
+    }
+    .prose ul li {
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 4px;
+    }
+
+    /* ── Prose subheadings (h3) ──────────────────────────────────────────── */
+
+    .prose-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--mit-dark);
+      margin: 36px 0 12px;
+    }
+
+    /* ── Reflect / Definition / Activity / Assignment callout ─────────────── */
+
+    .reflect-box {
+      background: var(--white);
+      border-left: 4px solid var(--yellow);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin-top: 32px;
+      margin-bottom: 24px;
+    }
+    .reflect-box__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .reflect-box p {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+    }
+    .reflect-box p:not(:last-child) { margin-bottom: 12px; }
+    .reflect-box ol, .reflect-box ul {
+      margin: 12px 0 0 20px;
+    }
+    .reflect-box ol li, .reflect-box ul li {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+    .reflect-box ol li:last-child, .reflect-box ul li:last-child { margin-bottom: 0; }
+
+    /* ── Callout card ───────────────────────────────────────────────────────
+       Used here as a single standalone card (not a grid) to represent an
+       external "Design Document" link. On the live Google Sites page this is
+       an auto-generated rich link-preview card with a thumbnail image pulled
+       from a signed lh3.googleusercontent.com URL — that URL isn't a stable
+       asset we control, so it's intentionally not reproduced here; the card
+       carries the same title, context, and link instead. ─────────────────── */
+
+    .callout-card {
+      border-left: 4px solid var(--yellow);
+      padding: 20px 20px 20px 24px;
+      background: var(--white);
+      border-radius: 0 8px 8px 0;
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-top: 24px;
+    }
+    .callout-card__title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .callout-card__body {
+      font-size: 1rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+    }
+
+    /* ── Interest band ───────────────────────────────────────────────────── */
+    /* Not used in the body of this page (the live page has no Previous/Next
+       navigation), but kept here so this page's inline styles stay in sync
+       with reference-style.css. */
+
+    .interest-band {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .interest-band__heading {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .interest-band__body {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .interest-band__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+
+    footer {
+      background: var(--mit-dark);
+      color: rgba(255,255,255,0.9);
+      padding: 36px 24px;
+      border-top: 4px solid var(--yellow);
+    }
+    footer .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer__left p { font-size: 0.85rem; margin-bottom: 4px; }
+    .footer__left a { color: rgba(255,255,255,0.8); }
+    .footer__social { display: flex; gap: 16px; align-items: center; }
+    .footer__social a {
+      display: flex; align-items: center;
+      opacity: 0.85; transition: opacity 0.15s;
+    }
+    .footer__social a:hover { opacity: 1; }
+    .footer__social img { width: 28px; height: 28px; filter: brightness(0) invert(1); }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <h1 class="sr-only">Simplify</h1>
+
+    <!-- ── Overview: why simplify ──────────────────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">CRE[AT]E Project</p>
+        <h2 class="section__heading">Simplify</h2>
+
+        <div class="prose">
+          <p>I'm sorry to tell you that your project has failed.</p>
+          <p>Your team dreamed up something impressive in the last design cycles. Everyone had a role, or two, or in the case of the team lead, four. There was a hardware component that involved bending metal and cutting wood, and at least three trips to Home Depot. There was an electronics component that incorporated an Arduino, three servomotors, a fish tank pump, and a Raspberry Pi. Also, there the software part, with two AI local models, a connection to ChatGPT, and a connection to a server farm on the outskirts of Berlin. The product is designed to run on iPhone, Windows and the latest Blackberry.</p>
+          <p>You're not quite sure where the failure point was.</p>
+          <p>While we haven't seen a project quite that complicated (yet), more than one AT product has failed due to being extremely complex. And beyond just failure, there have been many projects that simply didn't work as well as they could have because they were too complex.</p>
+          <p>So this is a good point at which to pause, consider your design, and ask yourself what you might be able to simplify.</p>
+        </div>
+
+        <h3 class="prose-heading">Why simplify?</h3>
+        <div class="prose">
+          <p>Beyond just having fewer points of failure, a simpler product also potentially offers the following advantages:</p>
+          <ul>
+            <li>easier production</li>
+            <li>cheaper production</li>
+            <li>less lead time on parts purchases</li>
+            <li>faster iteration on the most important features</li>
+            <li>less debugging</li>
+            <li>less testing</li>
+            <li>easier reproducibility</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Case study ───────────────────────────────────────────────────────── -->
+    <section class="section section--gray">
+      <div class="section__inner">
+        <p class="section__label">Case Study</p>
+        <h2 class="section__heading">Chase's Watering Can</h2>
+
+        <div class="prose">
+          <p>In the 2023-2024 CRE[AT]E season, Team Vextraordinary was working with Chase, a boy who loves to garden, but has difficulty doing so because of limited hand and arm movement. The team initially had a complex device in mind to help Chase, but realized that it added many constraints and risks.</p>
+          <p>Take a look at their design document to see how they ended up solving their problem by simplifying. As you read the document, think about the following:</p>
+          <ul>
+            <li>What was the core problem that Chase presented to the team?</li>
+            <li>What assumptions did the team make initially?</li>
+            <li>How were their decisions likely influenced by their own skills?</li>
+            <li>How did their high-fi prototype compare with their final prototype in solving Chase's problem?</li>
+          </ul>
+        </div>
+
+        <div class="callout-card">
+          <div class="callout-card__title">Design Document: Chase's Watering Can</div>
+          <div class="callout-card__body">
+            See how Team Vextraordinary simplified their design to meet Chase's needs.
+            <br><br>
+            <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/2024-projects-section/2024-project-page-vextraordinary">View the design document →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── How can you simplify your design? ───────────────────────────────── -->
+    <section class="section">
+      <div class="section__inner">
+        <p class="section__label">Your Turn</p>
+        <h2 class="section__heading">How can you simplify your design?</h2>
+
+        <div class="prose">
+          <p>First, consider your product's primary objectives - the needs statements obtained from your co-designer. What does your product actually need to do to meet these needs? Keep these in mind as you conduct the following exercises.</p>
+        </div>
+
+        <div class="reflect-box">
+          <p class="reflect-box__label">Assignment</p>
+          <p><strong>Assignment: Constrained Brainstorming</strong></p>
+          <p>Consider how you would meet your co-designer's needs (with something close to your current design) if you had the following constraints. Consider each one in turn (and skip any that don't apply).</p>
+          <ul>
+            <li>What if your product couldn't connect to the internet?</li>
+            <li>What if your product couldn't use motors?</li>
+            <li>What if your product couldn't use electricity?</li>
+            <li>What if you didn't have access to one of your fabrication tools? (say, 3D printing, metalworking, soldering, etc)</li>
+            <li>What if you could only use half the amount of one of your primary materials? (e.g. wood, plastic, PVC, metal, etc)</li>
+            <li>What if your product had to be half its current size?</li>
+            <li>What if you had to produce the product with half your current budget?</li>
+            <li>Think of two more constraints that could apply to your product, and what you would have to modify to meet them.</li>
+          </ul>
+          <p>For each constraint, how does the resulting modification affect the product? What does it do to cost, production, testing, and usability? What does it do to the product's effectiveness at solving your co-designer's problem?</p>
+        </div>
+
+        <div class="reflect-box">
+          <p class="reflect-box__label">Assignment</p>
+          <p><strong>Assignment: Red Teaming</strong></p>
+          <p>Another approach to simplification is to consider the premise from the beginning of the section. Pretend that it is several weeks from now, and the CRE[AT]E Challenge is over. Your current design has failed.</p>
+          <p>Have a team meeting about why. You can restrict your discussion to the product design (rather than, say, a team member getting sick, your co-designer being unavailable, or other similar issues).</p>
+          <p>Once you have your story figured out (and it doesn't need to be entirely self-consistent!), bring yourself back to the present.</p>
+          <p>Congratulations on returning to the present. Having time-traveled, you now have a list of things that went wrong in that alternate future, and a new opportunity to save your project. What do you do?</p>
+          <p>This process is called "Red Teaming." In the project management world, it's a way to imagine some of the potential failure points of your project and try to do something about them before they really impact your goal. While it does require putting on a bit of a pessimistic lens, remember that it is just an exercise, and you can prioritize changes to the timeline based on what you think is most likely and the easiest to work around.</p>
+        </div>
+
+        <div class="prose">
+          <p>You are not required to implement any of the modifications you came up with in the exercises above, only to think through them. However, if any of the above modifications forces a simpler product design or reduces the risk of some other issue with your product, seriously consider whether it is something that you should try.</p>
+          <p>For each design that is simpler than your current one that you do not go with, please write down the risk (if any) that you are taking on and justify why it is worth the risk.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div class="footer__left">
+        <p>&copy; 2026 MIT Beaver Works Institute. All rights reserved.</p>
+        <nav aria-label="Footer links">
+          <a href="https://accessibility.mit.edu" target="_blank" rel="noreferrer noopener">MIT Accessibility</a>
+          &nbsp;·&nbsp;
+          <a href="https://accessibility.mit.edu/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a>
+        </nav>
+      </div>
+      <div class="footer__social">
+        <a href="http://youtube.com/c/mitbeaverworkssummerinstitute" target="_blank" rel="noreferrer noopener" title="YouTube">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/youtube_colored_36dp.png" alt="YouTube" />
+        </a>
+        <a href="http://instagram.com/bwsiat" target="_blank" rel="noreferrer noopener" title="Instagram">
+          <img src="https://ssl.gstatic.com/atari/images/sociallinks/instagram_colored_36dp.png" alt="Instagram" />
+        </a>
+        <a href="https://x.com/mitbwsi" target="_blank" rel="noreferrer noopener" title="X / Twitter">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+          </svg>
+          <span class="sr-only">X / Twitter</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

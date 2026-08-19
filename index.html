@@ -73,6 +73,42 @@
     a { color: #7a5500; text-decoration: underline; text-underline-offset: 2px; }
     a:hover { opacity: 0.85; }
 
+    /* ── STATUS LINE ──
+       Compact, evergreen-format banner for whatever is currently in-season
+       (registration open, kickoff, design reviews, final event, etc).
+       Update the text/link each time the season changes. A shared,
+       site-wide version of this is tracked separately in issue #15. */
+    .status-line {
+      background: var(--mit-dark);
+      color: var(--white);
+      padding: 10px 24px;
+      text-align: center;
+    }
+    .status-line__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 0.875rem;
+    }
+    .status-line__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--yellow);
+      flex: 0 0 auto;
+    }
+    .status-line__text {
+      font-weight: 600;
+    }
+    .status-line__link {
+      color: var(--yellow);
+      font-weight: 700;
+    }
+
     /* ── HERO ── */
     .btn {
       display: inline-block;
@@ -195,6 +231,51 @@
     .callout-card__body {
       font-size: 1rem;
       color: var(--mit-gray);
+    }
+
+    /* ── SOCIAL PROOF (quotes + co-designer stories) ── */
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .section__quote {
+      color: var(--mit-dark);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 760px;
+      margin: 0 0 24px;
+      padding: 20px 22px 20px 18px;
+      border-left: 4px solid var(--yellow);
+      border-radius: 8px;
+      background: rgba(255, 206, 16, 0.08);
+    }
+    .section__quote:last-child { margin-bottom: 0; }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+    @media (max-width: 600px) {
+      .video-grid { grid-template-columns: 1fr; }
+    }
+    .video-embed {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #000;
+    }
+    .video-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
 
     /* ── ABOUT BWSI ── */
@@ -343,6 +424,21 @@
   <main id="main-content">
     <h1 class="sr-only">CRE[AT]E Challenge — Home</h1>
 
+  <!-- STATUS LINE: update each time the season changes (registration open,
+       kickoff, design reviews, final event, etc). See issue #15 for a
+       shared, site-wide version of this component. -->
+  <div class="status-line" role="note" aria-label="Current season status">
+    <div class="status-line__inner">
+      <span class="status-line__dot" aria-hidden="true"></span>
+      <span class="status-line__text">2026&ndash;2027 Registration Is Open</span>
+      <a class="status-line__link"
+         href="https://mit-bwsi.formstack.com/forms/create_team_application_2026_2027"
+         target="_blank" rel="noreferrer noopener">
+        Register your team →
+      </a>
+    </div>
+  </div>
+
   <!-- WHAT IS THE CHALLENGE -->
   <section class="section">
     <div class="section__inner">
@@ -380,6 +476,41 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="section section--gray">
+    <div class="section__inner">
+      <p class="section__label">Impact</p>
+      <h2 class="section__heading">What teams and co-designers say</h2>
+      <div class="quote-grid">
+        <blockquote class="section__quote">&ldquo;Participating in the CRE[AT]E Challenge has been an opportunity of a lifetime.&rdquo;</blockquote>
+        <blockquote class="section__quote">&ldquo;I learned so much in such a short period of time and this has been one of the most transformational experiences I&rsquo;ve ever had.&rdquo;</blockquote>
+        <blockquote class="section__quote">&ldquo;The experience in the Challenge was amazing&hellip; This feels like my first step in the multitude of strides I hope to take to make an impact &hellip;&rdquo;</blockquote>
+      </div>
+
+      <h3 style="font-size: 1.1rem; font-weight: 700; margin: 40px 0 8px;">Co-designer stories</h3>
+      <p class="section__body" style="margin-bottom: 0;">
+        See how student-built assistive technology has changed what's possible for the people teams design with.
+      </p>
+      <div class="video-grid">
+        <div>
+          <p class="section__body" style="margin-bottom: 14px;"><strong>Levi</strong> — a kid who can only control one hand, can play his favorite racing video game.</p>
+          <div class="video-embed"><iframe title="YouTube video: Levi plays his favorite video game" src="https://www.youtube-nocookie.com/embed/QXfNK9j1Zho?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+        </div>
+        <div>
+          <p class="section__body" style="margin-bottom: 14px;"><strong>Izzy</strong> — a girl with extremely low grip strength, can open doors and jars, and participate in the school&rsquo;s tug-of-war.</p>
+          <div class="video-embed"><iframe title="YouTube video: Izzy opens doors and jars with ease" src="https://www.youtube-nocookie.com/embed/q5Jgnc-6tzc?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+        </div>
+        <div>
+          <p class="section__body" style="margin-bottom: 14px;"><strong>Skylar</strong> — a high school student with low vision, can navigate the halls of her school by herself.</p>
+          <div class="video-embed"><iframe title="YouTube video: Skylar navigates school halls independently" src="https://www.youtube-nocookie.com/embed/JbH330u_7EE?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+        </div>
+      </div>
+      <p class="section__body" style="margin: 24px 0 0;">
+        <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/about">See more co-designer stories on the About page →</a>
+      </p>
     </div>
   </section>
 

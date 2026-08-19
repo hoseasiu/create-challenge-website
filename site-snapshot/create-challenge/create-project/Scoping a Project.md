@@ -32,4 +32,6 @@ Also disallowed: safety-critical products, defined as products where failure wou
 
 ## Navigation
 
-No previous/next module navigation links on this page (unlike its sibling Project sub-pages).
+As of the 2026-08-15 snapshot, no previous/next module navigation links on this page (unlike its sibling Project sub-pages).
+
+**2026-08-19 local-only update (not yet live):** `scoping-a-project.html` now has an interest-band with Previous: Project Brainstorming / Next: Simplify. This is a local addition ahead of the live Google Site; the live page still has no navigation band until this is pasted live.

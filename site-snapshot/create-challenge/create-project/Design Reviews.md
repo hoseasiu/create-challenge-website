@@ -35,3 +35,6 @@ Covers: checkoffs are required (forms on Edly); not every member must present at
 - Internal course links were corrected to their current live URLs (`/create-challenge/create-course/introduction`, `/design-processes`, `/documentation-and-presentation`, `/idea-to-ink`), replacing stale "old-..." slugs from before those course pages were converted to local HTML embeds.
 - The live page's second "Design Reviews" subheading (a duplicate of the page title) was renamed to "Remote Mentor Reviews" for clarity — a faithful content fix, not a content change.
 - The five Gates are implemented as native `<details>`/`<summary>` accordion elements (closed by default), a new page-specific component not used elsewhere on the site, styled consistent with the site's card language.
+- As of the 2026-08-15 snapshot, this page had no previous/next module navigation (it's the last step of the CRE[AT]E Project section).
+
+**2026-08-19 local-only update (not yet live):** `design-reviews.html` now has an interest-band with a single Previous: Simplify link (no Next — still the last step of the section). This is a local addition ahead of the live Google Site; the live page still has no navigation band until this is pasted live.

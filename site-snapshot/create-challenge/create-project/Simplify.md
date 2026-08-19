@@ -8,7 +8,7 @@ source_html: simplify.html
 
 # Simplify
 
-The fifth step of the CRE[AT]E Project section, between Scoping a Project and Design Reviews. Encourages teams to reduce complexity to the essential need — simpler designs are often more reliable and easier to build, test, and use. No Previous/Next module navigation on this page (matching its siblings Scoping a Project and Design Reviews).
+The fifth step of the CRE[AT]E Project section, between Scoping a Project and Design Reviews. Encourages teams to reduce complexity to the essential need — simpler designs are often more reliable and easier to build, test, and use. As of the 2026-08-15 live snapshot, no Previous/Next module navigation on this page (matching its siblings Scoping a Project and Design Reviews at that time).
 
 ## Overview / Why simplify?
 
@@ -29,3 +29,5 @@ Closes with a note that teams aren't required to implement any of the considered
 ## Conversion notes (2026-08-19)
 
 This page was the last unconverted page in the CRE[AT]E Project section — it was intentionally skipped in the 2026-08-15 batch conversion because of the Google-Sites-native rich link-preview card described above. Converted here as a standalone `.callout-card` (title, short body, arrow link) instead of trying to reproduce the auto-generated thumbnail, since that thumbnail's URL is a signed Google-internal asset link, not a stable resource this repo can depend on. All other content is verbatim from the live page as of 2026-08-19. `check-styles.py` passes with zero drift across all 27 pages.
+
+**2026-08-19 local-only nav update (not yet live):** `simplify.html` now has an interest-band with Previous: Scoping a Project / Next: Design Reviews, completing the CRE[AT]E Project sequence. `create-project.html`, `scoping-a-project.html`, and `design-reviews.html` were updated to cross-link accordingly — see their `site-snapshot` entries. This is a local addition ahead of the live Google Site.

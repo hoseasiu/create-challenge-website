@@ -196,6 +196,44 @@
       font-size: 0.95rem;
     }
 
+    /* ── Reflect / Definition / Activity callout ───────────────────────── */
+
+    .reflect-box {
+      background: var(--white);
+      border-left: 4px solid var(--yellow);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin-top: 32px;
+      margin-bottom: 24px;
+    }
+    .reflect-box__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a5500;
+      margin-bottom: 8px;
+    }
+    .reflect-box p {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+    }
+    .reflect-box p:not(:last-child) { margin-bottom: 12px; }
+    .reflect-box ol, .reflect-box ul {
+      margin: 12px 0 0 20px;
+    }
+    .reflect-box ol li, .reflect-box ul li {
+      font-size: 0.95rem;
+      color: var(--mit-gray);
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+    .reflect-box ol li:last-child, .reflect-box ul li:last-child { margin-bottom: 0; }
+
     /* ── Resource link list ──────────────────────────────────────────────── */
 
     .resource-list {
@@ -282,6 +320,12 @@
         <div class="prose">
           <p>Some people — particularly students who have been exposed to computer-aided design (CAD) programs in school - may have an initial instinct to reach for the CAD software they're most comfortable with — SolidWorks, Inventor, Fusion 360, and so on. Oftentimes, however, it is more helpful to start more simply with a sketch. The purpose of a sketch is to convey a set of ideas about a form, a space, or an activity quickly and efficiently. Sketching can help you refine ideas, realize issues about space and shape and size, and think through how a user might interact with a product without being encumbered by more detailed (and time-consuming) drawing methods.</p>
           <p>There are various approaches to sketching that are in part influenced by your end solution's form factor, whether it be a physical product, an app, a garment, etc. Regardless, assuming a human being will interact with your solution (which is a given for CRE[AT]E), a very helpful place to start is by storyboarding.</p>
+        </div>
+
+        <div class="reflect-box">
+          <p class="reflect-box__label">Image generation</p>
+          <p>One thing that we'll ask you to specifically <b>not</b> do in both this section and in the Challenge as a whole is use generative AI tools to make sketches or storyboards. The purpose of these sketches and storyboards is partly to represent an idea, but also as a process to <i>help you think</i>. Much like coding up a program or drawing a diagram forces you to express the idea in a format that causes you to think in a computational or process-oriented way, drawing forces you to think through a situation or problem in a spatial way that is very valuable to you as a designer.</p>
+          <p>In the Challenge, we ask that you make all drawings without the use of generative AI tools.</p>
         </div>
       </div>
     </section>

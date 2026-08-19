@@ -458,55 +458,6 @@
       </div>
     </section>
 
-    <!-- ── AI and Machine Learning Tools for Accessibility ──────────────────── -->
-    <section class="section section--gray">
-      <div class="section__inner">
-        <p class="section__label">Emerging Tools</p>
-        <h2 class="section__heading">AI and Machine Learning Tools for Accessibility</h2>
-
-        <div class="prose">
-          <p>Artificial intelligence (AI) and machine learning (ML) are increasingly popular tools for student projects in the Challenge.</p>
-          <p>This is a big topic, and we'll split it up into a few broad parts, some that are general to the field, and some that are specific considerations for a disability-related use case.</p>
-          <p>First, let's take a look at the "machine learning life cycle," or the series of decisions that are made in a machine learning project, from initial conception to after it has been deployed.</p>
-        </div>
-
-        <div class="video-stack">
-          <div>
-            <div class="video-embed">
-              <iframe
-                src="https://www.youtube.com/embed/ZmBUnJ7lGvQ"
-                title="The Machine Learning Lifecycle"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                loading="lazy"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-
-        <div class="prose">
-          <p><a href="https://huggingface.co/" target="_blank" rel="noreferrer noopener">HuggingFace</a> is a common platform from which to get both trained machine learning models and datasets. Check their <a href="https://huggingface.co/docs" target="_blank" rel="noreferrer noopener">documentation page</a> for more information on getting started, depending on what you need from them.</p>
-        </div>
-
-        <h3 class="prose-heading">Data Bias and Disability</h3>
-        <div class="prose">
-          <p>In addition to the typical considerations for ML, in the assistive tech space, you also need to consider whether dataset biases will work against you or not, and how much. For example, the problem of emotion recognition aid or training using computer vision has come up repeatedly in the AT space, as a tool for people with autism spectrum disorder or other types of neurodivergence. There are two ways such tools could be used: one where computer vision is used to recognize the emotions of neurotypical individuals, and the other where it is used to recognize the emotions of neurodivergent individuals. One of these will work much better than the other with traditional datasets! Remember that public datasets collected from people will very rarely contain enough data from disabled populations to be useful in cases where the disability strongly affects the input of the model.</p>
-          <p>This bias means that if the input to the model is something out in the environment (e.g. household objects), or something else that is not affected by your co-designer's disability, then public datasets may be fine. However, if the input to the model is something from your co-designer (facial expressions, vocalizations, etc) that is affected by their disability, you may need to fine-tune your model with data from your co-designer for it to work. Similarly, for very specific tasks (such as visually identifying Uno cards), you will also need to collect data to fine-tune your model. The <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/2023-projects-section/2023-project-page-the-optechs" target="_blank" rel="noreferrer noopener">OpTECHs</a> got their school involved in sending in data to help them train their model, something you might consider as well, if it's appropriate!</p>
-        </div>
-
-        <h3 class="prose-heading">Training Models</h3>
-        <div class="prose">
-          <p>As a rule of thumb, don't train models from scratch unless you have to, or want to go through the process to learn it. If a model already exists, you should probably just try to get it and use it instead (see HuggingFace note, above).</p>
-          <p>For fine-tuning (and more general ML training) cases, you'll need to collect and label your datasets. You can do so manually on your own computer, but there are also online platforms such as <a href="https://www.cvat.ai/" target="_blank" rel="noreferrer noopener">CVAT</a> and <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noreferrer noopener">Teachable Machine</a> that provide ways for you to annotate the datasets more easily using a graphical user interface and automated workflows.</p>
-        </div>
-
-        <h3 class="prose-heading">Other Resources</h3>
-        <div class="prose">
-          <p>If you are using App Inventor, there is also a page with <a href="https://appinventor.mit.edu/explore/ai-with-mit-app-inventor" target="_blank" rel="noreferrer noopener">example AI projects</a>.</p>
-        </div>
-      </div>
-    </section>
-
     <div class="quiz-banner" role="note">
       <div class="quiz-banner__inner">If you are following this course on Edly, pause here and take the section quiz.</div>
     </div>

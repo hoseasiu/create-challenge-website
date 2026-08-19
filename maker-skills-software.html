@@ -299,16 +299,18 @@
     <section class="section">
       <div class="section__inner">
         <p class="section__label">Maker Skills · Module 4</p>
-        <h2 class="section__heading">Software</h2>
+        <h2 class="section__heading">Software Development</h2>
 
         <div class="prose">
-          <p>Software-focused projects in the CRE[AT]E Challenge typically take one of four forms:</p>
+          <p>Software projects in the assistive tech space can vary widely, though software-focused projects in the CRE[AT]E Challenge typically take one of four forms:</p>
           <ul>
-            <li><strong>Web/webapp</strong> — public or just for the co-designer</li>
-            <li><strong>Desktop software</strong> — non-web</li>
-            <li><strong>Mobile app</strong> — iOS or Android</li>
-            <li><strong>MCU/SBC software</strong> — for microcontroller units (like Arduino or BeagleBone) or single-board computers (like Raspberry Pi or NVIDIA Jetson) to interface with sensors and actuators</li>
+            <li>a website/webapp (that may be public, or just for your co-designer)</li>
+            <li>desktop (non-web) software</li>
+            <li>a mobile app</li>
+            <li>software for microcontroller units (MCUs: Arduino, BeagleBone, etc) or single-board computers (SBCs: Raspberry Pi, NVIDIA Jetson, etc) to interface with sensors and actuators</li>
           </ul>
+          <p>We will refer to the above as web, desktop, mobile, and MCU/SBC for the purposes of this page.</p>
+          <p>In the sections below, version control and user interface / front-end development will be relevant to all types of development. After those sections, we will discuss some issues that are specific to the type of development that you are doing or are considering.</p>
         </div>
       </div>
     </section>
@@ -320,8 +322,8 @@
         <h2 class="section__heading">Version Control</h2>
 
         <div class="prose">
-          <p><a href="https://github.com/" target="_blank" rel="noreferrer noopener">GitHub</a> is a code repository for tracking changes and collaborating, and can host websites via <a href="https://pages.github.com/" target="_blank" rel="noreferrer noopener">GitHub Pages</a>. The <a href="https://education.github.com/pack" target="_blank" rel="noreferrer noopener">GitHub Student Developer Pack</a> provides access to many additional resources.</p>
-          <p>Teams writing significant code should use GitHub for version control.</p>
+          <p>For all categories, you should seriously consider the use of version control, a software engineering process that lets you keep track of your changes and collaborate with others.</p>
+          <p><a href="https://github.com/" target="_blank" rel="noreferrer noopener">GitHub</a> is a code repository, a place to put the code you're writing so you can track your changes and collaborate with others. You can host a website directly from GitHub-hosted code on <a href="https://pages.github.com/" target="_blank" rel="noreferrer noopener">GitHub Pages</a>. GitHub also has a <a href="https://education.github.com/pack" target="_blank" rel="noreferrer noopener">Student Developer Pack</a> with access to lots of helpful resources. If you will be writing significant amounts of code, you should use GitHub for version control.</p>
         </div>
       </div>
     </section>
@@ -337,8 +339,10 @@
         <h2 class="section__heading">User Interface and Front-End Development</h2>
 
         <div class="prose">
-          <p>Teams must consider the user interface regardless of whether the product has a visual interface. Some interactions are self-contained, like a desktop skill-practice app, while others involve the user, the software, and the external environment, like medication reminders or clothing-choice aids.</p>
-          <p>For software with a visual UI, think about what "pages" or states the user moves through and how they transition between them. <a href="https://www.figma.com/" target="_blank" rel="noreferrer noopener">Figma</a> is a popular app for creating framework prototype mockups (wireframes) of an app or website without building all the features. It's free for students and educators and is recommended as a starting point for prototyping front-ends.</p>
+          <p>For all categories, you must consider the user interface - how the user will go about interacting with your product. This consideration exists regardless of whether your product has a visual interface or not. Some interactions that you design will be fairly contained between the software and the user, such as desktop-based software to help a co-designer practice a skill on the computer. Other interactions exist between the user, the software, and some other part of their environment, such as apps to remind the user to take medication, or to help decide what clothes to wear.</p>
+          <p>For all categories of software, much like for other products, you must first figure out what the interaction will look like, what pages or functions the user is on at any given time, and how these might change during the course of use.</p>
+          <p>For categories of software that involve a visual user interface (most cases other than some MCU/SBC instances), you should pay particular focus to what the user interface is like, and how the user moves through it.</p>
+          <p><a href="https://www.figma.com/" target="_blank" rel="noreferrer noopener">Figma</a> is a popular application for creating framework prototype mockups of an app design - basically, you can easily create how an app on your phone or a website might look like or work like to the user, without all the features being built yet. Figma is free for students and educators. If you are prototyping a front-end, it's a good idea to start here.</p>
         </div>
       </div>
     </section>
@@ -350,7 +354,8 @@
         <h2 class="section__heading">Web Development</h2>
 
         <div class="prose">
-          <p>This section is still being developed — check back for additional learning resources. In the meantime, if you're testing a mobile-first design, <a href="https://developer.chrome.com/docs/devtools/device-mode" target="_blank" rel="noreferrer noopener">Chrome DevTools device mode</a> is a useful way to simulate a mobile viewport from your desktop browser.</p>
+          <p>TODO - learning resources</p>
+          <p>TODO - <a href="https://developer.chrome.com/docs/devtools/device-mode" target="_blank" rel="noreferrer noopener">simulating mobile viewports</a></p>
         </div>
       </div>
     </section>
@@ -366,22 +371,22 @@
         <h2 class="section__heading">Desktop Software Development</h2>
 
         <div class="prose">
-          <p>Desktop development is the most general kind of software development, with the broadest set of resources available.</p>
+          <p>Developing software on the desktop is likely the most general kind of development with the broadest set of resources.</p>
         </div>
 
         <h3 class="prose-heading">Packaging</h3>
         <div class="prose">
-          <p>Packaging bundles software — executables, libraries, configuration, and metadata — into a structured format for deployment. For example, <code>.msi</code>, <code>.exe</code>, or <code>.msix</code> on Windows, or <code>.dmg</code> on macOS.</p>
+          <p>Packaging is the process of bundling your software—its executable files, libraries, configuration data, and metadata—into a structured format for deployment (e.g., .msi, .exe, .msix on Windows, or .dmg on macOS). Packaging ensures that all necessary parts are included so the app runs reliably on another machine.</p>
         </div>
 
-        <h3 class="prose-heading">Why packaging matters</h3>
+        <h3 class="prose-heading">Why do we need packaging?</h3>
         <div class="prose">
-          <ol>
-            <li><strong>Different environments</strong> — a development machine has the right libraries installed, but a user's laptop likely doesn't</li>
-            <li><strong>Dependency management</strong> — packaged apps detail their dependencies</li>
-            <li><strong>Consistent installs</strong> — uniform behavior across users, supporting automation, version control, and clean uninstalls</li>
-            <li><strong>Security &amp; isolation</strong> — modern formats like MSIX on Windows grant package identity for system services, such as notifications</li>
-          </ol>
+          <ul>
+            <li>Different environments: A computer you are using for development might already have the right runtime libraries or configuration. Your user's laptop likely doesn’t, and packaging bundles what’s missing.</li>
+            <li>Dependency management: Packaged apps detail their depended‑on libraries, letting installation tools fetch or include them. Without this, users may see missing DLLs or errors.</li>
+            <li>Consistent installs: Proper installers allow uniform behavior—automation, version control, uninstall cleanliness—across many users.</li>
+            <li>Security &amp; isolation: In Windows, modern formats like MSIX grant package identity, enabling access to system services (e.g., notifications).</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -392,36 +397,43 @@
         <p class="section__label">Apps</p>
         <h2 class="section__heading">Mobile Application Development</h2>
 
-        <h3 class="prose-heading">iOS Development</h3>
         <div class="prose">
-          <p>Currently behind significant barriers:</p>
+          <p>Mobile app development is generally split into Android and iOS development, depending on the ecosystem that your co-designer uses.</p>
+        </div>
+
+        <h3 class="prose-heading">iOS development</h3>
+        <div class="prose">
+          <p>At present, Apple keeps iOS development behind significant barriers to entry. Your team must</p>
           <ol>
-            <li>Must own a Mac for development</li>
-            <li>An Apple Developer Account is required ($99/year per user)</li>
-            <li>Must know Swift or Objective-C</li>
+            <li>own a Mac computer for anyone wanting to do development</li>
+            <li>pay for the Apple Developer Account ($99/year) on a per-user basis</li>
+            <li>be familiar with Swift or Objective-C</li>
           </ol>
-          <p>Unless your team is already familiar with iOS development and willing to pay the costs, we recommend building a webapp instead that the co-designer can access from their phone.</p>
+          <p>Due to these barriers, we do not recommend that teams do iOS development for the Challenge unless you are willing to pay the costs above and are already familiar with the iOS development process. Especially if your team is new to computer programming, the sunk cost of the Apple Developer Account is likely not worth it.</p>
+          <p>Consider developing a webapp instead that your co-designer can reach from their phone.</p>
         </div>
 
-        <h3 class="prose-heading">Android Development</h3>
+        <h3 class="prose-heading">Android development</h3>
         <div class="prose">
-          <p>Far more accessible: you can develop on any computer using Java or Kotlin. See the <a href="https://developer.android.com/get-started/overview" target="_blank" rel="noreferrer noopener">Android Developers getting-started guide</a> and <a href="https://codingwithmitch.com/" target="_blank" rel="noreferrer noopener">CodingWithMitch</a> for tutorials and example projects.</p>
+          <p>Mobile development for Android is far more accessible. Android development can be done on any computer, using the Java or Kotlin languages. The Android Developers page has a useful <a href="https://developer.android.com/get-started/overview" target="_blank" rel="noreferrer noopener">guide to getting started</a>.</p>
+          <p><a href="https://codingwithmitch.com/" target="_blank" rel="noreferrer noopener">CodingWithMitch</a> is another resource with lots of tutorials and example projects to help you along.</p>
         </div>
 
-        <h3 class="prose-heading">Visual Programming for Mobile: MIT App Inventor</h3>
+        <h3 class="prose-heading">Visual Programming Environment for Mobile Apps</h3>
         <div class="prose">
-          <p><a href="https://appinventor.mit.edu/" target="_blank" rel="noreferrer noopener">MIT App Inventor</a> is an intuitive, visual (drag-and-drop) programming environment for building fully functional apps for Android phones, iPhones, and tablets — though iOS still requires a developer license to deploy.</p>
-          <p>Best for:</p>
+          <p><a href="https://appinventor.mit.edu/" target="_blank" rel="noreferrer noopener">MIT App Inventor</a> is an intuitive, visual programming environment that allows everyone to build fully functional apps for Android phones, iPhones, and Android/iOS tablets (iOS apps will still need a developer license to deploy). There are a few examples on the <a href="https://appinventor.mit.edu/about-us" target="_blank" rel="noreferrer noopener">About Us page</a> that share some teams that used App Inventor to create assistive tech already.</p>
+          <p>What MIT App Inventor is good for -</p>
           <ul>
-            <li><strong>Rapid Prototyping</strong> — quickly create and test app ideas without extensive coding skills</li>
-            <li><strong>IoT and Hardware Integration</strong> — connects mobile apps with Arduino or Raspberry Pi for sensor data, home automation, or remote control</li>
+            <li>Rapid Prototyping - App Inventor allows users to quickly create mobile apps, making it ideal for testing app ideas, creating rapid prototypes. These apps can range from simple utilities to more complex, interactive applications like games, social networking apps, and tools that interact with hardware or online services. Its drag-and-drop interface simplifies coding. Hence one does not need extensive coding skills to build simple apps.</li>
+            <li>IoT and Hardware Integration - It can be used in projects that involve Internet of Things (IoT) devices, such as integrating mobile apps with hardware (like Arduino or Raspberry Pi) for sensor data monitoring, home automation, or remote control of devices. Although, there are also other platforms like ThingSpeak that can be used in such projects. MIT App Inventor would be a better choice if you want to specifically make an Android app (and not a website or web based application).</li>
           </ul>
+          <p>Useful Links -</p>
         </div>
 
         <ul class="resource-list">
           <li><a href="https://appinventor.mit.edu/explore/content/system-requirements" target="_blank" rel="noreferrer noopener">System Requirements</a></li>
           <li><a href="https://appinventor.mit.edu/explore/library" target="_blank" rel="noreferrer noopener">Documentation</a></li>
-          <li><a href="https://appinventor.mit.edu/explore/app-month-gallery" target="_blank" rel="noreferrer noopener">App of the Month Gallery</a></li>
+          <li><a href="https://appinventor.mit.edu/explore/app-month-gallery" target="_blank" rel="noreferrer noopener">App of the month winners</a></li>
         </ul>
       </div>
     </section>
@@ -437,15 +449,12 @@
         <h2 class="section__heading">Software Accessibility Considerations</h2>
 
         <div class="prose">
-          <p>Check that images have descriptive alt text for screen-reader accessibility. Color and contrast are also important for low-vision and colorblind users.</p>
+          <p>When designing for accessibility, it's important to keep a few principles in mind.</p>
+          <p>Screen-reader accessibility is the ability for screen reading software to read information to visually impaired people. This is important for all web and software with text. As part of screen-reader accessibility, you should check that the images you include in your software or web pages have alt text that provides a reasonable description of the image that can be read by a screen reader.</p>
+          <p>Color and contrast contributes significantly to visual interface accessibility, both for low-vision and for colorblind individuals. One useful article is <a href="https://xd.adobe.com/ideas/principles/web-design/color-contrast-considerations-accessibility-design/" target="_blank" rel="noreferrer noopener">here</a> from Adobe. And a useful tool for generating color palettes with contrast is <a href="https://www.randoma11y.com/" target="_blank" rel="noreferrer noopener">https://www.randoma11y.com/</a>.</p>
+          <p>One such example of existing software that helps to check if your website is in compliance is <a href="https://accessibe.com/accessscan" target="_blank" rel="noreferrer noopener">accessiBe's accessScan</a>.</p>
+          <p>The Firefox web browser also has a <a href="https://www.youtube.com/watch?v=eBefjaWud-M" target="_blank" rel="noreferrer noopener">built-in colorblindness simulator</a> as part of its Accessibility Inspector so you can check your websites and other browser-based software.</p>
         </div>
-
-        <ul class="resource-list">
-          <li><a href="https://xd.adobe.com/ideas/principles/web-design/color-contrast-considerations-accessibility-design/" target="_blank" rel="noreferrer noopener">Adobe's article on color contrast for accessibility</a></li>
-          <li><a href="randoma11y.com/" target="_blank" rel="noreferrer noopener">randoma11y.com</a> — generates accessible color palettes with contrast checking</li>
-          <li><a href="https://accessibe.com/accessscan" target="_blank" rel="noreferrer noopener">accessiBe's accessScan</a> — checks a website's WCAG compliance</li>
-          <li>Firefox has a <a href="https://www.youtube.com/watch?v=eBefjaWud-M" target="_blank" rel="noreferrer noopener">built-in colorblindness simulator</a> in its Accessibility Inspector</li>
-        </ul>
       </div>
     </section>
 
@@ -456,7 +465,9 @@
         <h2 class="section__heading">AI and Machine Learning Tools for Accessibility</h2>
 
         <div class="prose">
-          <p>AI/ML tools are increasingly popular for student projects.</p>
+          <p>Artificial intelligence (AI) and machine learning (ML) are increasingly popular tools for student projects in the Challenge.</p>
+          <p>This is a big topic, and we'll split it up into a few broad parts, some that are general to the field, and some that are specific considerations for a disability-related use case.</p>
+          <p>First, let's take a look at the "machine learning life cycle," or the series of decisions that are made in a machine learning project, from initial conception to after it has been deployed.</p>
         </div>
 
         <div class="video-stack">
@@ -470,36 +481,28 @@
                 loading="lazy"
               ></iframe>
             </div>
-            <p class="video-caption">The Machine Learning Lifecycle — a video covering the machine learning life cycle from initial conception to deployment.</p>
           </div>
         </div>
 
         <div class="prose">
-          <p><a href="https://huggingface.co/" target="_blank" rel="noreferrer noopener">HuggingFace</a> is a common platform for getting trained ML models and datasets — see their <a href="https://huggingface.co/docs" target="_blank" rel="noreferrer noopener">documentation page</a> to get started.</p>
+          <p><a href="https://huggingface.co/" target="_blank" rel="noreferrer noopener">HuggingFace</a> is a common platform from which to get both trained machine learning models and datasets. Check their <a href="https://huggingface.co/docs" target="_blank" rel="noreferrer noopener">documentation page</a> for more information on getting started, depending on what you need from them.</p>
         </div>
 
         <h3 class="prose-heading">Data Bias and Disability</h3>
         <div class="prose">
-          <p>A critical consideration in AT: dataset biases may work against you. For example, consider emotion recognition via computer vision for autism or neurodivergence. If you're recognizing the emotions of neurotypical individuals, standard datasets work. But if you're recognizing the emotions of your specific co-designer, public datasets may be insufficient, and fine-tuning with co-designer-specific data may be necessary.</p>
-        </div>
-
-        <div class="reflect-box">
-          <p class="reflect-box__label">Rule of Thumb</p>
-          <p>If the model's input is <strong>not</strong> affected by the co-designer's disability (for example, household objects), public datasets may be fine. If the input <strong>is</strong> affected by the disability (for example, facial expressions or vocalizations), you likely need co-designer-specific fine-tuning.</p>
-        </div>
-
-        <div class="prose">
-          <p>Example: <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/2023-projects-section/2023-project-page-the-optechs">The OpTECHs</a> used visually identifying Uno cards and collected dataset data from their school.</p>
+          <p>In addition to the typical considerations for ML, in the assistive tech space, you also need to consider whether dataset biases will work against you or not, and how much. For example, the problem of emotion recognition aid or training using computer vision has come up repeatedly in the AT space, as a tool for people with autism spectrum disorder or other types of neurodivergence. There are two ways such tools could be used: one where computer vision is used to recognize the emotions of neurotypical individuals, and the other where it is used to recognize the emotions of neurodivergent individuals. One of these will work much better than the other with traditional datasets! Remember that public datasets collected from people will very rarely contain enough data from disabled populations to be useful in cases where the disability strongly affects the input of the model.</p>
+          <p>This bias means that if the input to the model is something out in the environment (e.g. household objects), or something else that is not affected by your co-designer's disability, then public datasets may be fine. However, if the input to the model is something from your co-designer (facial expressions, vocalizations, etc) that is affected by their disability, you may need to fine-tune your model with data from your co-designer for it to work. Similarly, for very specific tasks (such as visually identifying Uno cards), you will also need to collect data to fine-tune your model. The <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/2023-projects-section/2023-project-page-the-optechs" target="_blank" rel="noreferrer noopener">OpTECHs</a> got their school involved in sending in data to help them train their model, something you might consider as well, if it's appropriate!</p>
         </div>
 
         <h3 class="prose-heading">Training Models</h3>
         <div class="prose">
-          <p>Don't train from scratch unless necessary — try to get an existing model and use it (see HuggingFace above). For fine-tuning, data collection, and labeling, you can do manual annotation on your own computer, or use <a href="https://www.cvat.ai/" target="_blank" rel="noreferrer noopener">CVAT</a>, an online platform for dataset annotation, or <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noreferrer noopener">Teachable Machine</a>, a graphical interface for annotating datasets and automated workflows.</p>
+          <p>As a rule of thumb, don't train models from scratch unless you have to, or want to go through the process to learn it. If a model already exists, you should probably just try to get it and use it instead (see HuggingFace note, above).</p>
+          <p>For fine-tuning (and more general ML training) cases, you'll need to collect and label your datasets. You can do so manually on your own computer, but there are also online platforms such as <a href="https://www.cvat.ai/" target="_blank" rel="noreferrer noopener">CVAT</a> and <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noreferrer noopener">Teachable Machine</a> that provide ways for you to annotate the datasets more easily using a graphical user interface and automated workflows.</p>
         </div>
 
         <h3 class="prose-heading">Other Resources</h3>
         <div class="prose">
-          <p>If you're using App Inventor, see <a href="https://appinventor.mit.edu/explore/ai-with-mit-app-inventor" target="_blank" rel="noreferrer noopener">example AI projects with App Inventor</a>.</p>
+          <p>If you are using App Inventor, there is also a page with <a href="https://appinventor.mit.edu/explore/ai-with-mit-app-inventor" target="_blank" rel="noreferrer noopener">example AI projects</a>.</p>
         </div>
       </div>
     </section>

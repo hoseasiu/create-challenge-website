@@ -197,6 +197,8 @@ If you convert a Google Sites page into an HTML embed or otherwise update its pu
 
 ## Google Sites to HTML Embed Workflow
 
+**Wording must be preserved verbatim (learned 2026-08-19).** When converting a page's body copy — headings, paragraphs, list items, link text, captions, everything a visitor reads — carry the source text over exactly as written. Restructuring into this site's HTML components (prose blocks, lists, reflect-boxes, video-stacks) is fine and expected; changing, condensing, paraphrasing, or dropping any of the actual words is not, and neither is adding sentences/claims that aren't in the source, even if they sound plausible or fill an obvious gap (e.g. a `TODO` placeholder). If the source has a typo, keep the typo — flag it to Hosea rather than silently fixing it. If you think the wording genuinely needs to change (it's outdated, broken, or reads badly restructured), ask first; don't decide unilaterally. This applies to every full HTML-embed conversion, not just Maker Skills — the 2026-08-15 Maker Skills sub-pages were built from 4 parallel subagents that all reworded/condensed the source text while logging it as "verbatim," and it took a manual audit against the hidden originals to catch it (see [maker-skills-verbatim-audit.md](maker-skills-verbatim-audit.md) for the full before/after).
+
 When a page is converted from the Google Sites version to a standalone full-page HTML embed, follow this workflow:
 
 1. Review the live Google Sites page online first under beaver-works-assistive-tech.mit.edu/.
@@ -204,8 +206,9 @@ When a page is converted from the Google Sites version to a standalone full-page
 3. If there are major content or structural differences, pause and ask for clarification before editing.
 4. If the snapshot is simply out of date, update the `site-snapshot/*.md` content to match the current published page.
 5. Add or update snapshot metadata to document the source HTML file (for example, `source_html: index.html`).
-6. Build the new HTML embed using the site style guide and accessibility guidelines.
-7. Update the corresponding `site-snapshot` markdown file and snapshot date to keep the archive current.
+6. Build the new HTML embed using the site style guide and accessibility guidelines, copying body text verbatim from the source per the rule above.
+7. **Before considering the conversion done, check the new HTML against the source page one paragraph/list-item/link at a time and flag every wording difference you find** — don't just assert the content is verbatim; actually re-read source and output side by side and call out anything reworded, dropped, or added (including small things like changed link text or a merged/split sentence). Report these findings to Hosea rather than silently fixing or silently declaring it clean.
+8. Update the corresponding `site-snapshot` markdown file and snapshot date to keep the archive current.
 
 This workflow ensures the published version, the snapshot archive, and the markup all stay synchronized.
 

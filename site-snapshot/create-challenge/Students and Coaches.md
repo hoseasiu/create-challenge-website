@@ -1,14 +1,16 @@
 ---
-title: "Getting Started"
-url: https://beaver-works-assistive-tech.mit.edu/create-challenge/getting-started
-source_html: getting-started.html
-snapshot_date: 2026-08-05
+title: "Students and Coaches"
+url: https://beaver-works-assistive-tech.mit.edu/take-part/students-and-coaches
+source_html: students-and-coaches.html
+snapshot_date: 2026-08-21
 content_status: stub
 ---
 
-# Getting Started
+# Students and Coaches
 
-> **Snapshot note:** Full page content was captured on 2026-05-11 but is not reproduced here. Visit [https://beaver-works-assistive-tech.mit.edu/create-challenge/getting-started](https://beaver-works-assistive-tech.mit.edu/create-challenge/getting-started) for the live page.
+> **Renamed 2026-08-21 (issue #25 link/nav audit):** this page moved from `/create-challenge/getting-started` (nav label "Getting Started") to `/take-part/students-and-coaches` (nav label "Students and Coaches") as part of the site-wide audience-based navigation reorganization. Content is unchanged — only the URL, nav label, page `<title>`, and `<h1>` were updated to match. See [website-update-status.md](../../website-update-status.md) and CLAUDE.md's Google Sites to HTML Embed Workflow. A separate follow-up issue covers whether the page's content itself should be rewritten for the Students-and-Coaches audience framing (not done here).
+
+> **Snapshot note:** Full page content was captured on 2026-05-11 but is not reproduced here. Visit [https://beaver-works-assistive-tech.mit.edu/take-part/students-and-coaches](https://beaver-works-assistive-tech.mit.edu/take-part/students-and-coaches) for the live page.
 
 Onboarding guide for new teams: how to register, form a team, find a co-designer, and begin working through the CRE[AT]E Course materials.
 

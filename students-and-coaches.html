@@ -188,6 +188,20 @@
       justify-content: center;
     }
 
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .page-nav a {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
     footer {
       background: var(--mit-dark);
       color: rgba(255,255,255,0.9);
@@ -367,12 +381,21 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="section__inner">
+      <nav class="page-nav" aria-label="Page navigation">
+        <a href="https://beaver-works-assistive-tech.mit.edu/create-challenge/goals-of-the-challenge">&laquo; Back: Goals of the Challenge</a>
+        <a href="https://beaver-works-assistive-tech.mit.edu/current-teams/tips-for-teams">Next: Tips for Teams &raquo;</a>
+      </nav>
+    </div>
+  </section>
+
   <section class="interest-band" aria-label="Getting started next steps">
     <h2 class="interest-band__heading">2026&ndash;2027 Registration Is Open &mdash; Ready to Begin?</h2>
     <p class="interest-band__body">Register your team, confirm your co-designer partnership, and start working through the course materials early so you can focus on building something meaningful.</p>
     <div class="interest-band__ctas">
       <a class="btn btn--red" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/current-forms">Register Your Team</a>
-      <a class="btn btn--outline-dark" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/goals-of-the-challenge" target="_blank" rel="noreferrer noopener">Next section: Goals of the Challenge</a>
+      <a class="btn btn--outline-dark" href="https://beaver-works-assistive-tech.mit.edu/create-challenge/about">About the Challenge</a>
     </div>
   </section>
 

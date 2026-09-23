@@ -350,12 +350,26 @@
     <!-- ── Web Development ──────────────────────────────────────────────────── -->
     <section class="section section--gray">
       <div class="section__inner">
-        <p class="section__label">In Progress</p>
+        <p class="section__label">Choosing a Platform</p>
         <h2 class="section__heading">Web Development</h2>
 
+        <h3 class="prose-heading">Choosing your approach – how much code do you need?</h3>
         <div class="prose">
-          <p>TODO - learning resources</p>
-          <p>TODO - <a href="https://developer.chrome.com/docs/devtools/device-mode" target="_blank" rel="noreferrer noopener">simulating mobile viewports</a></p>
+          <p><strong>Static sites vs webapp-like sites</strong>: Some web projects can use static web pages for all their needs, without elements like user logins, authentication, databases, and so on. That doesn’t mean that it doesn’t have interactive elements – there are embedded videos and some active search components – it just means that the content itself doesn’t change. Generally speaking, these pages would be built using <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noreferrer noopener">HTML</a>, a markup language that describes the content of the pages, and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noreferrer noopener">CSS</a>, that describes how the content should look.</p>
+          <p><strong>Example</strong>: This Challenge website is a static webpage, built on <a href="https://sites.google.com/" target="_blank" rel="noreferrer noopener">Google Sites</a> and connected to an MIT domain. It was originally built using no-code tools directly with Google Sites, and gradually converted to use some HTML and CSS that was embedded into the Google Site. The use of Google Sites was mainly for maintainability reasons, while the conversion to use some HTML/CSS was done to help with web accessibility (better control over screen reader elements), better visual polish, and version control.</p>
+          <p>Google Sites isn’t the only solution. <a href="https://pages.github.com/" target="_blank" rel="noreferrer noopener">GitHub Pages</a> is another example for this category – things like <a href="https://www.glideapps.com/" target="_blank" rel="noreferrer noopener">Glide</a> and <a href="https://webflow.com/" target="_blank" rel="noreferrer noopener">Webflow</a> might also be used.</p>
+          <p>If a backend (data processing) is actually needed, such as for database management or user authentication, you might consider using a tool such as <a href="https://firebase.google.com/" target="_blank" rel="noreferrer noopener">Firebase</a>. However, we suspect that in many cases, these features are not necessary for the CRE[AT]E Challenge since you are building for one user.</p>
+        </div>
+
+        <h3 class="prose-heading">Frameworks beyond HTML/CSS</h3>
+        <div class="prose">
+          <p>If you need to go beyond basic text and images, a common next step is to use a web “framework” such as <a href="https://react.dev/" target="_blank" rel="noreferrer noopener">React</a>. This starts to get more into code, as it is a JavaScript library, but it lets you embed more interactive elements into static pages.</p>
+        </div>
+
+        <h3 class="prose-heading">Hosting</h3>
+        <div class="prose">
+          <p>How will your user get to the webpage? Most websites are “hosted” – that is, stored on a computer that anyone can reach with a web browser – and you can do this too, using things like <a href="https://pages.github.com/" target="_blank" rel="noreferrer noopener">GitHub Pages</a> or <a href="https://sites.google.com/" target="_blank" rel="noreferrer noopener">Google Sites</a> for basic pages, or <a href="https://vercel.com/" target="_blank" rel="noreferrer noopener">Vercel</a> and <a href="https://www.netlify.com/" target="_blank" rel="noreferrer noopener">Netlify</a> for more complex pages.</p>
+          <p>However, you should know that hosting services sometimes cost money on a recurring basis, especially if you want your own domain name. Also, if you are building a simple site for a single user, it is actually possible to just give the user the raw files and have them open the pages locally without going through the internet.</p>
         </div>
       </div>
     </section>

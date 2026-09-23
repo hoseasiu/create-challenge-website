@@ -1,10 +1,9 @@
 ---
 title: "Artificial Intelligence"
-url: https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/maker-skills/artificial-intelligence
-snapshot_date: 2026-08-19
+url: https://beaver-works-assistive-tech.mit.edu/create-challenge/create-course/artificial-intelligence
+snapshot_date: 2026-09-23
 content_status: full
-nav_parent: "Maker Skills"
-source_html: maker-skills-artificial-intelligence.html
+source_html: artificial-intelligence.html
 ---
 
 # Artificial Intelligence

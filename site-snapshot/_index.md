@@ -43,6 +43,7 @@ type: map_of_content
   - [[Introduction]]
   - [[Design Processes]]
   - [[Idea to Ink]]
+  - [[Artificial Intelligence]]
   - [[Maker Skills]]
     - [[Mechanical Making]]
     - [[Software]]

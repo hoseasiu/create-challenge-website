@@ -246,6 +246,10 @@ Full-page HTML embeds are edited locally in this repo, then manually pasted into
 
 Never assume a local edit is live until `website-update-status.md` says so.
 
+### Schedule tables are generated
+
+The Fall/Spring tables and the Assignment Notes block in `schedule.html` sit between `<!-- schedule:generated:start … -->` and `<!-- schedule:generated:end -->` markers. They are written by `npm run schedule:export` in the **create-challenge-dashboard** repo, from the season schedule in its `src/lib/season-config.ts` (the same dates drive the dashboard's due dates and deadline flags). To change a date, label, link or note there, edit the dashboard's season config and re-export — never hand-edit inside the markers, or the next export overwrites it (`npm run schedule:check` in the dashboard reports drift). Everything outside the markers (intro, page nav, interest band) is still edited here as usual.
+
 ---
 
 ## Cowork Session Limitations (learned 2026-07-12)

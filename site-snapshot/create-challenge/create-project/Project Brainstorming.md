@@ -79,7 +79,7 @@ Do some searching to see if existing products can address the challenges you ide
 >
 > How do these existing solutions address your problems? Where do they fall short? Are there ways for you to combine these ideas with the things your team has brainstormed? Feel free to add new items to your brainstorming list.
 >
-> If you are following this course on Edly, pause here and look at the Brainstorming and External Search Assignment under the Project Assignments section. Both the brainstorming assignment and the external search assignment are to be submitted as one document.
+> If you are following this course on the Challenge Dashboard, pause here and look at the Brainstorming and External Search Assignment under the Project Assignments section. Both the brainstorming assignment and the external search assignment are to be submitted as one document.
 
 ---
 

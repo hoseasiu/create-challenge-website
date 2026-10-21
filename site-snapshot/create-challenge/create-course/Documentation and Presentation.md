@@ -50,7 +50,7 @@ Common problems and solutions seen over the years when teams submit design revie
 
 Note: this review is of *final* submissions, so they'll look more polished than a team's own early design reviews — that's expected.
 
-Edly note: pause here for the section quiz if following the course on Edly.
+Edly note: pause here for the section quiz if following the course on the Challenge Dashboard.
 
 ## Module navigation
 

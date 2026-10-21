@@ -8,7 +8,7 @@ source_html: faq.html
 
 # FAQ
 
-Frequently Asked Questions about the CRE[AT]E Challenge, organized into seven sections: Forming a Team, Team Eligibility, Application Criteria, Resources for Participating, Edly, Co-Designers, and Other Questions.
+Frequently Asked Questions about the CRE[AT]E Challenge, organized into six sections: Forming a Team, Team Eligibility, Application Criteria, Resources for Participating, Co-Designers, and Other Questions.
 
 **Converted to a local HTML embed on 2026-08-15** (see [faq.html](../../faq.html)) to resolve [issue #19](https://github.com/hoseasiu/create-challenge-website/issues/19):
 

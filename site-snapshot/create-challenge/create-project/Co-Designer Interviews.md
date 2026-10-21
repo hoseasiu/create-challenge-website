@@ -65,7 +65,7 @@ As a team, please write up a protocol for interviewing your co-designer. Items y
 
 If there are other things that you want to note about your protocol, feel free to include them.
 
-If you are following this course on Edly, pause here and look at the Interview Protocol Assignment under the Project Assignments section for submission instructions.
+If you are following this course on the Challenge Dashboard, pause here and look at the Interview Protocol Assignment under the Project Assignments section for submission instructions.
 
 ### Assignment: Needs and Requirements
 
@@ -73,7 +73,7 @@ Once you have found a co-designer and had a chance to conduct an interview, let'
 
 Write down a set of user needs statements that you have extracted from the interview. They may be related to the same activity or disability-related challenge, or they may not be. You might try grouping the user needs if you find clusters that are related. For each user need, write one or more product requirements that are associated with that need. Remember that your eventual project does not need to address every challenge expressed during the interview. This step is just to get you ready for product brainstorming.
 
-If you are following this course on Edly, pause here and look at the Needs and Requirements Assignment under the Project Assignments section for submission instructions.
+If you are following this course on the Challenge Dashboard, pause here and look at the Needs and Requirements Assignment under the Project Assignments section for submission instructions.
 
 ## Project navigation
 

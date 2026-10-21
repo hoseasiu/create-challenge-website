@@ -45,7 +45,7 @@ Real case study: a mobile arm support for children/adults with cerebral palsy, d
 - Final delivered device photo (delivered to the United Cerebral Palsy center, with cushioned inserts).
 - **Review** and **Reflections** (reflection prompt on the prototyping process).
 
-Four "pause and take the section quiz" (Edly) prompts appear after Co-Designers, The Design Process, the Activity, and Reflections.
+Four "pause and take the section quiz" (Challenge Dashboard) prompts appear after Co-Designers, The Design Process, the Activity, and Reflections.
 
 ## Images
 

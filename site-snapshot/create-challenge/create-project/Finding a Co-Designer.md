@@ -1,7 +1,7 @@
 ---
 title: "Finding a Co-Designer"
 url: https://beaver-works-assistive-tech.mit.edu/create-challenge/create-project/finding-a-co-designer
-snapshot_date: 2026-08-15
+snapshot_date: 2026-11-14
 source_html: finding-a-co-designer.html
 content_status: complete
 ---
@@ -26,4 +26,4 @@ Guidance for CRE[AT]E Project teams on who can be a co-designer and how to find 
 
 ## Assignment: Find a Co-Designer
 
-If you already have a co-designer, you're done — otherwise, follow the guidance above to find one; a co-designer is required to continue in the CRE[AT]E Challenge. Once found, proceed to the next section, [[Co-Designer Interviews]], to prepare for and conduct an interview.
+If you already have a co-designer, you're done — otherwise, follow the guidance above to find one; a co-designer is required to continue in the CRE[AT]E Challenge. Once the co-designer agrees, they (or a parent/guardian if under 18 or unable to sign) must fill out the Co-Designer Acceptance form (via Current Forms) before the team starts working with them; it also records whether the team may include their name, photos, or video (if not, use a stand-in name and no images or recordings). The Challenge Dashboard shows when it has arrived. Once found, proceed to the next section, [[Co-Designer Interviews]], to prepare for and conduct an interview.

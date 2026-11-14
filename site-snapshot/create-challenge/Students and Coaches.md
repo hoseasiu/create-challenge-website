@@ -2,7 +2,7 @@
 title: "Students and Coaches"
 url: https://beaver-works-assistive-tech.mit.edu/take-part/students-and-coaches
 source_html: students-and-coaches.html
-snapshot_date: 2026-08-21
+snapshot_date: 2026-11-14
 content_status: stub
 ---
 
@@ -13,6 +13,8 @@ content_status: stub
 > **Snapshot note:** Full page content was captured on 2026-05-11 but is not reproduced here. Visit [https://beaver-works-assistive-tech.mit.edu/take-part/students-and-coaches](https://beaver-works-assistive-tech.mit.edu/take-part/students-and-coaches) for the live page.
 
 Onboarding guide for new teams: how to register, form a team, find a co-designer, and begin working through the CRE[AT]E Course materials.
+
+**Update (2026-11-14):** the "Find a co-designer" list gained a fourth item, "Send the Co-Designer Acceptance form": once the co-designer agrees, the team forwards them the form from Current Forms (a parent or guardian fills it out for a co-designer under 18 or unable to sign). It is required before the team starts working with them, records whether the team may include their name, photos, or video, and the Challenge Dashboard shows when it has arrived.
 
 ## Funding language — consistency fix only, no new page (issue #18)
 

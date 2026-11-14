@@ -74,6 +74,7 @@ Note: course focuses on mechanical devices (physical objects/tools), not softwar
 **Subheading: Research**
 NICHD *Milestones* podcast episode with Dr. Alison Cernich on AT research:
 - https://www.nichd.nih.gov/newsroom/news/080718-boosting-mobility-podcast
+  - Archived alternative (original sometimes returns access denied): https://web.archive.org/web/20260304055846/https://www.nichd.nih.gov/news/releases/080718-boosting-mobility-podcast
 - https://www.nichd.nih.gov/health/topics/rehabtech/conditioninfo/device
 
 ### Section 6 — This Course's Approach to AT (gray)
